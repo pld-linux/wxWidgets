@@ -28,7 +28,6 @@
 # contrib/utils/wxrc build fine with gtk2-nounicode
 # contrib/utils/wxrcedit segvfaults on gtk2-nounicode (wxPen::operator==)
 # utils/HelpGen build fine on gtk2-nounicode (depend only on base lib)
-# utils/configtool does not build (missing source file)
 # utils/emulator build and work fine on gtk2-nounicode
 # utils/helpview build and work fine on gtk2-nounicode
 # utils/hhp2cached build fine on gtk2-nounicode
@@ -40,7 +39,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.5.3
-Release:	0.1
+Release:	0.2
 License:	wxWidgets Licence
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
@@ -49,6 +48,7 @@ Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
 ## Source1-md5:	22f8177c509c058685146b295d9de866
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-eggtrayicon.patch
+Patch2:		%{name}-utils.patch
 URL:		http://www.wxWidgets.org/
 %{?with_gl:BuildRequires:	OpenGL-devel}
 # FIXME: only for sdl.m4
@@ -743,7 +743,7 @@ obs³ug± UNICODE.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
+%patch2 -p1
 #%patch3 -p1
 #%patch4 -p1
 #%patch5 -p1
