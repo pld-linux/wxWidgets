@@ -21,14 +21,15 @@ Source1:	http://ftp.uoi.gr/mirror/X11/wxWindows/%{version}/%{name}-%{version}-Pa
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-utils.patch
 Patch2:		%{name}-ogl.patch
+Patch3:		%{name}-ac.patch
+Patch4:		%{name}-gif0delay.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
 BuildRequires:	bakefile >= 0.1.4
 BuildRequires:	bakefile < 0.1.5
-BuildRequires:	bison
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
@@ -467,6 +468,8 @@ obs³ug± UNICODE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > fake-am_path_gtk.m4
 
