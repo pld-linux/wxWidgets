@@ -29,7 +29,7 @@ BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
 BuildRequires:	bakefile >= 0.1.4
-BuildRequires:	bakefile < 0.1.5
+#BuildRequires:	bakefile < 0.1.5
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
@@ -473,7 +473,15 @@ obs³ug± UNICODE.
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
 
+# bakefile.m4 from 0.1.4
+tail -n +1277 aclocal.m4 | head -n 1289 > bakefile.m4
+
 %build
+#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.4"
+#cd build/bakefiles
+#bakefile_gen -f autoconf
+#cd ../..
+#%endif
 cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I .
 %{__autoconf}
