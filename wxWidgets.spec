@@ -231,8 +231,8 @@ Biblioteka wxWidgets u¿ywaj±ca widgetów GTK2.
 Summary:	Header files for wxGTK2 library
 Summary(pl):	Pliki nag³ówkowe biblioteki wxGTK2
 Group:		X11/Development/Libraries
+Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxGTK2 = %{version}-%{release}
-Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-devel
 
 %description -n wxGTK2-devel
@@ -288,8 +288,8 @@ Biblioteka wxWidgets u¿ywaj±ca widgetów GTK2 z obs³ug± UNICODE.
 Summary:	Header files for wxGTK2 library with UNICODE support
 Summary(pl):	Pliki nag³ówkowe biblioteki wxGTK2 z obs³ug± UNICODE
 Group:		X11/Development/Libraries
+Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxGTK2-unicode = %{version}-%{release}
-Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode-devel
 
 %description -n wxGTK2-unicode-devel
@@ -652,7 +652,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc docs/html
-%doc docs/pdf/dialoged.pdf docs/tech docs/univ
+%doc docs/tech docs/univ
 %{_includedir}/wx*
 %dir %{_libdir}/wx
 %dir %{_libdir}/wx/include
@@ -675,6 +675,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxBase-devel
 %defattr(644,root,root,755)
 %{_libdir}/libwx_base-*.so
+%{_libdir}/libwx_base_*.so
 
 %files -n wxBase-unicode
 %defattr(644,root,root,755)
@@ -685,6 +686,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxBase-unicode-devel
 %defattr(644,root,root,755)
 %{_libdir}/libwx_baseu-*.so
+%{_libdir}/libwx_baseu_*.so
 
 %files -n wxGTK2
 %defattr(644,root,root,755)
