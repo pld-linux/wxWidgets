@@ -1046,58 +1046,58 @@ cp -f docs/x11/readme.txt docs/wxX11-readme.txt
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -n wxBase -p /sbin/ldconfig
+%post	-n wxBase -p /sbin/ldconfig
 %postun -n wxBase -p /sbin/ldconfig
 
-%post   -n wxBase-unicode -p /sbin/ldconfig
+%post	-n wxBase-unicode -p /sbin/ldconfig
 %postun -n wxBase-unicode -p /sbin/ldconfig
 
-%post   -n wxGTK -p /sbin/ldconfig
+%post	-n wxGTK -p /sbin/ldconfig
 %postun -n wxGTK -p /sbin/ldconfig
 
-%post   -n wxGTK-gl -p /sbin/ldconfig
+%post	-n wxGTK-gl -p /sbin/ldconfig
 %postun -n wxGTK-gl -p /sbin/ldconfig
 
-%post   -n wxGTK-univ -p /sbin/ldconfig
+%post	-n wxGTK-univ -p /sbin/ldconfig
 %postun -n wxGTK-univ -p /sbin/ldconfig
 
-%post   -n wxGTK-univ-gl -p /sbin/ldconfig
+%post	-n wxGTK-univ-gl -p /sbin/ldconfig
 %postun -n wxGTK-univ-gl -p /sbin/ldconfig
 
-%post   -n wxGTK2 -p /sbin/ldconfig
+%post	-n wxGTK2 -p /sbin/ldconfig
 %postun -n wxGTK2 -p /sbin/ldconfig
 
-%post   -n wxGTK2-gl -p /sbin/ldconfig
+%post	-n wxGTK2-gl -p /sbin/ldconfig
 %postun -n wxGTK2-gl -p /sbin/ldconfig
 
-%post   -n wxGTK2-univ -p /sbin/ldconfig
+%post	-n wxGTK2-univ -p /sbin/ldconfig
 %postun -n wxGTK2-univ -p /sbin/ldconfig
 
-%post   -n wxGTK2-univ-gl -p /sbin/ldconfig
+%post	-n wxGTK2-univ-gl -p /sbin/ldconfig
 %postun -n wxGTK2-univ-gl -p /sbin/ldconfig
 
-%post   -n wxGTK2-unicode -p /sbin/ldconfig
+%post	-n wxGTK2-unicode -p /sbin/ldconfig
 %postun -n wxGTK2-unicode -p /sbin/ldconfig
 
-%post   -n wxGTK2-unicode-gl -p /sbin/ldconfig
+%post	-n wxGTK2-unicode-gl -p /sbin/ldconfig
 %postun -n wxGTK2-unicode-gl -p /sbin/ldconfig
 
-%post   -n wxGTK2-univ-unicode -p /sbin/ldconfig
+%post	-n wxGTK2-univ-unicode -p /sbin/ldconfig
 %postun -n wxGTK2-univ-unicode -p /sbin/ldconfig
 
-%post   -n wxGTK2-univ-unicode-gl -p /sbin/ldconfig
+%post	-n wxGTK2-univ-unicode-gl -p /sbin/ldconfig
 %postun -n wxGTK2-univ-unicode-gl -p /sbin/ldconfig
 
-%post   -n wxMotif -p /sbin/ldconfig
+%post	-n wxMotif -p /sbin/ldconfig
 %postun -n wxMotif -p /sbin/ldconfig
 
-%post   -n wxMotif-gl -p /sbin/ldconfig
+%post	-n wxMotif-gl -p /sbin/ldconfig
 %postun -n wxMotif-gl -p /sbin/ldconfig
 
-%post   -n wxX11-univ -p /sbin/ldconfig
+%post	-n wxX11-univ -p /sbin/ldconfig
 %postun -n wxX11-univ -p /sbin/ldconfig
 
-%post   -n wxX11-univ-unicode -p /sbin/ldconfig
+%post	-n wxX11-univ-unicode -p /sbin/ldconfig
 %postun -n wxX11-univ-unicode -p /sbin/ldconfig
 
 %files -f wxstd.lang
