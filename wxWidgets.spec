@@ -232,10 +232,10 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-afm = %{version}-%{release}
 
 %description -n wxGTK
-wxWidgets library using GTK widgets.
+wxWidgets library using GTK+ widgets.
 
 %description -n wxGTK -l pl
-Biblioteka wxWidgets u¿ywaj±ca widgetów GTK.
+Biblioteka wxWidgets u¿ywaj±ca widgetów GTK+.
 
 %package -n wxGTK-devel
 Summary:	Header files for wxGTK library
@@ -245,10 +245,10 @@ Requires:	wxGTK = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description -n wxGTK-devel
-Header files for wxWidgets library using GTK widgets.
+Header files for wxWidgets library using GTK+ widgets.
 
 %description -n wxGTK-devel -l pl
-Pliki nag³ówkowe dla biblioteki wxWidgets u¿ywaj±cej widgetów GTK.
+Pliki nag³ówkowe dla biblioteki wxWidgets u¿ywaj±cej widgetów GTK+.
 
 %package -n wxGTK-gl
 Summary:	GL canvas library for wxGTK
@@ -285,7 +285,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-afm = %{version}-%{release}
 
 %description -n wxGTK-univ
-wxUniversal-based wxWidgets library using GTK widgets.
+wxUniversal-based wxWidgets library using GTK+ widgets.
 
 %description -n wxGTK-univ -l pl
 Oparta na wxUniversal biblioteka wxWidgets u¿ywaj±ca widgetów GTK.
