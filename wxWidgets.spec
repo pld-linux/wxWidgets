@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	odbc			# without ODBC support
+%bcond_without	x11			# without wxX11 packages
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
 
@@ -8,7 +9,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.5.3
-Release:	1
+Release:	1.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
@@ -475,10 +476,10 @@ CPPFLAGS="%{rpmcflags} -I`pwd`/include -I/usr/X11R6/include"; export CPPFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--enable-plugins \
-	--enable-compat22 \
 	--enable-std_iostreams \
 	--with-sdl \
-	--enable-opengl \
+	--with-opengl \
+	--enable-calendar \
 	--enable-controls \
 	--enable-tabdialog"
 
@@ -498,6 +499,7 @@ for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 	cd ..
 done
 
+%if %{with x11}
 gui='--with-x11'
 for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 	'--enable-unicode' ; do
@@ -519,6 +521,7 @@ for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 	fi
 	cd ..
 done
+%endif
 
 cd locale
 %{__make} allmo
@@ -553,6 +556,7 @@ for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 	cd ..
 done
 
+%if %{with x11}
 gui='--with-x11'
 for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 	'--enable-unicode' ; do
@@ -595,6 +599,7 @@ for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 
 	cd ..
 done
+%endif
 
 set -x
 
@@ -656,15 +661,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/wx*
 %dir %{_libdir}/wx
 %dir %{_libdir}/wx/include
+%dir %{_libdir}/wx/config
 %{_aclocaldir}/*.m4
 
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with x11}
 %files HelpGen
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/HelpGen
+%endif
 
 %files -n wxBase
 %defattr(644,root,root,755)
@@ -697,6 +705,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_gtk2_*-*.so
 %exclude %{_libdir}/libwx_gtk2_ogl-*.so
+%{_libdir}/wx/config/gtk2-ansi-*
 %{_libdir}/wx/include/gtk2-ansi-*
 %attr(755,root,root) %{_bindir}/wx-gtk2-ansi-config
 
@@ -717,6 +726,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_gtk2u_*-*.so
 %exclude %{_libdir}/libwx_gtk2u_ogl-*.so
+%{_libdir}/wx/config/gtk2-unicode-*
 %{_libdir}/wx/include/gtk2-unicode-*
 %attr(755,root,root) %{_bindir}/wx-gtk2-unicode-config
 
@@ -728,6 +738,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_gtk2u_ogl-*.so
 
+%if %{with x11}
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
@@ -745,6 +756,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_x11univ_*-*.so
 %exclude %{_libdir}/libwx_x11univ_ogl-*.so
+%{_libdir}/wx/config/x11univ-ansi-*
 %{_libdir}/wx/include/x11univ-ansi-*
 %attr(755,root,root) %{_bindir}/wx-x11univ-ansi-config
 
@@ -765,6 +777,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_x11univu_*-*.so
 %exclude %{_libdir}/libwx_x11univu_ogl-*.so
+%{_libdir}/wx/config/x11univ-unicode-*
 %{_libdir}/wx/include/x11univ-unicode-*
 %attr(755,root,root) %{_bindir}/wx-x11univ-unicode-config
 
@@ -775,3 +788,4 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-unicode-gl-devel
 %defattr(644,root,root,755)
 %{_libdir}/libwx_x11univu_ogl-*.so
+%endif
