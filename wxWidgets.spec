@@ -48,6 +48,7 @@ Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
 #Source1:	ftp://biolpc22.york.ac.uk/pub/2.5.2/wxWidgets-2.5.2-Patch01.tar.gz
 ## Source1-md5:	22f8177c509c058685146b295d9de866
 Patch0:		%{name}-samples.patch
+Patch1:		%{name}-eggtrayicon.patch
 URL:		http://www.wxWidgets.org/
 %{?with_gl:BuildRequires:	OpenGL-devel}
 # FIXME: only for sdl.m4
@@ -741,7 +742,7 @@ obs³ug± UNICODE.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 #%patch2 -p1
 #%patch3 -p1
 #%patch4 -p1
