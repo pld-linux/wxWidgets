@@ -4,7 +4,6 @@
 %bcond_without	gtk			# without wxGTK packages
 %bcond_without	gtk2			# without wxGTK2 packages
 %bcond_without	x11			# without wxX11 packages
-%bcond_without	motif			# without wxMotif packages
 %bcond_without	gl			# without *-gl* packages
 %bcond_without	unicode			# without *-unicode* packages
 %bcond_without	nounicode		# only unicode packages
@@ -12,6 +11,8 @@
 %bcond_without	nouniv			# only univ packages
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
+%bcond_with	motif			# without wxMotif packages
+					
 #
 # TODO:
 # - review all bconds
@@ -38,14 +39,14 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.5.2
+Version:	2.5.3
 Release:	0.1
 License:	wxWidgets Licence
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
-# Source0-md5:	468d900fa4b34e2341879471c7631ed8
-Source1:	ftp://biolpc22.york.ac.uk/pub/2.5.2/wxWidgets-2.5.2-Patch01.tar.gz
-# Source1-md5:	22f8177c509c058685146b295d9de866
+# Source0-md5:	33994e85efc06307977d2ddb9cbd91a1
+#Source1:	ftp://biolpc22.york.ac.uk/pub/2.5.2/wxWidgets-2.5.2-Patch01.tar.gz
+## Source1-md5:	22f8177c509c058685146b295d9de866
 Patch0:		%{name}-samples.patch
 URL:		http://www.wxWidgets.org/
 %{?with_gl:BuildRequires:	OpenGL-devel}
@@ -738,7 +739,7 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q -a 1
+%setup -q
 %patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
