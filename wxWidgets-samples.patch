@@ -1,11 +1,11 @@
---- wxWidgets-2.5.2/configure.in.wiget	2004-07-22 14:39:40.241126212 +0200
-+++ wxWidgets-2.5.2/configure.in	2004-07-22 14:42:07.779872983 +0200
-@@ -5485,7 +5485,7 @@
+--- wxWidgets-2.5.4/configure.in~	2005-02-28 15:03:24.811627176 +0100
++++ wxWidgets-2.5.4/configure.in	2005-02-28 15:08:28.636438784 +0100
+@@ -5069,7 +5069,7 @@
+         fi
+     fi
  
- if test "$wxUSE_TABDIALOG" = "yes"; then
-     AC_DEFINE(wxUSE_TAB_DIALOG)
--    SAMPLES_SUBDIRS="$SAMPLES_SUBDIRS tab"
-+    #SAMPLES_SUBDIRS="$SAMPLES_SUBDIRS tab"
+-    SAMPLES_SUBDIRS="$SAMPLES_SUBDIRS typetest"
++    #SAMPLES_SUBDIRS="$SAMPLES_SUBDIRS typetest"
  fi
  
- if test "$wxUSE_TEXTCTRL" = "yes"; then
+ dnl ------------------------------------------------------------------------
