@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	ansi			# only unicode packages
 %bcond_without	odbc			# without ODBC support
-%bcond_without	x11			# without wxX11 packages
+%bcond_with	x11			# with wxX11 packages (broken)
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
 
@@ -489,7 +489,7 @@ LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--enable-plugins \
 	--enable-std_iostreams \
-	--with-sdl \
+	--without-sdl \
 	--with-opengl \
 	--enable-calendar \
 	--enable-controls \
@@ -656,13 +656,13 @@ rm -rf $RPM_BUILD_ROOT
 %files -f wxstd.lang
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme,todo}.txt
-%dir %{_datadir}/wx
-%dir %{_datadir}/wx/2.5
+#%dir %{_datadir}/wx
+#%dir %{_datadir}/wx/2.5
 
-%files -n wxWidgets-afm
-%defattr(644,root,root,755)
-%{_datadir}/wx/2.5/afm
-%{_datadir}/wx/2.5/gs_afm
+#%files -n wxWidgets-afm
+#%defattr(644,root,root,755)
+#%{_datadir}/wx/2.5/afm
+#%{_datadir}/wx/2.5/gs_afm
 
 %files devel
 %defattr(644,root,root,755)
@@ -689,7 +689,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_base-*.so.*.*
 %attr(755,root,root) %{_libdir}/libwx_base_*.so.*.*
-%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdl-*.so
+#%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdl-*.so
 
 %files -n wxBase-devel
 %defattr(644,root,root,755)
@@ -701,7 +701,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_baseu-*.so.*.*
 %attr(755,root,root) %{_libdir}/libwx_baseu_*.so.*.*
-%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdlu-*.so
+#%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdlu-*.so
 
 %files -n wxBase-unicode-devel
 %defattr(644,root,root,755)
