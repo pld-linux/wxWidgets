@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	ansi			# only unicode packages
 %bcond_without	odbc			# without ODBC support
 %bcond_without	x11			# without wxX11 packages
 %bcond_with	debug			# build with \--enable-debug
@@ -9,7 +10,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.5.3
-Release:	1.2
+Release:	1.3
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
@@ -18,15 +19,15 @@ Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
 Source1:	http://ftp.uoi.gr/mirror/X11/wxWindows/%{version}/%{name}-%{version}-Patch02.tar.gz
 # Source1-md5:	96719aff7f9efa0aeea16e20277dc998
 Patch0:		%{name}-samples.patch
-Patch1:		%{name}-eggtrayicon.patch
-Patch2:		%{name}-utils.patch
-Patch3:		%{name}-ogl.patch
+Patch1:		%{name}-utils.patch
+Patch2:		%{name}-ogl.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bakefile >= 0.1.5
+BuildRequires:	bakefile >= 0.1.4
+BuildRequires:	bakefile < 0.1.5
 BuildRequires:	bison
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
@@ -462,16 +463,12 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q
+%setup -q -a 1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
-cd build/bakefiles
-bakefile_gen -f autoconf
-cd ../..
 cp /usr/share/automake/config.sub .
 %{__aclocal} -I .
 %{__autoconf}
@@ -489,7 +486,7 @@ args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--enable-tabdialog"
 
 gui='--with-gtk --enable-gtk2'
-for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
+for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir $objdir
@@ -506,7 +503,7 @@ done
 
 %if %{with x11}
 gui='--with-x11'
-for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
+for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir $objdir
@@ -536,7 +533,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 gui='--with-gtk --enable-gtk2'
-for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
+for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	cd $objdir
@@ -557,13 +554,12 @@ for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
 		libdir=$RPM_BUILD_ROOT%{_libdir} \
 		mandir=$RPM_BUILD_ROOT%{_mandir} \
 		includedir=$RPM_BUILD_ROOT%{_includedir}
-
 	cd ..
 done
 
 %if %{with x11}
 gui='--with-x11'
-for unicode in '--disable-unicode %{?with_odbc:--with-odbc}' \
+for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	cd $objdir
@@ -650,7 +646,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f wxstd.lang
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme,todo}.txt
-%doc docs/wxX11-readme.txt
 %dir %{_datadir}/wx
 %dir %{_datadir}/wx/2.5
 
@@ -679,6 +674,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/HelpGen
 %endif
 
+%if %{with ansi}
 %files -n wxBase
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_base-*.so.*.*
@@ -689,6 +685,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libwx_base-*.so
 %{_libdir}/libwx_base_*.so
+%endif
 
 %files -n wxBase-unicode
 %defattr(644,root,root,755)
@@ -701,6 +698,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libwx_baseu-*.so
 %{_libdir}/libwx_baseu_*.so
 
+%if %{with ansi}
 %files -n wxGTK2
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2_*.so.*.*
@@ -721,6 +719,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-gl-devel
 %defattr(644,root,root,755)
 %{_libdir}/libwx_gtk2_ogl-*.so
+%endif
 
 %files -n wxGTK2-unicode
 %defattr(644,root,root,755)
@@ -744,6 +743,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libwx_gtk2u_ogl-*.so
 
 %if %{with x11}
+%if %{with ansi}
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
@@ -754,6 +754,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n wxX11
 %defattr(644,root,root,755)
+%doc docs/wxX11-readme.txt
 %attr(755,root,root) %{_libdir}/libwx_x11univ_*-*.so.*.*
 %exclude %{_libdir}/libwx_x11univ_ogl-*.so.*.*
 
@@ -772,6 +773,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-gl-devel
 %defattr(644,root,root,755)
 %{_libdir}/libwx_x11univ_ogl-*.so
+%endif
 
 %files -n wxX11-unicode
 %defattr(644,root,root,755)
