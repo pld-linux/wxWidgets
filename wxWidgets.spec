@@ -9,7 +9,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.5.3
-Release:	1.1
+Release:	1.2
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
@@ -20,12 +20,13 @@ Source1:	http://ftp.uoi.gr/mirror/X11/wxWindows/%{version}/%{name}-%{version}-Pa
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-eggtrayicon.patch
 Patch2:		%{name}-utils.patch
+Patch3:		%{name}-ogl.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bakefile >= 0.1.4
+BuildRequires:	bakefile >= 0.1.5
 BuildRequires:	bison
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
@@ -465,8 +466,12 @@ obs³ug± UNICODE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
+cd build/bakefiles
+bakefile_gen -f autoconf
+cd ../..
 cp /usr/share/automake/config.sub .
 %{__aclocal} -I .
 %{__autoconf}
