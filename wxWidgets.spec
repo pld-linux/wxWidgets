@@ -9,15 +9,12 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.5.3
-Release:	1.3
+Version:	2.5.4
+Release:	0.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
-# Source0-md5:	33994e85efc06307977d2ddb9cbd91a1
-#Source1:	ftp://biolpc22.york.ac.uk/pub/%{version}/%{name}-%{version}-Patch02.tar.gz
-Source1:	http://ftp.uoi.gr/mirror/X11/wxWindows/%{version}/%{name}-%{version}-Patch02.tar.gz
-# Source1-md5:	96719aff7f9efa0aeea16e20277dc998
+# Source0-md5:	14b76e3774cdc59dd47655e6fac034ad
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-utils.patch
 Patch2:		%{name}-ogl.patch
@@ -463,7 +460,7 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q -a 1
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
