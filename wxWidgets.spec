@@ -468,15 +468,10 @@ obs³ug± UNICODE.
 %patch1 -p1
 %patch2 -p1
 
+echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > fake-am_path_gtk.m4
+
 %build
-
-cat > fake-am_path_gtk.m4<<EOF
-AC_DEFUN([AM_PATH_GTK],
-true
-)
-EOF
-
-cp /usr/share/automake/config.sub .
+cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I .
 %{__autoconf}
 
