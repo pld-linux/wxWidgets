@@ -218,7 +218,7 @@ Summary:	wxGTK2 library
 Summary(pl):	Biblioteka wxGTK2
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-afm = %{version}-%{release}
+#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxGTK2-univ
 
 %description -n wxGTK2
@@ -275,7 +275,7 @@ Summary:	wxGTK2 library with UNICODE support
 Summary(pl):	Biblioteka wxGTK2 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-afm = %{version}-%{release}
+#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode
 
 %description -n wxGTK2-unicode
@@ -348,7 +348,7 @@ Summary:	wxUniversal-based wxX11 library
 Summary(pl):	Oparta na wxUniversal biblioteka wxX11
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-afm = %{version}-%{release}
+#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxX11-univ
 
 %description -n wxX11
@@ -405,7 +405,7 @@ Summary:	wxUniversal-based wxX11 library with UNICODE support
 Summary(pl):	Oparta na wxUniversal biblioteka wxX11 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-afm = %{version}-%{release}
+#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode
 
 %description -n wxX11-unicode
