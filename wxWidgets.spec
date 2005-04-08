@@ -9,12 +9,12 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.5.4
+Version:	2.5.5
 Release:	0.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.gz
-# Source0-md5:	14b76e3774cdc59dd47655e6fac034ad
+Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.bz2
+# Source0-md5:	108ab356e7ea5c495e1c1b2a2e803ba6
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-utils.patch
 Patch2:		%{name}-ogl.patch
@@ -468,9 +468,11 @@ obs³ug± UNICODE.
 %patch4 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
+echo 'AC_DEFUN([AC_BAKEFILE_PROG_CC],[:])' > fake-ac_bakefile_prog_cc.m4
+echo 'AC_DEFUN([AC_BAKEFILE_PROG_CXX],[:])' > fake-ac_bakefile_prog_cxx.m4
 
 # bakefile.m4 from 0.1.7
-tail -n +722 aclocal.m4 | head -n 1427 > bakefile.m4
+tail -n +1481 aclocal.m4 | head -n 1396 > bakefile.m4
 
 %build
 # if bakefiles rebuild is needed:
