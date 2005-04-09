@@ -28,7 +28,6 @@ BuildRequires:	automake
 BuildRequires:	bakefile >= 0.1.7
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
-BuildRequires:	expat-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
@@ -38,7 +37,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-BuildRequires:	pango-devel
+BuildRequires:	pkgconfig
 Obsoletes:	wxwin-common
 Obsoletes:	wxGTK
 Obsoletes:	wxGTK-devel
