@@ -28,6 +28,7 @@ BuildRequires:	automake
 BuildRequires:	bakefile >= 0.1.7
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
+BuildRequires:	expat-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
