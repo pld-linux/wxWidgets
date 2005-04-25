@@ -9,12 +9,12 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.5.5
+Version:	2.6.0
 Release:	0.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/wxAll-%{version}.tar.bz2
-# Source0-md5:	108ab356e7ea5c495e1c1b2a2e803ba6
+Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.gz
+# Source0-md5:	a9d87fec714c0dc79ba1f5b8f1ded50c
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-utils.patch
 Patch2:		%{name}-ogl.patch
