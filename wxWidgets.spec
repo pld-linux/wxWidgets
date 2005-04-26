@@ -10,13 +10,13 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.6.0
-Release:	0.1
+Release:	0.2
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.gz
 # Source0-md5:	a9d87fec714c0dc79ba1f5b8f1ded50c
 Patch0:		%{name}-samples.patch
-Patch1:		%{name}-utils.patch
+#Patch1:		%{name}-utils.patch
 Patch2:		%{name}-ogl.patch
 Patch3:		%{name}-ac.patch
 Patch4:		%{name}-gif0delay.patch
@@ -462,7 +462,7 @@ obs³ug± UNICODE.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
