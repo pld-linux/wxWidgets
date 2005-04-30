@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	ansi			# only unicode packages
 %bcond_without	odbc			# without ODBC support
-%bcond_with	x11			# with wxX11 packages (broken)
+%bcond_without	x11			# don't build wxX11 packages
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
 
@@ -24,7 +24,7 @@ BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
-BuildRequires:	bakefile >= 0.1.7
+BuildRequires:	bakefile >= 0.1.8
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
@@ -58,7 +58,10 @@ Obsoletes:	wxMotif
 Obsoletes:	wxMotif-devel
 Obsoletes:	wxMotif-gl
 Obsoletes:	wxMotif-gl-devel
+Obsoletes:	wxWidgets-afm
 Obsoletes:	wxWindows
+Obsoletes:	wxWindows-afm
+Obsoletes:	wxwin-afm
 Obsoletes:	wxwin-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -76,22 +79,6 @@ wxWidgets to wolnodostêpna biblioteka napisana w C++ umo¿liwiaj±ca
 rozwijanie wieloplatformowych programów GUI. Przy u¿yciu wxWidgets
 mo¿na tworzyæ aplikacje dla ró¿nych GUI (GTK+, Motif/LessTif, MS
 Windows, Mac) z tego samego kodu ¼ród³owego.
-
-%package afm
-Summary:	Font metrics common for wxGTK, wxGTK2, wxMotif i wxX11
-Summary(pl):	Metryki fontów wspólne dla wxGTK, wxGTK2, wxMotif i wxX11
-Group:		X11/Libraries
-Requires:	%{name} = %{version}-%{release}
-Obsoletes:	wxwin-afm
-Obsoletes:	wxWindows-afm
-
-%description afm
-Font metrics (in AFM format) common for wxGTK, wxGTK2, wxMotif and
-wxX11 libraries.
-
-%description afm -l pl
-Metryki fontów (w formacie AFM) wspólne dla bibliotek wxGTK, wxGTK2,
-wxMotif i wxX11.
 
 %package devel
 Summary:	wxWidgets header files and development documentation
@@ -217,7 +204,6 @@ Summary:	wxGTK2 library
 Summary(pl):	Biblioteka wxGTK2
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxGTK2-univ
 
 %description -n wxGTK2
@@ -274,7 +260,6 @@ Summary:	wxGTK2 library with UNICODE support
 Summary(pl):	Biblioteka wxGTK2 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode
 
 %description -n wxGTK2-unicode
@@ -347,7 +332,6 @@ Summary:	wxUniversal-based wxX11 library
 Summary(pl):	Oparta na wxUniversal biblioteka wxX11
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxX11-univ
 
 %description -n wxX11
@@ -404,7 +388,6 @@ Summary:	wxUniversal-based wxX11 library with UNICODE support
 Summary(pl):	Oparta na wxUniversal biblioteka wxX11 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-#Requires:	%{name}-afm = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode
 
 %description -n wxX11-unicode
@@ -658,11 +641,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/{changes,licence,licendoc,preamble,readme,todo}.txt
 #%dir %{_datadir}/wx
 #%dir %{_datadir}/wx/2.5
-
-#%files -n wxWidgets-afm
-#%defattr(644,root,root,755)
-#%{_datadir}/wx/2.5/afm
-#%{_datadir}/wx/2.5/gs_afm
 
 %files devel
 %defattr(644,root,root,755)
