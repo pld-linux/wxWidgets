@@ -16,10 +16,9 @@ Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.gz
 # Source0-md5:	a9d87fec714c0dc79ba1f5b8f1ded50c
 Patch0:		%{name}-samples.patch
-#Patch1:		%{name}-utils.patch
-Patch2:		%{name}-ogl.patch
-Patch3:		%{name}-ac.patch
-Patch4:		%{name}-gif0delay.patch
+Patch1:		%{name}-ogl.patch
+Patch2:		%{name}-ac.patch
+Patch3:		%{name}-gif0delay.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
@@ -39,7 +38,6 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Obsoletes:	wxwin-common
 Obsoletes:	wxGTK
 Obsoletes:	wxGTK-devel
 Obsoletes:	wxGTK-gl
@@ -61,6 +59,7 @@ Obsoletes:	wxMotif-devel
 Obsoletes:	wxMotif-gl
 Obsoletes:	wxMotif-gl-devel
 Obsoletes:	wxWindows
+Obsoletes:	wxwin-common
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	%{_datadir}
@@ -462,21 +461,20 @@ obs³ug± UNICODE.
 %prep
 %setup -q
 %patch0 -p1
-#%%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
-echo 'AC_DEFUN([AC_BAKEFILE_PROG_CC],[:])' > fake-ac_bakefile_prog_cc.m4
-echo 'AC_DEFUN([AC_BAKEFILE_PROG_CXX],[:])' > fake-ac_bakefile_prog_cxx.m4
 
-# bakefile.m4 from 0.1.7
+# bakefile.m4 from 0.1.8
 tail -n +1481 aclocal.m4 | head -n 1396 > bakefile.m4
+# AC_BAKEFILE_PROG_* macros
+tail -n +684 aclocal.m4 | head -n 142 >> bakefile.m4
 
 %build
 # if bakefiles rebuild is needed:
-#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.7"
+#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.8"
 #cd build/bakefiles
 #bakefile_gen -f autoconf
 #cd ../..
@@ -497,7 +495,7 @@ args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--enable-controls \
 	--enable-tabdialog"
 
-gui='--with-gtk --enable-gtk2'
+gui='--with-gtk'
 for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
