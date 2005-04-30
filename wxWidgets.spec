@@ -542,7 +542,7 @@ cd locale
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-gui='--with-gtk --enable-gtk2'
+gui='--with-gtk'
 for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	'--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
