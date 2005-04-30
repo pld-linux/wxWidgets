@@ -639,8 +639,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f wxstd.lang
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme,todo}.txt
-#%dir %{_datadir}/wx
-#%dir %{_datadir}/wx/2.5
 
 %files devel
 %defattr(644,root,root,755)
@@ -737,8 +735,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %exclude %{_bindir}/HelpGen
 %exclude %{_bindir}/wx*-config
-#%{_datadir}/wx/makegen
-#%{_datadir}/wx/wxrcedit
 
 %files -n wxX11
 %defattr(644,root,root,755)
