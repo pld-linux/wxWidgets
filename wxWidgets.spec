@@ -63,6 +63,8 @@ Obsoletes:	wxWindows
 Obsoletes:	wxWindows-afm
 Obsoletes:	wxwin-afm
 Obsoletes:	wxwin-common
+Conflicts:	wxGTK2 < 2.6.0
+Conflicts:	wxGTK2-unicode < 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	%{_datadir}
