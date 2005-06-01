@@ -39,8 +39,8 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 # these are not supported by wxWidgets
-Obsoletes:	LDAPExplorerTool
-Obsoletes:	abridge
+Obsoletes:	LDAPExplorerTool <= 0.6-1
+Obsoletes:	abridge <= 0.4.0-1
 # and these are replaced
 Obsoletes:	wxGTK
 Obsoletes:	wxGTK-devel
