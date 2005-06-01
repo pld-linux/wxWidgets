@@ -10,7 +10,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.6.0
-Release:	3
+Release:	4
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.gz
@@ -38,6 +38,10 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+# these are not supported by wxWidgets
+Obsoletes:	LDAPExplorerTool
+Obsoletes:	abridge
+# and these are replaced
 Obsoletes:	wxGTK
 Obsoletes:	wxGTK-devel
 Obsoletes:	wxGTK-gl
