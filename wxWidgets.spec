@@ -454,6 +454,8 @@ obs³ug± UNICODE.
 %patch2 -p1
 %patch3 -p1
 
+echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
+
 # bakefile.m4 from 0.1.8
 tail -n +1518 aclocal.m4 | head -n 1397 > bakefile.m4
 # AC_BAKEFILE_PROG_* macros
