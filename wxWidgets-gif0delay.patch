@@ -1,6 +1,6 @@
 Protection against 0 (too short in general) delay in GIF animation.
 It caused xchm to hang just animating GIF without actually displaying anything.
-(affected wxgtk*; not wxx11univ not because of different implementation)
+(affected wxgtk*; not wxx11univ because of different implementation)
 
 --- wxWidgets-2.5.3/src/html/m_image.cpp.orig	2004-09-28 13:18:36.000000000 +0200
 +++ wxWidgets-2.5.3/src/html/m_image.cpp	2005-02-20 21:06:55.564796160 +0100
