@@ -34,6 +34,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
+BuildRequires:	libmspack-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
