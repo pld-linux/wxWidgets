@@ -1,0 +1,10 @@
+--- wxWidgets-2.6.2/src/unix/fontutil.cpp.orig	2005-09-20 15:35:41.000000000 +0200
++++ wxWidgets-2.6.2/src/unix/fontutil.cpp	2005-10-13 16:03:36.000000000 +0200
+@@ -48,6 +48,7 @@
+ extern GtkWidget *wxGetRootWindow();
+ #else
+ #include "wx/x11/private.h"
++#include "wx/app.h"
+ #endif
+ 
+ // ----------------------------------------------------------------------------
