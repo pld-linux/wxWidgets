@@ -9,23 +9,23 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.6.1
-Release:	2
+Version:	2.6.2
+Release:	1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
-# Source0-md5:	045f0edad0988620a4aa36096bb16e28
+# Source0-md5:	ee0aa211febd992c8540e6c9df749b51
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
 Patch3:		%{name}-gif0delay.patch
-Patch4:		%{name}-pangox.patch
+Patch4:		%{name}-x11unicode.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
-BuildRequires:	bakefile >= 0.1.8
+#BuildRequires:	bakefile >= 0.1.9
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
@@ -458,20 +458,15 @@ obs³ug± UNICODE.
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
 
-# bakefile.m4 from 0.1.8
-tail -n +1518 aclocal.m4 | head -n 1397 > bakefile.m4
-# AC_BAKEFILE_PROG_* macros
-tail -n +721 aclocal.m4 | head -n 142 >> bakefile.m4
-
 %build
 # if bakefiles rebuild is needed:
-#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.8"
+#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.9"
 #cd build/bakefiles
 #bakefile_gen -f autoconf
 #cd ../..
 #%endif
 cp -f /usr/share/automake/config.sub .
-%{__aclocal} -I .
+%{__aclocal} -I build/aclocal
 %{__autoconf}
 
 CPPFLAGS="%{rpmcflags} -I`pwd`/include -I/usr/X11R6/include"; export CPPFLAGS
