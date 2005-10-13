@@ -9,9 +9,8 @@ diff -urN wxWidgets-2.5.5.orig/contrib/build/ogl/ogl.bkl wxWidgets-2.5.5/contrib
          <wx-lib>core</wx-lib>
          <wx-lib>base</wx-lib>
      </dll>
-diff -urN wxWidgets-2.5.5.orig/contrib/src/ogl/Makefile.in wxWidgets-2.5.5/contrib/src/ogl/Makefile.in
---- wxWidgets-2.5.5.orig/contrib/src/ogl/Makefile.in	2005-03-28 18:47:43.000000000 +0200
-+++ wxWidgets-2.5.5/contrib/src/ogl/Makefile.in	2005-04-07 20:34:44.791583944 +0200
+--- wxWidgets-2.6.2/contrib/src/ogl/Makefile.in.orig	2005-08-13 02:23:42.000000000 +0200
++++ wxWidgets-2.6.2/contrib/src/ogl/Makefile.in	2005-10-13 13:24:23.000000000 +0200
 @@ -200,6 +200,9 @@
  COND_MONOLITHIC_0___WXLIB_BASE_p = \
  	-lwx_base$(WXBASEPORT)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)-$(WX_RELEASE)$(HOST_SUFFIX)
@@ -26,8 +25,8 @@ diff -urN wxWidgets-2.5.5.orig/contrib/src/ogl/Makefile.in wxWidgets-2.5.5/contr
  	rm -f config.cache config.log config.status bk-deps bk-make-pch shared-ld-sh Makefile
  
  @COND_SHARED_1@$(LIBDIRNAME)/$(DLLPREFIX)$(WXDLLNAMEPREFIXGUI)$(WXUNICODEFLAG)$(WXDEBUGFLAG)$(WX_LIB_FLAVOUR)_ogl$(WXCOMPILER)$(VENDORTAG)$(WXDLLVERSIONTAG)$(__ogldll___targetsuf3): $(OGLDLL_OBJECTS) $(__ogldll___win32rc)
--@COND_SHARED_1@	$(SHARED_LD_CXX) $@ $(OGLDLL_OBJECTS) $(LDFLAGS)   -L$(LIBDIRNAME) $(__ogldll___macinstnamecmd) $(__ogldll___importlib) $(__ogldll___soname_flags) $(__ogldll___macver)  $(__WXLIB_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(EXTRALIBS_FOR_GUI) $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)
-+@COND_SHARED_1@	$(SHARED_LD_CXX) $@ $(OGLDLL_OBJECTS) $(LDFLAGS)   -L$(LIBDIRNAME) $(__ogldll___macinstnamecmd) $(__ogldll___importlib) $(__ogldll___soname_flags) $(__ogldll___macver)  $(__WXLIB_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(EXTRALIBS_FOR_GUI) $(__WXLIB_DEPRECATED_p) $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)
+-@COND_SHARED_1@	$(SHARED_LD_CXX) $@ $(OGLDLL_OBJECTS) $(LDFLAGS)   -L$(LIBDIRNAME) $(__ogldll___macinstnamecmd) $(__ogldll___importlib) $(__ogldll___soname_flags) $(WXMACVERSION_CMD)  $(__WXLIB_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(EXTRALIBS_FOR_GUI) $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)
++@COND_SHARED_1@	$(SHARED_LD_CXX) $@ $(OGLDLL_OBJECTS) $(LDFLAGS)   -L$(LIBDIRNAME) $(__ogldll___macinstnamecmd) $(__ogldll___importlib) $(__ogldll___soname_flags) $(WXMACVERSION_CMD)  $(__WXLIB_MONO_p) $(__LIB_TIFF_p) $(__LIB_JPEG_p) $(__LIB_PNG_p) $(__LIB_ZLIB_p) $(__LIB_ODBC_p) $(__LIB_REGEX_p) $(__LIB_EXPAT_p) $(EXTRALIBS_FOR_BASE) $(EXTRALIBS_FOR_GUI) $(__EXLIB_DEPRECATED_p) $(__WXLIB_CORE_p)  $(__WXLIB_BASE_p)
  @COND_SHARED_1@	
  @COND_SHARED_1@	$(__ogldll___so_symlinks_cmd)
  
