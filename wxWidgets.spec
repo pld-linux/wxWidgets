@@ -21,6 +21,7 @@ Patch2:		%{name}-ac.patch
 Patch3:		%{name}-gif0delay.patch
 Patch4:		%{name}-x11unicode.patch
 Patch5:		%{name}-intl.patch
+Patch6:		%{name}-gcc4.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel
@@ -458,6 +459,7 @@ obs³ug± UNICODE.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
 
