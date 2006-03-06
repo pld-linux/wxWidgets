@@ -10,7 +10,7 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.6.2
-Release:	2
+Release:	3
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
@@ -23,7 +23,7 @@ Patch4:		%{name}-x11unicode.patch
 Patch5:		%{name}-intl.patch
 Patch6:		%{name}-gcc4.patch
 URL:		http://www.wxWidgets.org/
-BuildRequires:	OpenGL-devel
+BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake
@@ -42,6 +42,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+%{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
 # these are not supported by wxWidgets
 Obsoletes:	LDAPExplorerTool <= 0.6-1
 Obsoletes:	abridge <= 0.4.0-1
@@ -241,7 +242,6 @@ Summary:	GL canvas library for wxGTK2
 Summary(pl):	Biblioteka GL dla wxGTK2
 Group:		X11/Libraries
 Requires:	wxGTK2 = %{version}-%{release}
-Requires:	OpenGL
 Obsoletes:	wxGTK2-univ-gl
 
 %description -n wxGTK2-gl
@@ -256,7 +256,7 @@ Summary(pl):	Pliki programistyczne biblioteki GL dla wxGTK2
 Group:		X11/Development/Libraries
 Requires:	wxGTK2-devel = %{version}-%{release}
 Requires:	wxGTK2-gl = %{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLU-devel
 Obsoletes:	wxGTK2-univ-gl-devel
 
 %description -n wxGTK2-gl-devel
@@ -299,7 +299,6 @@ Summary:	GL canvas library for wxGTK2 with UNICODE support
 Summary(pl):	Biblioteka GL dla wxGTK2 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	wxGTK2-unicode = %{version}-%{release}
-Requires:	OpenGL
 Obsoletes:	wxGTK2-univ-unicode-gl
 
 %description -n wxGTK2-unicode-gl
@@ -314,7 +313,7 @@ Summary(pl):	Pliki programistyczne biblioteki GL dla wxGTK2 z obs³ug± UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxGTK2-unicode-devel = %{version}-%{release}
 Requires:	wxGTK2-unicode-gl = %{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLU-devel
 Obsoletes:	wxGTK2-univ-unicode-gl-devel
 
 %description -n wxGTK2-unicode-gl-devel
@@ -369,7 +368,6 @@ Summary:	GL canvas library for wxUniversal-based wxX11
 Summary(pl):	Biblioteka GL dla opartej na wxUniversal wxX11
 Group:		X11/Libraries
 Requires:	wxX11 = %{version}-%{release}
-Requires:	OpenGL
 Obsoletes:	wxX11-univ-gl
 
 %description -n wxX11-gl
@@ -384,7 +382,7 @@ Summary(pl):	Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX1
 Group:		X11/Development/Libraries
 Requires:	wxX11-gl = %{version}-%{release}
 Requires:	wxX11-devel = %{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLU-devel
 Obsoletes:	wxX11-univ-gl-devel
 
 %description -n wxX11-gl-devel
@@ -425,7 +423,6 @@ Summary:	GL canvas library for wxUniversal-based wxX11 with UNICODE support
 Summary(pl):	Biblioteka GL dla opartej na wxUniversal wxX11 z obs³ug± UNICODE
 Group:		X11/Libraries
 Requires:	wxX11-unicode = %{version}-%{release}
-Requires:	OpenGL
 Obsoletes:	wxX11-univ-unicode-gl
 
 %description -n wxX11-unicode-gl
@@ -440,7 +437,7 @@ Summary(pl):	Pliki programistyczne biblioteki GL dla wxX11 z obs³ug± UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxX11-unicode-gl = %{version}-%{release}
 Requires:	wxX11-unicode-devel = %{version}-%{release}
-Requires:	OpenGL-devel
+Requires:	OpenGL-GLU-devel
 Obsoletes:	wxX11-univ-unicode-gl-devel
 
 %description -n wxX11-unicode-gl-devel
