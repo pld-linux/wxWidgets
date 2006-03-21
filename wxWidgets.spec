@@ -5,16 +5,25 @@
 %bcond_without	x11			# don't build wxX11 packages
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
+#
+# Unpackaged files:
+#  /usr/bin/wxrc-2.6
+#  /usr/share/bakefile/presets/wx.bkl
+#  /usr/share/bakefile/presets/wx_unix.bkl
+#  /usr/share/bakefile/presets/wx_win32.bkl
+#  /usr/share/locale/it/LC_MESSAGES/wxmsw.mo
+#
 
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.6.2
-Release:	3
+Version:	2.6.3
+%define pre rc2
+Release:	0.%{pre}.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
-# Source0-md5:	ee0aa211febd992c8540e6c9df749b51
+Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}-%{pre}.tar.bz2
+# Source0-md5:	6f9e7536c92021e19dca72a71110a8ba
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -455,7 +464,7 @@ obs³ug± UNICODE.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+#%patch5 -p1
 %patch6 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
