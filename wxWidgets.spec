@@ -18,12 +18,11 @@ Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.6.3
-%define pre rc2
-Release:	0.%{pre}.1
+Release:	1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}-%{pre}.tar.bz2
-# Source0-md5:	6f9e7536c92021e19dca72a71110a8ba
+Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
+# Source0-md5:	183a1fe136d7caacb60c717bbbef9788
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
