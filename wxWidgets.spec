@@ -9,19 +9,18 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.6.2
-Release:	2
+Version:	2.6.3
+Release:	1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
-# Source0-md5:	ee0aa211febd992c8540e6c9df749b51
+# Source0-md5:	183a1fe136d7caacb60c717bbbef9788
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
 Patch3:		%{name}-gif0delay.patch
 Patch4:		%{name}-x11unicode.patch
-Patch5:		%{name}-intl.patch
-Patch6:		%{name}-gcc4.patch
+Patch5:		%{name}-gcc4.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-devel
 #BuildRequires:	SDL-devel
@@ -459,7 +458,6 @@ obs³ug± UNICODE.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
 
