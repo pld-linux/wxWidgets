@@ -15,6 +15,8 @@ License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
 # Source0-md5:	183a1fe136d7caacb60c717bbbef9788
+Source1:	ftp://biolpc22.york.ac.uk/pub/%{version}/%{name}-%{version}-Patch-2.tar.gz
+# Source1-md5:	1218551e47e42185f31d819703004c46
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -451,7 +453,7 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
