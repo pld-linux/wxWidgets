@@ -17,13 +17,13 @@
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.6.3
-Release:	2
+Version:	2.7.0
+Release:	0.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
-# Source0-md5:	183a1fe136d7caacb60c717bbbef9788
-Source1:	ftp://biolpc22.york.ac.uk/pub/%{version}/%{name}-%{version}-Patch-2.tar.gz
+# Source0-md5:	262b6aa540800a7f84a39829cdf03529
+#Source1:	ftp://biolpc22.york.ac.uk/pub/%{version}/%{name}-%{version}-Patch-2.tar.gz
 # Source1-md5:	1218551e47e42185f31d819703004c46
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
