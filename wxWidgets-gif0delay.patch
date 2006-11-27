@@ -1,36 +1,32 @@
-Protection against 0 (too short in general) delay in GIF animation.
-It caused xchm to hang just animating GIF without actually displaying anything.
-(affected wxgtk*; not wxx11univ because of different implementation)
-
---- wxWidgets-2.5.3/src/html/m_image.cpp.orig	2004-09-28 13:18:36.000000000 +0200
-+++ wxWidgets-2.5.3/src/html/m_image.cpp	2005-02-20 21:06:55.564796160 +0100
-@@ -337,6 +337,11 @@
+--- wxWidgets-2.7.1/src/html/m_image.cpp.orig	2006-10-12 14:52:20.000000000 +0200
++++ wxWidgets-2.7.1/src/html/m_image.cpp	2006-10-15 20:32:56.000000000 +0200
+@@ -333,6 +333,11 @@
  
      DECLARE_NO_COPY_CLASS(wxGIFTimer)
  };
 +
 +static int safedelay(int ms)
 +{
-+	return (ms >= 10) ? ms : 10;
++       return (ms >= 10) ? ms : 10;
 +}
  #endif
  
  
-@@ -390,7 +395,7 @@
+@@ -388,7 +393,7 @@
                          if ( m_gifDecoder->IsAnimation() )
                          {
                              m_gifTimer = new wxGIFTimer(this);
--                            m_gifTimer->Start(m_gifDecoder->GetDelay(), true);
-+                            m_gifTimer->Start(safedelay(m_gifDecoder->GetDelay()), true);
+-                            m_gifTimer->Start(m_gifDecoder->GetDelay(0), true);
++                            m_gifTimer->Start(safedelay(m_gifDecoder->GetDelay(0)), true);
                          }
                          else
                          {
-@@ -517,7 +522,7 @@
-         m_window->Refresh(img.HasMask(), &rect);
+@@ -522,7 +527,7 @@
+         win->Refresh(img.HasMask(), &rect);
      }
  
--    timer->Start(m_gifDecoder->GetDelay(), true);
-+    timer->Start(safedelay(m_gifDecoder->GetDelay()), true);
+-    timer->Start(m_gifDecoder->GetDelay(m_nCurrFrame), true);
++    timer->Start(safedelay(m_gifDecoder->GetDelay(m_nCurrFrame)), true);
  }
  
  void wxHtmlImageCell::Layout(int w)

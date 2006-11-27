@@ -1,10 +1,11 @@
---- wxWidgets-2.6.2/src/unix/fontutil.cpp.orig	2005-09-20 15:35:41.000000000 +0200
-+++ wxWidgets-2.6.2/src/unix/fontutil.cpp	2005-10-13 16:03:36.000000000 +0200
-@@ -48,6 +48,7 @@
- extern GtkWidget *wxGetRootWindow();
+diff -uNr wxWidgets-2.7.2.orig/src/unix/fontutil.cpp wxWidgets-2.7.2/src/unix/fontutil.cpp
+--- wxWidgets-2.7.2.orig/src/unix/fontutil.cpp	2006-11-07 15:18:20.000000000 +0100
++++ wxWidgets-2.7.2/src/unix/fontutil.cpp	2006-11-10 14:55:57.000000000 +0100
+@@ -51,6 +51,7 @@
  #else
- #include "wx/x11/private.h"
-+#include "wx/app.h"
- #endif
+     #include "wx/x11/private.h"
+     #include "wx/gtk/private/string.h"
++    #include "wx/app.h"
  
- // ----------------------------------------------------------------------------
+     #define wxPANGO_CONV(s) (wxConvUTF8.cWX2MB((s)))
+ #endif
