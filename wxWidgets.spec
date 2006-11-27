@@ -14,17 +14,16 @@
 #  /usr/share/locale/it/LC_MESSAGES/wxmsw.mo
 #
 
+%define		_rc	rc1
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.7.0
-Release:	0.1
+Version:	2.8.0
+Release:	0.%{_rc}.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
-# Source0-md5:	262b6aa540800a7f84a39829cdf03529
-#Source1:	ftp://biolpc22.york.ac.uk/pub/%{version}/%{name}-%{version}-Patch-2.tar.gz
-# Source1-md5:	1218551e47e42185f31d819703004c46
+Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}-%{_rc}.tar.bz2
+# Source0-md5:	875864ca39a9293a2316a26cc6004104
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -458,15 +457,13 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-%{version}-%{_rc}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-
-echo 'AC_DEFUN([AM_PATH_GTK],[:])' > fake-am_path_gtk.m4
 
 %build
 # if bakefiles rebuild is needed:
@@ -479,7 +476,7 @@ cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
 
-CPPFLAGS="%{rpmcflags} -I`pwd`/include -I/usr/X11R6/include"; export CPPFLAGS
+CPPFLAGS="%{rpmcflags} -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
@@ -650,7 +647,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n wxX11-unicode -p /sbin/ldconfig
 
 %define _libf %{?with_debug:d}
-%define _configf %{?with_debug:-debug-2.6}
+%define _configf %{?with_debug:-debug-2.8}
 
 %files -f wxstd.lang
 %defattr(644,root,root,755)
