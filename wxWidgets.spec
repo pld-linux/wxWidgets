@@ -14,7 +14,7 @@
 #  /usr/share/locale/it/LC_MESSAGES/wxmsw.mo
 #
 
-%define		_rc	rc1
+%define		_rc	rc3
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
@@ -22,8 +22,8 @@ Version:	2.8.0
 Release:	0.%{_rc}.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/wxwindows/%{name}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	875864ca39a9293a2316a26cc6004104
+Source0:	http://ftp.wxwidgets.org/pub/%{version}-%{_rc}/%{name}-%{version}-%{_rc}.tar.bz2
+# Source0-md5:	acd0a9e9508ca43de2ea9000e83f0441
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -522,7 +522,7 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		%{__make} -C utils
 		%{__make} -C utils/emulator
 		%{__make} -C utils/hhp2cached
-		%{__make} -C contrib/utils
+		# %{__make} -C contrib/utils
 	fi
 	cd ..
 done
