@@ -14,16 +14,15 @@
 #  /usr/share/locale/it/LC_MESSAGES/wxmsw.mo
 #
 
-%define		_rc	rc3
 Summary:	wxWidgets library
 Summary(pl):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.8.0
-Release:	0.%{_rc}.1
+Release:	0.1
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
-Source0:	http://ftp.wxwidgets.org/pub/%{version}-%{_rc}/%{name}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	acd0a9e9508ca43de2ea9000e83f0441
+Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	4bf9c66cdb7cda1d2fe51376c211b9e1
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -457,7 +456,7 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obs³ug± UNICODE.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_rc}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
