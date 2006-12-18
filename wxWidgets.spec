@@ -3,6 +3,7 @@
 %bcond_without	ansi			# only unicode packages
 %bcond_without	odbc			# without ODBC support
 %bcond_without	x11			# don't build wxX11 packages
+%bcond_with	gnomeprint		# GNOME print support
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
 #
@@ -42,6 +43,7 @@ BuildRequires:	expat-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.0.0
+%{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.8.0}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmng-devel
 BuildRequires:	libmspack-devel
@@ -499,7 +501,8 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		${args} \
 		${gui} \
 		--disable-universal \
-		${unicode}
+		${unicode} \
+		%{!?with_gnomeprint:--without-gnomeprint}
 	%{__make}
 	%{__make} -C contrib/src
 	cd ..
