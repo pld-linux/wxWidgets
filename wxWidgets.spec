@@ -33,7 +33,7 @@ BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
-#BuildRequires:	bakefile >= 0.1.9
+#BuildRequires:	bakefile >= 0.2.1
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
@@ -114,7 +114,7 @@ Pliki nag³ówkowe i dokumentacja do bibliotek wxWidgets.
 
 %package -n bakefile-wxWidgets
 Summary:	Files for Bakefile to generate wxWidgets project files
-Summary(pl):	Pliki dla Bakefile generujace pliki projektow wxWidgets
+Summary(pl):	Pliki dla Bakefile generuj±ce pliki projektów wxWidgets
 Group:		Development/Tools
 Requires:	bakefile
 
@@ -481,7 +481,7 @@ obs³ug± UNICODE.
 
 %build
 # if bakefiles rebuild is needed:
-#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.1.9"
+#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.1"
 #cd build/bakefiles
 #bakefile_gen -f autoconf
 #cd ../..
