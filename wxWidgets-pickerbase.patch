@@ -21,3 +21,15 @@ diff -uNr wxWidgets-2.8.1.orig/src/common/pickerbase.cpp wxWidgets-2.8.1/src/com
  
  // ----------------------------------------------------------------------------
  // wxPickerBase - event handlers
+--- wxWidgets-2.8.1/include/wx/pickerbase.h.orig	2007-01-08 15:16:53.000000000 +0100
++++ wxWidgets-2.8.1/include/wx/pickerbase.h	2007-02-05 22:16:23.439094447 +0100
+@@ -52,7 +52,9 @@
+                     const wxValidator& validator = wxDefaultValidator,
+                     const wxString& name = wxButtonNameStr);
+ 
++#if wxUSE_TOOLTIPS
+     virtual void DoSetToolTip( wxToolTip *tip );
++#endif // wxUSE_TOOLTIPS
+ 
+ public:     // public API
+ 
