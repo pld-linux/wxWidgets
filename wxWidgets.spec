@@ -13,7 +13,7 @@
 #
 
 Summary:	wxWidgets library
-Summary(pl.UTF-8):   Biblioteka wxWidgets
+Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.8.1
 Release:	1
@@ -100,7 +100,7 @@ Windows, Mac) z tego samego kodu źródłowego.
 
 %package devel
 Summary:	wxWidgets header files and development documentation
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do wxWidgets
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do wxWidgets
 Group:		X11/Development/Libraries
 Requires:	libstdc++-devel
 Obsoletes:	wxWindows-devel
@@ -114,7 +114,7 @@ Pliki nagłówkowe i dokumentacja do bibliotek wxWidgets.
 
 %package -n bakefile-wxWidgets
 Summary:	Files for Bakefile to generate wxWidgets project files
-Summary(pl.UTF-8):   Pliki dla Bakefile generujące pliki projektów wxWidgets
+Summary(pl.UTF-8):	Pliki dla Bakefile generujące pliki projektów wxWidgets
 Group:		Development/Tools
 Requires:	bakefile
 
@@ -127,7 +127,7 @@ projektów opartych na bibliotece wxWidgets.
 
 %package examples
 Summary:	wxWidgets example programs
-Summary(pl.UTF-8):   Przykładowe programy wxWidgets
+Summary(pl.UTF-8):	Przykładowe programy wxWidgets
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	wxWindows-examples
@@ -140,7 +140,7 @@ Przykładowe programy wxWidgets.
 
 %package HelpGen
 Summary:	Help file generator for wxWidgets programs
-Summary(pl.UTF-8):   Generator plików pomocy dla programów wxWidgets
+Summary(pl.UTF-8):	Generator plików pomocy dla programów wxWidgets
 Group:		Development/Tools
 Requires:	wxBase = %{version}-%{release}
 Obsoletes:	wxWindows-HelpGen
@@ -153,7 +153,7 @@ Generator plików pomocy dla programów wxWidgets.
 
 %package -n wxBase
 Summary:	wxBase library - non-GUI support classes of wxWidgets toolkit
-Summary(pl.UTF-8):   wxBase - biblioteka klas wxWidgets nie związanych z GUI
+Summary(pl.UTF-8):	wxBase - biblioteka klas wxWidgets nie związanych z GUI
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -178,7 +178,7 @@ platformy: Win32, Unix i BeOS.
 
 %package -n wxBase-devel
 Summary:	wxBase headers needed for developping with wxBase
-Summary(pl.UTF-8):   Pliki nagłówkowe do wxBase
+Summary(pl.UTF-8):	Pliki nagłówkowe do wxBase
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxBase = %{version}-%{release}
@@ -192,7 +192,7 @@ Pliki nagłówkowe do biblioteki wxBase.
 
 %package -n wxBase-unicode
 Summary:	wxBase library - non-GUI support classes of wxWidgets toolkit with UNICODE support
-Summary(pl.UTF-8):   wxBase - biblioteka klas wxWidgets nie związanych z GUI ze wsparciem dla UNICODE
+Summary(pl.UTF-8):	wxBase - biblioteka klas wxWidgets nie związanych z GUI ze wsparciem dla UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -218,7 +218,7 @@ UNICODE.
 
 %package -n wxBase-unicode-devel
 Summary:	wxBase headers needed for developping with UNICODE-enabled wxBase
-Summary(pl.UTF-8):   Pliki nagłówkowe do wxBase z obsługą UNICODE
+Summary(pl.UTF-8):	Pliki nagłówkowe do wxBase z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxBase-unicode = %{version}-%{release}
@@ -232,7 +232,7 @@ Pliki nagłówkowe do biblioteki wxBase z obsługą UNICODE.
 
 %package -n wxGTK2
 Summary:	wxGTK2 library
-Summary(pl.UTF-8):   Biblioteka wxGTK2
+Summary(pl.UTF-8):	Biblioteka wxGTK2
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	wxGTK2-univ
@@ -245,7 +245,7 @@ Biblioteka wxWidgets używająca widgetów GTK2.
 
 %package -n wxGTK2-devel
 Summary:	Header files for wxGTK2 library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki wxGTK2
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK2
 Group:		X11/Development/Libraries
 Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxGTK2 = %{version}-%{release}
@@ -259,7 +259,7 @@ Pliki nagłówkowe dla biblioteki wxWidgets używającej widgetów GTK2.
 
 %package -n wxGTK2-gl
 Summary:	GL canvas library for wxGTK2
-Summary(pl.UTF-8):   Biblioteka GL dla wxGTK2
+Summary(pl.UTF-8):	Biblioteka GL dla wxGTK2
 Group:		X11/Libraries
 Requires:	wxGTK2 = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-gl
@@ -272,7 +272,7 @@ Biblioteka GL dla wxGTK2.
 
 %package -n wxGTK2-gl-devel
 Summary:	Development files for GL canvas library for wxGTK2
-Summary(pl.UTF-8):   Pliki programistyczne biblioteki GL dla wxGTK2
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla wxGTK2
 Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK2-devel = %{version}-%{release}
@@ -287,7 +287,7 @@ Pliki programistyczne biblioteki GL dla wxGTK2.
 
 %package -n wxGTK2-unicode
 Summary:	wxGTK2 library with UNICODE support
-Summary(pl.UTF-8):   Biblioteka wxGTK2 z obsługą UNICODE
+Summary(pl.UTF-8):	Biblioteka wxGTK2 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode
@@ -300,7 +300,7 @@ Biblioteka wxWidgets używająca widgetów GTK2 z obsługą UNICODE.
 
 %package -n wxGTK2-unicode-devel
 Summary:	Header files for wxGTK2 library with UNICODE support
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki wxGTK2 z obsługą UNICODE
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK2 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxGTK2-unicode = %{version}-%{release}
@@ -316,7 +316,7 @@ obsługą UNICODE.
 
 %package -n wxGTK2-unicode-gl
 Summary:	GL canvas library for wxGTK2 with UNICODE support
-Summary(pl.UTF-8):   Biblioteka GL dla wxGTK2 z obsługą UNICODE
+Summary(pl.UTF-8):	Biblioteka GL dla wxGTK2 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxGTK2-unicode = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode-gl
@@ -329,7 +329,7 @@ Biblioteka GL dla wxGTK2 z obsługą UNICODE.
 
 %package -n wxGTK2-unicode-gl-devel
 Summary:	Development files for GL canvas library for wxGTK2 with UNICODE support
-Summary(pl.UTF-8):   Pliki programistyczne biblioteki GL dla wxGTK2 z obsługą UNICODE
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla wxGTK2 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK2-unicode-devel = %{version}-%{release}
@@ -345,7 +345,7 @@ Pliki programistyczne biblioteki GL dla wxGTK2 z obsługą UNICODE.
 
 %package utils
 Summary:	Misc utils from wxWidgets project
-Summary(pl.UTF-8):   Różne narzędzia z projektu wxWidgets
+Summary(pl.UTF-8):	Różne narzędzia z projektu wxWidgets
 Group:		X11/Development/Tools
 Requires:	wxX11 = %{version}-%{release}
 Obsoletes:	wxWindows-utils
@@ -358,7 +358,7 @@ Różne narzędzia z projektu wxWidgets: helpviewer, makegen itp.
 
 %package -n wxX11
 Summary:	wxUniversal-based wxX11 library
-Summary(pl.UTF-8):   Oparta na wxUniversal biblioteka wxX11
+Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	wxX11-univ
@@ -371,7 +371,7 @@ Oparta na wxUniversal biblioteka wxX11.
 
 %package -n wxX11-devel
 Summary:	Header files for wxUniversal-based wxX11 library
-Summary(pl.UTF-8):   Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11
+Summary(pl.UTF-8):	Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11
 Group:		X11/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxX11 = %{version}-%{release}
@@ -385,7 +385,7 @@ Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11.
 
 %package -n wxX11-gl
 Summary:	GL canvas library for wxUniversal-based wxX11
-Summary(pl.UTF-8):   Biblioteka GL dla opartej na wxUniversal wxX11
+Summary(pl.UTF-8):	Biblioteka GL dla opartej na wxUniversal wxX11
 Group:		X11/Libraries
 Requires:	wxX11 = %{version}-%{release}
 Obsoletes:	wxX11-univ-gl
@@ -398,7 +398,7 @@ Biblioteka GL dla opartej na wxUniversal wxX11.
 
 %package -n wxX11-gl-devel
 Summary:	Development files for GL canvas library for wxUniversal-based wxX11
-Summary(pl.UTF-8):   Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11
 Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxX11-devel = %{version}-%{release}
@@ -413,7 +413,7 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11.
 
 %package -n wxX11-unicode
 Summary:	wxUniversal-based wxX11 library with UNICODE support
-Summary(pl.UTF-8):   Oparta na wxUniversal biblioteka wxX11 z obsługą UNICODE
+Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode
@@ -426,7 +426,7 @@ Oparta na wxUniversal biblioteka wxX11 z obsługą UNICODE.
 
 %package -n wxX11-unicode-devel
 Summary:	Header files for wxUniversal-based wxX11 library with UNICODE support
-Summary(pl.UTF-8):   Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11 z obsługą UNICODE
+Summary(pl.UTF-8):	Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxX11-unicode = %{version}-%{release}
@@ -441,7 +441,7 @@ UNICODE.
 
 %package -n wxX11-unicode-gl
 Summary:	GL canvas library for wxUniversal-based wxX11 with UNICODE support
-Summary(pl.UTF-8):   Biblioteka GL dla opartej na wxUniversal wxX11 z obsługą UNICODE
+Summary(pl.UTF-8):	Biblioteka GL dla opartej na wxUniversal wxX11 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxX11-unicode = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode-gl
@@ -454,7 +454,7 @@ Biblioteka GL dla opartej na wxUniversal wxX11 z obsługą UNICODE.
 
 %package -n wxX11-unicode-gl-devel
 Summary:	Development files for GL canvas library for wxX11 with UNICODE support
-Summary(pl.UTF-8):   Pliki programistyczne biblioteki GL dla wxX11 z obsługą UNICODE
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla wxX11 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxX11-unicode-devel = %{version}-%{release}
