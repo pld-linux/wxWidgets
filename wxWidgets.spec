@@ -103,6 +103,7 @@ Summary:	wxWidgets header files and development documentation
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do wxWidgets
 Group:		X11/Development/Libraries
 Requires:	libstdc++-devel
+%{?with_odbc:Requires:	unixODBC-devel}
 Obsoletes:	wxWindows-devel
 
 %description devel
