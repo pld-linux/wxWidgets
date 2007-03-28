@@ -731,7 +731,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{_libf}_*-*.so
 %exclude %{_libdir}/libwx_gtk2%{_libf}_gl-*.so
-%{_libdir}/wx/config/gtk2-ansi-*
+%attr(755,root,root) %{_libdir}/wx/config/gtk2-ansi-*
 %{_libdir}/wx/include/gtk2-ansi-*
 %attr(755,root,root) %{_bindir}/wx-gtk2-ansi%{_configf}-config
 
@@ -756,7 +756,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{_libf}_*-*.so
 %exclude %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so
-%{_libdir}/wx/config/gtk2-unicode-*
+%attr(755,root,root) %{_libdir}/wx/config/gtk2-unicode-*
 %{_libdir}/wx/include/gtk2-unicode-*
 %attr(755,root,root) %{_bindir}/wx-gtk2-unicode%{_configf}-config
 
@@ -789,7 +789,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{_libf}_*-*.so
 %exclude %{_libdir}/libwx_x11univ%{_libf}_gl-*.so
-%{_libdir}/wx/config/x11univ-ansi-*
+%attr(755,root,root) %{_libdir}/wx/config/x11univ-ansi-*
 %{_libdir}/wx/include/x11univ-ansi-*
 %attr(755,root,root) %{_bindir}/wx-x11univ-ansi%{_configf}-config
 
@@ -814,7 +814,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{_libf}_*-*.so
 %exclude %{_libdir}/libwx_x11univu%{_libf}_gl-*.so
-%{_libdir}/wx/config/x11univ-unicode-*
+%attr(755,root,root) %{_libdir}/wx/config/x11univ-unicode-*
 %{_libdir}/wx/include/x11univ-unicode-*
 %attr(755,root,root) %{_bindir}/wx-x11univ-unicode%{_configf}-config
 
