@@ -16,7 +16,7 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.8.1
-Release:	2
+Release:	3
 License:	wxWidgets Licence (LGPL with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
