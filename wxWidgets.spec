@@ -7,11 +7,6 @@
 %bcond_with	debug			# build with \--enable-debug
 					# (binary incompatible with non-debug)
 #
-# Unpackaged files:
-#  /usr/bin/wxrc-2.8
-#  /usr/share/locale/it/LC_MESSAGES/wxmsw.mo
-#
-
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
@@ -351,10 +346,10 @@ Requires:	wxX11 = %{version}-%{release}
 Obsoletes:	wxWindows-utils
 
 %description utils
-Misc utils from wxWidgets project: helpviewer, makegen, etc.
+Misc utils from wxWidgets project: wxemulator, wxrc, etc.
 
 %description utils -l pl.UTF-8
-Różne narzędzia z projektu wxWidgets: helpviewer, makegen itp.
+Różne narzędzia z projektu wxWidgets: wxemulator, wxrc itp.
 
 %package -n wxX11
 Summary:	wxUniversal-based wxX11 library
@@ -561,7 +556,8 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		datadir=$RPM_BUILD_ROOT%{_datadir} \
 		libdir=$RPM_BUILD_ROOT%{_libdir} \
 		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir}
+		includedir=$RPM_BUILD_ROOT%{_includedir} \
+		LOCALE_MSW_LINGUAS=
 
 	%{__make} -C contrib/src install \
 		prefix=$RPM_BUILD_ROOT%{_prefix} \
@@ -587,23 +583,15 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		datadir=$RPM_BUILD_ROOT%{_datadir} \
 		libdir=$RPM_BUILD_ROOT%{_libdir} \
 		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir}
+		includedir=$RPM_BUILD_ROOT%{_includedir} \
+		LOCALE_MSW_LINGUAS=
 	if echo $objdir| grep -q disable-unicode ; then
-#		install utils/dialoged/src/DialogEd $RPM_BUILD_ROOT%{_bindir}
 		# TODO: install default config files and default backgrouds
 		install utils/HelpGen/src/HelpGen $RPM_BUILD_ROOT%{_bindir}
 		install utils/emulator/src/wxemulator $RPM_BUILD_ROOT%{_bindir}
 		install utils/tex2rtf/src/tex2rtf $RPM_BUILD_ROOT%{_bindir}
 		install utils/hhp2cached/hhp2cached $RPM_BUILD_ROOT%{_bindir}
-#		install utils/makegen/makegen $RPM_BUILD_ROOT%{_bindir}
 		install utils/wxrc/wxrc $RPM_BUILD_ROOT%{_bindir}
-#		install -d $RPM_BUILD_ROOT%{_datadir}/wx/makegen/templates
-#		install -m644 utils/makegen/templates/* \
-#			$RPM_BUILD_ROOT%{_datadir}/wx/makegen/templates
-#		install contrib/utils/wxrcedit/wxrcedit $RPM_BUILD_ROOT%{_bindir}
-#		install -d $RPM_BUILD_ROOT%{_datadir}/wx/wxrcedit
-#		install contrib/utils/wxrcedit/df/* \
-#			$RPM_BUILD_ROOT%{_datadir}/wx/wxrcedit/
 	fi
 
 	%{__make} -C contrib/src install \
@@ -673,11 +661,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/wx
 %dir %{_libdir}/wx/include
 %dir %{_libdir}/wx/config
-%{_aclocaldir}/*.m4
+%{_aclocaldir}/wxwin.m4
 
 %files -n bakefile-wxWidgets
 %defattr(644,root,root,755)
-%{_datadir}/bakefile/presets/*.bkl
+%{_datadir}/bakefile/presets/wx*.bkl
 
 %files examples
 %defattr(644,root,root,755)
@@ -771,9 +759,11 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ansi}
 %files utils
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
-%exclude %{_bindir}/HelpGen
-%exclude %{_bindir}/wx*-config
+%attr(755,root,root) %{_bindir}/hhp2cached
+%attr(755,root,root) %{_bindir}/tex2rtf
+%attr(755,root,root) %{_bindir}/wxemulator
+%attr(755,root,root) %{_bindir}/wxrc
+%attr(755,root,root) %{_bindir}/wxrc-*
 
 %files -n wxX11
 %defattr(644,root,root,755)
