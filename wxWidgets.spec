@@ -10,18 +10,17 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.7
+Version:	2.8.8
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	e3455083afdf6404a569a8bf0701cf13
+# Source0-md5:	647b94f636db8f3e6ba7170d0d691eb6
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
-Patch3:		%{name}-gif0delay.patch
-Patch4:		%{name}-x11unicode.patch
-Patch5:		%{name}-gcc4.patch
+Patch3:		%{name}-x11unicode.patch
+Patch4:		%{name}-gcc4.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -471,7 +470,6 @@ obsługą UNICODE.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 # if bakefiles rebuild is needed:
