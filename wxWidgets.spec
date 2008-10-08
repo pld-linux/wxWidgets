@@ -10,12 +10,12 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.8
+Version:	2.8.9
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	647b94f636db8f3e6ba7170d0d691eb6
+# Source0-md5:	b0b2d0f6915a21ca6f33896ee8f50387
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -482,7 +482,7 @@ cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
 
-CPPFLAGS="%{rpmcflags} -I`pwd`/include"; export CPPFLAGS
+CPPFLAGS="%{rpmcppflags} %{rpmcflags} -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
