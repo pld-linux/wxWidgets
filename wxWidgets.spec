@@ -10,12 +10,12 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.9
+Version:	2.8.10
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b0b2d0f6915a21ca6f33896ee8f50387
+# Source0-md5:	0461c2085ac1ad7e648aa84c4ba51dd1
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -466,7 +466,8 @@ obsługą UNICODE.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+# is this still needed?
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
