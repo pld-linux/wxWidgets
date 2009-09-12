@@ -10,17 +10,16 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.10
-Release:	2
+Version:	2.9.0
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	0461c2085ac1ad7e648aa84c4ba51dd1
+# Source0-md5:	09058928eeb72853142c062bdec056ce
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
 Patch3:		%{name}-x11unicode.patch
-Patch4:		%{name}-gcc4.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -131,19 +130,6 @@ wxWidgets example programs.
 
 %description examples -l pl.UTF-8
 Przykładowe programy wxWidgets.
-
-%package HelpGen
-Summary:	Help file generator for wxWidgets programs
-Summary(pl.UTF-8):	Generator plików pomocy dla programów wxWidgets
-Group:		Development/Tools
-Requires:	wxBase = %{version}-%{release}
-Obsoletes:	wxWindows-HelpGen
-
-%description HelpGen
-Help file generator for wxWidgets programs.
-
-%description HelpGen -l pl.UTF-8
-Generator plików pomocy dla programów wxWidgets.
 
 %package -n wxBase
 Summary:	wxBase library - non-GUI support classes of wxWidgets toolkit
@@ -470,7 +456,6 @@ obsługą UNICODE.
 #%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 # if bakefiles rebuild is needed:
@@ -483,7 +468,7 @@ cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
 
-CPPFLAGS="%{rpmcppflags} %{rpmcflags} -I`pwd`/include"; export CPPFLAGS
+CPPFLAGS="%{rpmcppflags} %{rpmcflags} -I`pwd`/include -fPIC"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
@@ -508,7 +493,6 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		${unicode} \
 		%{!?with_gnomeprint:--without-gnomeprint}
 	%{__make}
-	%{__make} -C contrib/src
 	cd ..
 done
 
@@ -525,12 +509,10 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		--enable-universal \
 		${unicode}
 	%{__make}
-	%{__make} -C contrib/src
 	if echo $objdir| grep -q disable-unicode ; then
 		%{__make} -C utils
 		%{__make} -C utils/emulator
 		%{__make} -C utils/hhp2cached
-		# %{__make} -C contrib/utils
 	fi
 	cd ..
 done
@@ -557,15 +539,6 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		mandir=$RPM_BUILD_ROOT%{_mandir} \
 		includedir=$RPM_BUILD_ROOT%{_includedir} \
 		LOCALE_MSW_LINGUAS=
-
-	%{__make} -C contrib/src install \
-		prefix=$RPM_BUILD_ROOT%{_prefix} \
-		exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
-		bindir=$RPM_BUILD_ROOT%{_bindir} \
-		datadir=$RPM_BUILD_ROOT%{_datadir} \
-		libdir=$RPM_BUILD_ROOT%{_libdir} \
-		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir}
 	cd ..
 done
 
@@ -586,22 +559,10 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		LOCALE_MSW_LINGUAS=
 	if echo $objdir| grep -q disable-unicode ; then
 		# TODO: install default config files and default backgrouds
-		install utils/HelpGen/src/HelpGen $RPM_BUILD_ROOT%{_bindir}
 		install utils/emulator/src/wxemulator $RPM_BUILD_ROOT%{_bindir}
-		install utils/tex2rtf/src/tex2rtf $RPM_BUILD_ROOT%{_bindir}
 		install utils/hhp2cached/hhp2cached $RPM_BUILD_ROOT%{_bindir}
 		install utils/wxrc/wxrc $RPM_BUILD_ROOT%{_bindir}
 	fi
-
-	%{__make} -C contrib/src install \
-		prefix=$RPM_BUILD_ROOT%{_prefix} \
-		exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
-		bindir=$RPM_BUILD_ROOT%{_bindir} \
-		datadir=$RPM_BUILD_ROOT%{_datadir} \
-		libdir=$RPM_BUILD_ROOT%{_libdir} \
-		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir}
-
 	cd ..
 done
 %endif
@@ -650,11 +611,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f wxstd.lang
 %defattr(644,root,root,755)
-%doc docs/{changes,licence,licendoc,preamble,readme,todo}.txt
+%doc docs/{changes,licence,licendoc,preamble,readme}.txt
 
 %files devel
 %defattr(644,root,root,755)
-%doc docs/html
 %doc docs/tech docs/univ
 %{_includedir}/wx*
 %dir %{_libdir}/wx
@@ -669,12 +629,6 @@ rm -rf $RPM_BUILD_ROOT
 %files examples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
-
-%if %{with x11}
-%files HelpGen
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/HelpGen
-%endif
 
 %if %{with ansi}
 %files -n wxBase
@@ -759,7 +713,6 @@ rm -rf $RPM_BUILD_ROOT
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/hhp2cached
-%attr(755,root,root) %{_bindir}/tex2rtf
 %attr(755,root,root) %{_bindir}/wxemulator
 %attr(755,root,root) %{_bindir}/wxrc
 %attr(755,root,root) %{_bindir}/wxrc-*
