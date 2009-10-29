@@ -21,6 +21,7 @@ Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
 Patch3:		%{name}-x11unicode.patch
 Patch4:		%{name}-gcc4.patch
+Patch5:		gsocket.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -471,6 +472,7 @@ obsługą UNICODE.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 # if bakefiles rebuild is needed:
