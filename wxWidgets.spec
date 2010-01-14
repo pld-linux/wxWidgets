@@ -44,6 +44,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
+%{?with_x11:BuildRequires:	xorg-lib-libXt-devel}
 # these are not supported by wxWidgets
 Obsoletes:	LDAPExplorerTool <= 0.6-1
 Obsoletes:	abridge <= 0.4.0-1
