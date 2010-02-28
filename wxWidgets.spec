@@ -31,12 +31,10 @@ BuildRequires:	automake
 BuildRequires:	cppunit-devel
 BuildRequires:	esound-devel
 BuildRequires:	expat-devel
-BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.0.0
 %{?with_gnomeprint:BuildRequires:	libgnomeprintui-devel >= 2.8.0}
 BuildRequires:	libjpeg-devel
-BuildRequires:	libmng-devel
 BuildRequires:	libmspack-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
