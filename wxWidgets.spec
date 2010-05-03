@@ -10,18 +10,17 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.10
-Release:	4
+Version:	2.8.11
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	0461c2085ac1ad7e648aa84c4ba51dd1
+# Source0-md5:	303a2d5aeb6c79460c8088193d799147
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
 Patch3:		%{name}-x11unicode.patch
 Patch4:		%{name}-gcc4.patch
-Patch5:		gsocket.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -471,7 +470,6 @@ obsługą UNICODE.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 # if bakefiles rebuild is needed:
