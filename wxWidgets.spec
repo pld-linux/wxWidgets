@@ -39,6 +39,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+%{?with_odbc:BuildRequires:	unixODBC-devel}
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
 %{?with_x11:BuildRequires:	xorg-lib-libXt-devel}
 # these are not supported by wxWidgets
@@ -485,6 +486,8 @@ CPPFLAGS="%{rpmcppflags} %{rpmcflags} -fPIC -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
+	ac_cv_lib_iodbc_SQLAllocEnv=no \
+	ac_cv_lib_unixodbc_SQLAllocEnv=no \
 	--enable-plugins \
 	--enable-std_iostreams \
 	--without-sdl \
