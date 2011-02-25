@@ -40,6 +40,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
 # these are not supported by wxWidgets
