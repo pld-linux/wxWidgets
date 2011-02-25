@@ -7,7 +7,7 @@
 -            [wx_has_graphics=1],
 +            [
 +                wx_has_graphics=1
-+                LIBS="$LIBS -lcairo"
++                LIBS="$LIBS -lcairo -lpangocairo"
 +            ],
              [AC_MSG_WARN([Cairo library not found])]
          )
