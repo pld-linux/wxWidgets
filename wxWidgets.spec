@@ -10,12 +10,12 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.9.0
+Version:	2.9.1
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	09058928eeb72853142c062bdec056ce
+# Source0-md5:	81c20d7b2ba31becb18e467dbe09be8f
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
@@ -27,7 +27,6 @@ BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 #BuildRequires:	bakefile >= 0.2.1
 BuildRequires:	cppunit-devel
-BuildRequires:	esound-devel
 BuildRequires:	expat-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
