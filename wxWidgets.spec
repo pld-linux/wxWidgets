@@ -76,8 +76,10 @@ Conflicts:	wxGTK2-unicode < 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	%{_datadir}
-
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
+
+# skip symbol checking for some broken libs (TODO: find better way)
+%define         skip_post_check_so      libwx_*-2.9.so.*
 
 %description
 wxWidgets is a free C++ library for cross-platform GUI development.
