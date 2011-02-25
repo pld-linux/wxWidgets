@@ -1,0 +1,14 @@
+--- wxWidgets-2.9.1/configure.in~	2011-02-25 10:15:34.175328030 +0100
++++ wxWidgets-2.9.1/configure.in	2011-02-25 10:56:37.046283458 +0100
+@@ -7478,7 +7478,10 @@
+         fi
+     elif test "$wxUSE_GTK" = 1; then
+         PKG_CHECK_MODULES(CAIRO, cairo,
+-            [wx_has_graphics=1],
++            [
++                wx_has_graphics=1
++                LIBS="$LIBS -lcairo"
++            ],
+             [AC_MSG_WARN([Cairo library not found])]
+         )
+     else
