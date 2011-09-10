@@ -29,7 +29,7 @@ BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 # for m4 files
 BuildRequires:	bakefile >= 0.2.9
-BuildRequires:	cppunit-devel
+BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.0.0
