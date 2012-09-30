@@ -9,6 +9,30 @@
  
          // normally wxLogFatalError doesn't return
          return false;
+--- wxWidgets-2.8.12/src/common/fs_mem.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/fs_mem.cpp	2012-09-30 10:11:49.745004943 +0200
+@@ -174,9 +174,7 @@
+ 
+     if (m_Hash -> Get(filename) != NULL)
+     {
+-        wxString s;
+-        s.Printf(_("Memory VFS already contains file '%s'!"), filename.c_str());
+-        wxLogError(s);
++        wxLogError(_("Memory VFS already contains file '%s'!"), filename.c_str());
+         return false;
+     }
+     else
+@@ -226,9 +224,7 @@
+     if (m_Hash == NULL ||
+         m_Hash -> Get(filename) == NULL)
+     {
+-        wxString s;
+-        s.Printf(_("Trying to remove file '%s' from memory VFS, but it is not loaded!"), filename.c_str());
+-        wxLogError(s);
++        wxLogError(_("Trying to remove file '%s' from memory VFS, but it is not loaded!"), filename.c_str());
+     }
+ 
+     else
 --- wxWidgets-2.8.12/src/common/file.cpp.orig	2011-03-22 12:59:40.000000000 +0100
 +++ wxWidgets-2.8.12/src/common/file.cpp	2012-09-30 08:19:02.785145988 +0200
 @@ -513,7 +513,7 @@
