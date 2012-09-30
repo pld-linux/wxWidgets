@@ -1239,3 +1239,23 @@
  
              TIFFClose( tif );
              if (buf)
+--- wxWidgets-2.8.12/src/common/textcmn.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/textcmn.cpp	2012-09-30 18:39:49.751036311 +0200
+@@ -215,7 +215,7 @@
+         }
+     }
+ 
+-    wxLogError(_("File couldn't be loaded."));
++    wxLogError("%s", _("File couldn't be loaded."));
+ #endif // wxUSE_FFILE
+ 
+     return false;
+@@ -251,7 +251,7 @@
+     }
+ #endif // wxUSE_FFILE
+ 
+-    wxLogError(_("The text couldn't be saved."));
++    wxLogError("%s", _("The text couldn't be saved."));
+ 
+     return false;
+ }
