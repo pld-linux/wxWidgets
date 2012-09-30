@@ -1363,3 +1363,12 @@
      }
  
      wxFileName leftFilename = wxFileSystem::URLToFileName(left);
+@@ -859,7 +859,7 @@
+ 
+     if ( GetProtocol(left) != _T("file") )
+     {
+-        wxLogError(_("CHM handler currently supports only local files!"));
++        wxLogError("%s", _("CHM handler currently supports only local files!"));
+         return wxEmptyString;
+     }
+ 
