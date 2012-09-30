@@ -994,3 +994,118 @@
      }
  
      delete decod;
+--- wxWidgets-2.8.12/src/common/imagjpeg.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imagjpeg.cpp	2012-09-30 18:17:01.807731491 +0200
+@@ -247,7 +247,7 @@
+        * We need to clean up the JPEG object, close the input file, and return.
+        */
+       if (verbose)
+-        wxLogError(_("JPEG: Couldn't load - file is probably corrupted."));
++        wxLogError("%s", _("JPEG: Couldn't load - file is probably corrupted."));
+       (cinfo.src->term_source)(&cinfo);
+       jpeg_destroy_decompress(&cinfo);
+       if (image->Ok()) image->Destroy();
+@@ -390,7 +390,7 @@
+          * We need to clean up the JPEG object, close the input file, and return.
+          */
+          if (verbose)
+-            wxLogError(_("JPEG: Couldn't save image."));
++            wxLogError("%s", _("JPEG: Couldn't save image."));
+          jpeg_destroy_compress(&cinfo);
+          return false;
+     }
+--- wxWidgets-2.8.12/src/common/imagpcx.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imagpcx.cpp	2012-09-30 18:19:28.711061763 +0200
+@@ -439,7 +439,7 @@
+     if (!CanRead(stream))
+     {
+         if (verbose)
+-            wxLogError(_("PCX: this is not a PCX file."));
++            wxLogError("%s", _("PCX: this is not a PCX file."));
+ 
+         return false;
+     }
+@@ -452,10 +452,10 @@
+         {
+             switch (error)
+             {
+-                case wxPCX_INVFORMAT: wxLogError(_("PCX: image format unsupported")); break;
+-                case wxPCX_MEMERR:    wxLogError(_("PCX: couldn't allocate memory")); break;
+-                case wxPCX_VERERR:    wxLogError(_("PCX: version number too low")); break;
+-                default:              wxLogError(_("PCX: unknown error !!!"));
++                case wxPCX_INVFORMAT: wxLogError("%s", _("PCX: image format unsupported")); break;
++                case wxPCX_MEMERR:    wxLogError("%s", _("PCX: couldn't allocate memory")); break;
++                case wxPCX_VERERR:    wxLogError("%s", _("PCX: version number too low")); break;
++                default:              wxLogError("%s", _("PCX: unknown error !!!"));
+             }
+         }
+         image->Destroy();
+@@ -475,9 +475,9 @@
+         {
+             switch (error)
+             {
+-                case wxPCX_INVFORMAT: wxLogError(_("PCX: invalid image")); break;
+-                case wxPCX_MEMERR:    wxLogError(_("PCX: couldn't allocate memory")); break;
+-                default:              wxLogError(_("PCX: unknown error !!!"));
++                case wxPCX_INVFORMAT: wxLogError("%s", _("PCX: invalid image")); break;
++                case wxPCX_MEMERR:    wxLogError("%s", _("PCX: couldn't allocate memory")); break;
++                default:              wxLogError("%s", _("PCX: unknown error !!!"));
+             }
+         }
+     }
+--- wxWidgets-2.8.12/src/common/imagpng.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imagpng.cpp	2012-09-30 18:21:56.457725349 +0200
+@@ -175,7 +175,7 @@
+ {
+     wxPNGInfoStruct *info = png_ptr ? WX_PNG_INFO(png_ptr) : NULL;
+     if ( !info || info->verbose )
+-        wxLogWarning( wxString::FromAscii(message) );
++        wxLogWarning("%s", message );
+ }
+ 
+ // from pngerror.c
+@@ -293,7 +293,7 @@
+ 
+     if ( !h.FindFirstUnusedColour(&rMask, &gMask, &bMask) )
+     {
+-        wxLogWarning(_("Too many colours in PNG, the image may be slightly blurred."));
++        wxLogWarning("%s", _("Too many colours in PNG, the image may be slightly blurred."));
+ 
+         // use a fixed mask colour and we'll fudge
+         // the real pixels with this colour (see
+@@ -621,7 +621,7 @@
+ 
+ error:
+     if (verbose)
+-       wxLogError(_("Couldn't load a PNG image - file is corrupted or not enough memory."));
++       wxLogError("%s", _("Couldn't load a PNG image - file is corrupted or not enough memory."));
+ 
+     if ( image->Ok() )
+     {
+@@ -670,7 +670,7 @@
+     if (!png_ptr)
+     {
+         if (verbose)
+-           wxLogError(_("Couldn't save PNG image."));
++           wxLogError("%s", _("Couldn't save PNG image."));
+         return false;
+     }
+ 
+@@ -679,7 +679,7 @@
+     {
+         png_destroy_write_struct( &png_ptr, (png_infopp)NULL );
+         if (verbose)
+-           wxLogError(_("Couldn't save PNG image."));
++           wxLogError("%s", _("Couldn't save PNG image."));
+         return false;
+     }
+ 
+@@ -687,7 +687,7 @@
+     {
+         png_destroy_write_struct( &png_ptr, (png_infopp)NULL );
+         if (verbose)
+-           wxLogError(_("Couldn't save PNG image."));
++           wxLogError("%s", _("Couldn't save PNG image."));
+         return false;
+     }
+ 
