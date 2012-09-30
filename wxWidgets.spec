@@ -23,6 +23,7 @@ Patch3:		%{name}-x11unicode.patch
 Patch4:		%{name}-gcc4.patch
 Patch5:		wxGTK-2.8.10.1-odbc-defines.patch
 Patch6:		%{name}-cairo.patch
+Patch7:		%{name}-format.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -476,6 +477,7 @@ obsługą UNICODE.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
