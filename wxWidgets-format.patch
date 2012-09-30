@@ -1156,3 +1156,86 @@
                  return false;
              }
          }
+--- wxWidgets-2.8.12/src/common/imagtiff.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imagtiff.cpp	2012-09-30 18:35:21.521041902 +0200
+@@ -245,7 +245,7 @@
+     if (!tif)
+     {
+         if (verbose)
+-            wxLogError( _("TIFF: Error loading image.") );
++            wxLogError("%s", _("TIFF: Error loading image.") );
+ 
+         return false;
+     }
+@@ -253,7 +253,7 @@
+     if (!TIFFSetDirectory( tif, (tdir_t)index ))
+     {
+         if (verbose)
+-            wxLogError( _("Invalid TIFF image index.") );
++            wxLogError("%s", _("Invalid TIFF image index.") );
+ 
+         TIFFClose( tif );
+ 
+@@ -280,7 +280,7 @@
+     if ( bytesNeeded >= 4294967295U /* UINT32_MAX */ )
+     {
+         if ( verbose )
+-            wxLogError( _("TIFF: Image size is abnormally big.") );
++            wxLogError("%s", _("TIFF: Image size is abnormally big.") );
+ 
+         TIFFClose(tif);
+ 
+@@ -292,7 +292,7 @@
+     if (!raster)
+     {
+         if (verbose)
+-            wxLogError( _("TIFF: Couldn't allocate memory.") );
++            wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
+ 
+         TIFFClose( tif );
+ 
+@@ -303,7 +303,7 @@
+     if (!image->Ok())
+     {
+         if (verbose)
+-            wxLogError( _("TIFF: Couldn't allocate memory.") );
++            wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
+ 
+         _TIFFfree( raster );
+         TIFFClose( tif );
+@@ -317,7 +317,7 @@
+     if (!TIFFReadRGBAImage( tif, w, h, raster, 0 ))
+     {
+         if (verbose)
+-            wxLogError( _("TIFF: Error reading image.") );
++            wxLogError("%s", _("TIFF: Error reading image.") );
+ 
+         _TIFFfree( raster );
+         image->Destroy();
+@@ -385,7 +385,7 @@
+     if (!tif)
+     {
+         if (verbose)
+-            wxLogError( _("TIFF: Error saving image.") );
++            wxLogError("%s", _("TIFF: Error saving image.") );
+ 
+         return false;
+     }
+@@ -443,7 +443,7 @@
+         if (!buf)
+         {
+             if (verbose)
+-                wxLogError( _("TIFF: Couldn't allocate memory.") );
++                wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
+ 
+             TIFFClose( tif );
+ 
+@@ -489,7 +489,7 @@
+         if ( TIFFWriteScanline(tif, buf ? buf : ptr, (uint32)row, 0) < 0 )
+         {
+             if (verbose)
+-                wxLogError( _("TIFF: Error writing image.") );
++                wxLogError("%s", _("TIFF: Error writing image.") );
+ 
+             TIFFClose( tif );
+             if (buf)
