@@ -107,3 +107,23 @@
          return false;
      }
  
+--- wxWidgets-2.8.12/src/common/stopwatch.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/stopwatch.cpp	2012-09-30 09:13:41.768410978 +0200
+@@ -228,7 +228,7 @@
+     if (( t0 != (time_t)-1 ) && ( t1 != (time_t)-1 ))
+         return (long)difftime(t1, t0) + (60 * 60 * 24 * 4);
+ 
+-    wxLogSysError(_("Failed to get the local system time"));
++    wxLogSysError("%s", _("Failed to get the local system time"));
+     return -1;
+ }
+ 
+@@ -286,7 +286,7 @@
+     }
+     else
+     {
+-        wxLogError(_("wxGetTimeOfDay failed."));
++        wxLogError("%s" _("wxGetTimeOfDay failed."));
+         return 0;
+     }
+ #elif defined(HAVE_FTIME)
