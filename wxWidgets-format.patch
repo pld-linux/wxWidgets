@@ -400,3 +400,59 @@
      }
      else
      {
+--- wxWidgets-2.8.12/src/unix/threadpsx.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/threadpsx.cpp	2012-09-30 10:06:25.185011707 +0200
+@@ -729,7 +729,7 @@
+     int rc = pthread_setspecific(gs_keySelf, thread);
+     if ( rc != 0 )
+     {
+-        wxLogSysError(rc, _("Cannot start thread: error writing TLS"));
++        wxLogSysError(rc, "%s", _("Cannot start thread: error writing TLS"));
+ 
+         return (void *)-1;
+     }
+@@ -907,7 +907,7 @@
+                 // wxLogDebug: it is possible to bring the system to its knees
+                 // by creating too many threads and not joining them quite
+                 // easily
+-                wxLogError(_("Failed to join a thread, potential memory leak detected - please restart the program"));
++                wxLogError("%s", _("Failed to join a thread, potential memory leak detected - please restart the program"));
+             }
+ 
+             m_shouldBeJoined = false;
+@@ -1106,7 +1106,7 @@
+     int policy;
+     if ( pthread_attr_getschedpolicy(&attr, &policy) != 0 )
+     {
+-        wxLogError(_("Cannot retrieve thread scheduling policy."));
++        wxLogError("%s", _("Cannot retrieve thread scheduling policy."));
+     }
+ 
+ #ifdef __VMS__
+@@ -1133,7 +1133,7 @@
+         if ( prio != WXTHREAD_DEFAULT_PRIORITY )
+         {
+             // notify the programmer that this doesn't work here
+-            wxLogWarning(_("Thread priority setting is ignored."));
++            wxLogWarning("%s", _("Thread priority setting is ignored."));
+         }
+         //else: we have default priority, so don't complain
+ 
+@@ -1433,7 +1433,7 @@
+             if ( pthread_cancel(m_internal->GetId()) != 0 )
+ #endif // HAVE_PTHREAD_CANCEL
+             {
+-                wxLogError(_("Failed to terminate a thread."));
++                wxLogError("%s", _("Failed to terminate a thread."));
+ 
+                 return wxTHREAD_MISC_ERROR;
+             }
+@@ -1615,7 +1615,7 @@
+     int rc = pthread_key_create(&gs_keySelf, NULL /* dtor function */);
+     if ( rc != 0 )
+     {
+-        wxLogSysError(rc, _("Thread module initialization failed: failed to create thread key"));
++        wxLogSysError(rc, "%s", _("Thread module initialization failed: failed to create thread key"));
+ 
+         return false;
+     }
