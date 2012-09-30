@@ -127,3 +127,86 @@
          return 0;
      }
  #elif defined(HAVE_FTIME)
+--- wxWidgets-2.8.12/src/common/tarstrm.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/tarstrm.cpp	2012-09-30 09:40:58.075043539 +0200
+@@ -790,7 +790,7 @@
+     while (!done) {
+         m_hdr->Read(*m_parent_i_stream);
+         if (m_parent_i_stream->Eof())
+-            wxLogError(_("incomplete header block in tar"));
++            wxLogError("%s", _("incomplete header block in tar"));
+         if (!*m_parent_i_stream)
+             return wxSTREAM_READ_ERROR;
+         m_offset += TAR_BLOCKSIZE;
+@@ -813,7 +813,7 @@
+         if (m_sumType == SUM_SIGNED)
+             ok = chksum == m_hdr->Sum(true);
+         if (!ok) {
+-            wxLogError(_("checksum failure reading tar header block"));
++            wxLogError("%s", _("checksum failure reading tar header block"));
+             return wxSTREAM_READ_ERROR;
+         }
+ 
+@@ -986,7 +986,7 @@
+     }
+ 
+     if (!ok || recPos < len || size != lastread) {
+-        wxLogWarning(_("invalid data in extended tar header"));
++        wxLogWarning("%s", _("invalid data in extended tar header"));
+         return false;
+     }
+ 
+@@ -996,7 +996,7 @@
+ wxFileOffset wxTarInputStream::OnSysSeek(wxFileOffset pos, wxSeekMode mode)
+ {
+     if (!IsOpened()) {
+-        wxLogError(_("tar entry not open"));
++        wxLogError("%s", _("tar entry not open"));
+         m_lasterror = wxSTREAM_READ_ERROR;
+     }
+     if (!IsOk())
+@@ -1018,7 +1018,7 @@
+ size_t wxTarInputStream::OnSysRead(void *buffer, size_t size)
+ {
+     if (!IsOpened()) {
+-        wxLogError(_("tar entry not open"));
++        wxLogError("%s", _("tar entry not open"));
+         m_lasterror = wxSTREAM_READ_ERROR;
+     }
+     if (!IsOk() || !size)
+@@ -1037,7 +1037,7 @@
+     } else if (!m_parent_i_stream->IsOk()) {
+         // any other error will have been reported by the underlying stream
+         if (m_parent_i_stream->Eof())
+-            wxLogError(_("unexpected end of file"));
++            wxLogError("%s", _("unexpected end of file"));
+         m_lasterror = wxSTREAM_READ_ERROR;
+     }
+ 
+@@ -1371,7 +1371,7 @@
+     }
+ 
+     if (sizePos == wxInvalidOffset || !m_hdr->SetOctal(TAR_SIZE, m_pos)) {
+-        wxLogError(_("incorrect size given for tar entry"));
++        wxLogError("%s", _("incorrect size given for tar entry"));
+         m_lasterror = wxSTREAM_WRITE_ERROR;
+         return false;
+     }
+@@ -1492,7 +1492,7 @@
+ wxFileOffset wxTarOutputStream::OnSysSeek(wxFileOffset pos, wxSeekMode mode)
+ {
+     if (!IsOpened()) {
+-        wxLogError(_("tar entry not open"));
++        wxLogError("%s", _("tar entry not open"));
+         m_lasterror = wxSTREAM_WRITE_ERROR;
+     }
+     if (!IsOk() || m_datapos == wxInvalidOffset)
+@@ -1514,7 +1514,7 @@
+ size_t wxTarOutputStream::OnSysWrite(const void *buffer, size_t size)
+ {
+     if (!IsOpened()) {
+-        wxLogError(_("tar entry not open"));
++        wxLogError("%s", _("tar entry not open"));
+         m_lasterror = wxSTREAM_WRITE_ERROR;
+     }
+     if (!IsOk() || !size)
