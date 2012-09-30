@@ -11,7 +11,7 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 Version:	2.8.12
-Release:	3
+Release:	4
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
@@ -22,6 +22,7 @@ Patch2:		%{name}-ac.patch
 Patch3:		%{name}-x11unicode.patch
 Patch4:		%{name}-gcc4.patch
 Patch5:		wxGTK-2.8.10.1-odbc-defines.patch
+Patch6:		%{name}-cairo.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -29,6 +30,7 @@ BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 # for m4 files
 BuildRequires:	bakefile >= 0.2.9
+BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
@@ -473,8 +475,9 @@ obsługą UNICODE.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
-rm -f build/aclocal/bakefile*.m4
+%{__rm} build/aclocal/bakefile*.m4
 
 %build
 # if bakefiles rebuild is needed:
@@ -493,13 +496,13 @@ LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	ac_cv_lib_iodbc_SQLAllocEnv=no \
 	ac_cv_lib_unixodbc_SQLAllocEnv=no \
-	--enable-plugins \
-	--enable-std_iostreams \
-	--without-sdl \
-	--with-opengl \
 	--enable-calendar \
 	--enable-controls \
-	--enable-tabdialog"
+	--enable-plugins \
+	--enable-std_iostreams \
+	--enable-tabdialog \
+	--without-sdl \
+	--with-opengl"
 
 gui='--with-gtk'
 for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
@@ -510,6 +513,7 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	../%configure \
 		${args} \
 		${gui} \
+		--enable-graphics_ctx \
 		--disable-universal \
 		${unicode} \
 		%{!?with_gnomeprint:--without-gnomeprint}
