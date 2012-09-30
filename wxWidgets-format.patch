@@ -509,3 +509,41 @@
          return NULL;
      }
  
+--- wxWidgets-2.8.12/src/unix/utilsunx.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/utilsunx.cpp	2012-09-30 10:28:09.194984528 +0200
+@@ -432,7 +432,7 @@
+     switch ( select(fd + 1, &readfds, NULL, NULL, &tv) )
+     {
+         case -1:
+-            wxLogSysError(_("Impossible to get child process input"));
++            wxLogSysError("%s", _("Impossible to get child process input"));
+             // fall through
+ 
+         case 0:
+@@ -543,7 +543,7 @@
+ #endif
+    if ( pid == -1 )     // error?
+     {
+-        wxLogSysError( _("Fork failed") );
++        wxLogSysError("%s", _("Fork failed") );
+ 
+         ARGS_CLEANUP;
+ 
+@@ -596,7 +596,7 @@
+                  dup2(pipeOut[wxPipe::Write], STDOUT_FILENO) == -1 ||
+                  dup2(pipeErr[wxPipe::Write], STDERR_FILENO) == -1 )
+             {
+-                wxLogSysError(_("Failed to redirect child process input/output"));
++                wxLogSysError("%s", _("Failed to redirect child process input/output"));
+             }
+ 
+             pipeIn.Close();
+@@ -806,7 +806,7 @@
+ 
+     if ( !ok )
+     {
+-        wxLogSysError(_("Cannot get the hostname"));
++        wxLogSysError("%s", _("Cannot get the hostname"));
+     }
+ 
+     return ok;
