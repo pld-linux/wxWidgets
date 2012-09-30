@@ -1321,3 +1321,14 @@
  #endif // wxUSE_FILEDLG
  }
  
+--- wxWidgets-2.8.12/src/generic/printps.cpp.orig	2011-03-22 12:59:43.000000000 +0100
++++ wxWidgets-2.8.12/src/generic/printps.cpp	2012-09-30 19:41:36.954292375 +0200
+@@ -178,7 +178,7 @@
+         if (!printout->OnBeginDocument(m_printDialogData.GetFromPage(), m_printDialogData.GetToPage()))
+         {
+             wxEndBusyCursor();
+-            wxLogError(_("Could not start printing."));
++            wxLogError("%s", _("Could not start printing."));
+             sm_lastError = wxPRINTER_ERROR;
+             break;
+         }
