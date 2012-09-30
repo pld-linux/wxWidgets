@@ -957,3 +957,40 @@
                      return false;
                  }
              }
+--- wxWidgets-2.8.12/src/common/imaggif.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imaggif.cpp	2012-09-30 17:04:34.731155430 +0200
+@@ -51,13 +51,13 @@
+             switch (error)
+             {
+                 case wxGIF_INVFORMAT:
+-                    wxLogError(_("GIF: error in GIF image format."));
++                    wxLogError("%s", _("GIF: error in GIF image format."));
+                     break;
+                 case wxGIF_MEMERR:
+-                    wxLogError(_("GIF: not enough memory."));
++                    wxLogError("%s", _("GIF: not enough memory."));
+                     break;
+                 default:
+-                    wxLogError(_("GIF: unknown error!!!"));
++                    wxLogError("%s", _("GIF: unknown error!!!"));
+                     break;
+             }
+         }
+@@ -67,7 +67,7 @@
+ 
+     if ((error == wxGIF_TRUNCATED) && verbose)
+     {
+-        wxLogError(_("GIF: data stream seems to be truncated."));
++        wxLogError("%s", _("GIF: data stream seems to be truncated."));
+         /* go on; image data is OK */
+     }
+ 
+@@ -77,7 +77,7 @@
+     }
+     else
+     {
+-        wxLogError(_("GIF: Invalid gif index."));
++        wxLogError("%s", _("GIF: Invalid gif index."));
+     }
+ 
+     delete decod;
