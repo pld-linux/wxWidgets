@@ -9,3 +9,59 @@
  
          // normally wxLogFatalError doesn't return
          return false;
+--- wxWidgets-2.8.12/src/common/file.cpp.orig	2011-03-22 12:59:40.000000000 +0100
++++ wxWidgets-2.8.12/src/common/file.cpp	2012-09-30 08:19:02.785145988 +0200
+@@ -513,7 +513,7 @@
+     if ( chmod( (const char*) m_strTemp.fn_str(), mode) == -1 )
+     {
+ #ifndef __OS2__
+-        wxLogSysError(_("Failed to set temporary file permissions"));
++        wxLogSysError("%s", _("Failed to set temporary file permissions"));
+ #endif
+     }
+ #endif // Unix
+--- wxWidgets-2.8.12/src/common/fileconf.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/fileconf.cpp	2012-09-30 08:20:45.761810510 +0200
+@@ -508,7 +508,7 @@
+ 
+             if ( err != wxSTREAM_NO_ERROR && err != wxSTREAM_EOF )
+             {
+-                wxLogError(_("Error reading config options."));
++                wxLogError("%s", _("Error reading config options."));
+                 break;
+             }
+         }
+@@ -1043,7 +1043,7 @@
+ 
+   if ( !file.IsOpened() )
+   {
+-    wxLogError(_("can't open user configuration file."));
++    wxLogError("%s", _("can't open user configuration file."));
+     return false;
+   }
+ 
+@@ -1057,13 +1057,13 @@
+ 
+   if ( !file.Write(filetext, *m_conv) )
+   {
+-    wxLogError(_("can't write user configuration file."));
++    wxLogError("%s", _("can't write user configuration file."));
+     return false;
+   }
+ 
+   if ( !file.Commit() )
+   {
+-      wxLogError(_("Failed to update user configuration file."));
++      wxLogError("%s", _("Failed to update user configuration file."));
+ 
+       return false;
+   }
+@@ -1090,7 +1090,7 @@
+         wxCharBuffer buf(line.mb_str(conv));
+         if ( !os.Write(buf, strlen(buf)) )
+         {
+-            wxLogError(_("Error saving user configuration data."));
++            wxLogError("%s", _("Error saving user configuration data."));
+ 
+             return false;
+         }
