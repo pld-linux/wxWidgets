@@ -1343,3 +1343,23 @@
          return false;
      }
      return true;
+--- wxWidgets-2.8.12/src/html/chm.cpp.orig	2011-03-22 12:59:44.000000000 +0100
++++ wxWidgets-2.8.12/src/html/chm.cpp	2012-09-30 20:31:12.494230355 +0200
+@@ -798,7 +798,7 @@
+ 
+     if ( GetProtocol(left) != _T("file") )
+     {
+-        wxLogError(_("CHM handler currently supports only local files!"));
++        wxLogError("%s", _("CHM handler currently supports only local files!"));
+         return NULL;
+     }
+ 
+@@ -821,7 +821,7 @@
+     if ( (index=right.Index(_T("//"))) != wxNOT_FOUND )
+     {
+         right=wxString(right.Mid(index+1));
+-        wxLogWarning(_("Link contained '//', converted to absolute link."));
++        wxLogWarning("%s", _("Link contained '//', converted to absolute link."));
+     }
+ 
+     wxFileName leftFilename = wxFileSystem::URLToFileName(left);
