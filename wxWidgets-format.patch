@@ -1301,3 +1301,23 @@
              m_ok = false;
              return false;
          }
+--- wxWidgets-2.8.12/src/generic/logg.cpp.orig	2011-03-22 12:59:43.000000000 +0100
++++ wxWidgets-2.8.12/src/generic/logg.cpp	2012-09-30 19:07:07.851002168 +0200
+@@ -572,7 +572,7 @@
+         bOk = file.Close();
+ 
+     if ( !bOk ) {
+-        wxLogError(_("Can't save log contents to file."));
++        wxLogError("%s", _("Can't save log contents to file."));
+     }
+     else {
+         wxLogStatus(this, _("Log saved to the file '%s'."), filename.c_str());
+@@ -1023,7 +1023,7 @@
+         ok = file.Close();
+ 
+     if ( !ok )
+-        wxLogError(_("Can't save log contents to file."));
++        wxLogError("%s", _("Can't save log contents to file."));
+ #endif // wxUSE_FILEDLG
+ }
+ 
