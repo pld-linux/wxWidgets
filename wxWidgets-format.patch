@@ -636,3 +636,23 @@
          return false;
      }
      wxString cmd;
+--- wxWidgets-2.8.12/src/gtk/textctrl.cpp.orig	2011-03-22 13:01:32.000000000 +0100
++++ wxWidgets-2.8.12/src/gtk/textctrl.cpp	2012-09-30 16:21:18.987876200 +0200
+@@ -1015,7 +1015,7 @@
+     {
+         // see comment in WriteText() as to why we must warn the user about
+         // this
+-        wxLogWarning(_("Failed to set text in the text control."));
++        wxLogWarning("%s", _("Failed to set text in the text control."));
+         return;
+     }
+ 
+@@ -1072,7 +1072,7 @@
+         // we must log an error here as losing the text like this can be a
+         // serious problem (e.g. imagine the document edited by user being
+         // empty instead of containing the correct text)
+-        wxLogWarning(_("Failed to insert text in the control."));
++        wxLogWarning("%s", _("Failed to insert text in the control."));
+         return;
+     }
+ 
