@@ -210,3 +210,151 @@
          m_lasterror = wxSTREAM_WRITE_ERROR;
      }
      if (!IsOk() || !size)
+--- wxWidgets-2.8.12/src/common/zstream.cpp.orig	2011-03-22 12:59:43.000000000 +0100
++++ wxWidgets-2.8.12/src/common/zstream.cpp	2012-09-30 09:47:40.141701824 +0200
+@@ -146,7 +146,7 @@
+       flags = wxZLIB_ZLIB;
+     }
+     else {
+-      wxLogError(_("Gzip not supported by this version of zlib"));
++      wxLogError("%s", _("Gzip not supported by this version of zlib"));
+       m_lasterror = wxSTREAM_READ_ERROR;
+       return;
+     }
+@@ -173,7 +173,7 @@
+     }
+   }
+ 
+-  wxLogError(_("Can't initialize zlib inflate stream."));
++  wxLogError("%s", _("Can't initialize zlib inflate stream."));
+   m_lasterror = wxSTREAM_READ_ERROR;
+ }
+ 
+@@ -236,7 +236,7 @@
+           m_lasterror = wxSTREAM_EOF;
+         else
+ #endif
+-          wxLogError(_("Can't read inflate stream: unexpected EOF in underlying stream."));
++          wxLogError("%s", _("Can't read inflate stream: unexpected EOF in underlying stream."));
+       break;
+ 
+     default:
+@@ -299,7 +299,7 @@
+ 
+   // if gzip is asked for but not supported...
+   if (flags == wxZLIB_GZIP && !CanHandleGZip()) {
+-    wxLogError(_("Gzip not supported by this version of zlib"));
++    wxLogError("%s", _("Gzip not supported by this version of zlib"));
+     m_lasterror = wxSTREAM_WRITE_ERROR;
+     return;
+   }
+@@ -327,7 +327,7 @@
+     }
+   }
+ 
+-  wxLogError(_("Can't initialize zlib deflate stream."));
++  wxLogError("%s", _("Can't initialize zlib deflate stream."));
+   m_lasterror = wxSTREAM_WRITE_ERROR;
+ }
+ 
+--- wxWidgets-2.8.12/src/common/zipstrm.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/zipstrm.cpp	2012-09-30 09:49:19.005033098 +0200
+@@ -525,7 +525,7 @@
+     m_parent_o_stream = &stream;
+ 
+     if (deflateReset(m_deflate) != Z_OK) {
+-        wxLogError(_("can't re-initialize zlib deflate stream"));
++        wxLogError("%s", _("can't re-initialize zlib deflate stream"));
+         m_lasterror = wxSTREAM_WRITE_ERROR;
+         return false;
+     }
+@@ -550,7 +550,7 @@
+     m_parent_i_stream = &stream;
+ 
+     if (inflateReset(m_inflate) != Z_OK) {
+-        wxLogError(_("can't re-initialize zlib inflate stream"));
++        wxLogError("%s", _("can't re-initialize zlib inflate stream"));
+         m_lasterror = wxSTREAM_READ_ERROR;
+         return false;
+     }
+@@ -1269,7 +1269,7 @@
+ 
+     if (m_DiskNumber != 0 || m_StartDisk != 0 ||
+             m_EntriesHere != m_TotalEntries)
+-        wxLogWarning(_("assuming this is a multi-part zip concatenated"));
++        wxLogWarning("%s", _("assuming this is a multi-part zip concatenated"));
+ 
+     return true;
+ }
+@@ -1441,7 +1441,7 @@
+         // failed, so either this is a non-seekable stream (ok), or not a zip
+         if (m_parentSeekable) {
+             m_lasterror = wxSTREAM_READ_ERROR;
+-            wxLogError(_("invalid zip file"));
++            wxLogError("%s", _("invalid zip file"));
+             return false;
+         }
+         else {
+@@ -1484,7 +1484,7 @@
+         return true;
+     }
+ 
+-    wxLogError(_("can't find central directory in zip"));
++    wxLogError("%s", _("can't find central directory in zip"));
+     m_lasterror = wxSTREAM_READ_ERROR;
+     return false;
+ }
+@@ -1570,7 +1570,7 @@
+         return wxSTREAM_EOF;
+ 
+     if (m_signature != CENTRAL_MAGIC) {
+-        wxLogError(_("error reading zip central directory"));
++        wxLogError("%s", _("error reading zip central directory"));
+         return wxSTREAM_READ_ERROR;
+     }
+ 
+@@ -1661,7 +1661,7 @@
+         }
+     }
+ 
+-    wxLogError(_("error reading zip local header"));
++    wxLogError("%s", _("error reading zip local header"));
+     return wxSTREAM_READ_ERROR;
+ }
+ 
+@@ -1709,7 +1709,7 @@
+                 == wxInvalidOffset)
+             return false;
+         if (ReadSignature() != LOCAL_MAGIC) {
+-            wxLogError(_("bad zipfile offset to entry"));
++            wxLogError("%s", _("bad zipfile offset to entry"));
+             return false;
+         }
+     }
+@@ -1776,7 +1776,7 @@
+     switch (m_entry.GetMethod()) {
+         case wxZIP_METHOD_STORE:
+             if (m_entry.GetSize() == wxInvalidOffset) {
+-                wxLogError(_("stored file length not in Zip header"));
++                wxLogError("%s", _("stored file length not in Zip header"));
+                 break;
+             }
+             m_store->Open(m_entry.GetSize());
+@@ -1790,7 +1790,7 @@
+             return m_inflate;
+ 
+         default:
+-            wxLogError(_("unsupported Zip compression method"));
++            wxLogError("%s", _("unsupported Zip compression method"));
+     }
+ 
+     return NULL;
+@@ -2171,7 +2171,7 @@
+         }
+ 
+         default:
+-            wxLogError(_("unsupported Zip compression method"));
++            wxLogError("%s", _("unsupported Zip compression method"));
+     }
+ 
+     return NULL;
