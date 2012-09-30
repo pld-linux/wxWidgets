@@ -656,3 +656,14 @@
          return;
      }
  
+--- wxWidgets-2.8.12/src/common/docview.cpp.orig	2011-03-22 12:59:40.000000000 +0100
++++ wxWidgets-2.8.12/src/common/docview.cpp	2012-09-30 16:43:04.191182329 +0200
+@@ -612,7 +612,7 @@
+             return true;
+     }
+ 
+-    wxLogError(_("Sorry, could not open this file."));
++    wxLogError("%s", _("Sorry, could not open this file."));
+     return false;
+ }
+ 
