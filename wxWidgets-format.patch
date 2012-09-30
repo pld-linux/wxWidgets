@@ -1290,3 +1290,14 @@
  
                  // better return right now as otherwise we risk to flood the
                  // user with error messages as something seems to be seriously
+--- wxWidgets-2.8.12/src/generic/dcpsg.cpp.orig	2011-03-22 12:59:43.000000000 +0100
++++ wxWidgets-2.8.12/src/generic/dcpsg.cpp	2012-09-30 18:47:32.884359991 +0200
+@@ -1583,7 +1583,7 @@
+ 
+         if (!m_pstream)
+         {
+-            wxLogError( _("Cannot open file for PostScript printing!"));
++            wxLogError("%s", _("Cannot open file for PostScript printing!"));
+             m_ok = false;
+             return false;
+         }
