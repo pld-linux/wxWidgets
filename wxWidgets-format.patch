@@ -1109,3 +1109,50 @@
          return false;
      }
  
+--- wxWidgets-2.8.12/src/common/imagpnm.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/imagpnm.cpp	2012-09-30 18:26:48.461052596 +0200
+@@ -69,7 +69,7 @@
+         case wxT('5'): // RAW Grey
+         case wxT('6'): break;
+         default:
+-            if (verbose) wxLogError(_("PNM: File format is not recognized."));
++            if (verbose) wxLogError("%s", _("PNM: File format is not recognized."));
+             return false;
+     }
+ 
+@@ -85,7 +85,7 @@
+     if (!ptr)
+     {
+         if (verbose)
+-           wxLogError( _("PNM: Couldn't allocate memory.") );
++           wxLogError("%s",  _("PNM: Couldn't allocate memory.") );
+         return false;
+     }
+ 
+@@ -103,7 +103,7 @@
+             *ptr++=(unsigned char)value; // B
+             if ( !buf_stream )
+             {
+-                if (verbose) wxLogError(_("PNM: File seems truncated."));
++                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
+                 return false;
+             }
+         }
+@@ -122,7 +122,7 @@
+ 
+             if ( !buf_stream )
+               {
+-                if (verbose) wxLogError(_("PNM: File seems truncated."));
++                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
+                 return false;
+               }
+           }
+@@ -141,7 +141,7 @@
+             *ptr++=value; // B
+             if ( !buf_stream )
+             {
+-                if (verbose) wxLogError(_("PNM: File seems truncated."));
++                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
+                 return false;
+             }
+         }
