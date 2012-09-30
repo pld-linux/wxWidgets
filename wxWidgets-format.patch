@@ -567,3 +567,32 @@
      return false;
    }
    m_origHostname = name;
+--- wxWidgets-2.8.12/src/common/socket.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/socket.cpp	2012-09-30 10:58:04.798280436 +0200
+@@ -409,7 +409,7 @@
+ 
+   if (sig != 0xfeeddead)
+   {
+-    wxLogWarning(_("wxSocket: invalid signature in ReadMsg."));
++    wxLogWarning("%s", _("wxSocket: invalid signature in ReadMsg."));
+     goto exit;
+   }
+ 
+@@ -463,7 +463,7 @@
+ 
+   if (sig != 0xdeadfeed)
+   {
+-    wxLogWarning(_("wxSocket: invalid signature in ReadMsg."));
++    wxLogWarning("%s", _("wxSocket: invalid signature in ReadMsg."));
+     goto exit;
+   }
+ 
+@@ -990,7 +990,7 @@
+     case GSOCK_CONNECTION: flag = GSOCK_CONNECTION_FLAG; break;
+     case GSOCK_LOST:       flag = GSOCK_LOST_FLAG; break;
+     default:
+-      wxLogWarning(_("wxSocket: unknown event!."));
++      wxLogWarning("%s", _("wxSocket: unknown event!."));
+       return;
+   }
+ 
