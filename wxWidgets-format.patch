@@ -1383,3 +1383,14 @@
                  else
                      m_Printer->PrintFile(m_HtmlWin->GetOpenedPage());
              }
+--- wxWidgets-2.8.12/src/html/htmlpars.cpp.orig	2011-03-22 12:59:44.000000000 +0100
++++ wxWidgets-2.8.12/src/html/htmlpars.cpp	2012-09-30 20:58:05.014196745 +0200
+@@ -382,7 +382,7 @@
+ #endif // wxUSE_STL/!wxUSE_STL
+         )
+     {
+-        wxLogWarning(_("Warning: attempt to remove HTML tag handler from empty stack."));
++        wxLogWarning("%s", _("Warning: attempt to remove HTML tag handler from empty stack."));
+         return;
+     }
+     m_HandlersHash = *((wxHashTable*) first->GetData());
