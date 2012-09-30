@@ -1372,3 +1372,14 @@
          return wxEmptyString;
      }
  
+--- wxWidgets-2.8.12/src/html/helpwnd.cpp.orig	2011-03-22 12:59:44.000000000 +0100
++++ wxWidgets-2.8.12/src/html/helpwnd.cpp	2012-09-30 20:54:46.604200882 +0200
+@@ -1553,7 +1553,7 @@
+                 if (m_Printer == NULL)
+                     m_Printer = new wxHtmlEasyPrinting(_("Help Printing"), this);
+                 if (!m_HtmlWin->GetOpenedPage())
+-                    wxLogWarning(_("Cannot print empty page."));
++                    wxLogWarning("%s", _("Cannot print empty page."));
+                 else
+                     m_Printer->PrintFile(m_HtmlWin->GetOpenedPage());
+             }
