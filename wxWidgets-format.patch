@@ -1259,3 +1259,34 @@
  
      return false;
  }
+--- wxWidgets-2.8.12/src/common/wincmn.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/wincmn.cpp	2012-09-30 18:43:17.657698645 +0200
+@@ -1552,7 +1552,7 @@
+         wxValidator *validator = child->GetValidator();
+         if ( validator && !validator->TransferToWindow() )
+         {
+-            wxLogWarning(_("Could not transfer data to window"));
++            wxLogWarning("%s", _("Could not transfer data to window"));
+ #if wxUSE_LOG
+             wxLog::FlushActive();
+ #endif // wxUSE_LOG
+--- wxWidgets-2.8.12/src/common/xpmdecod.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/xpmdecod.cpp	2012-09-30 18:44:05.621030978 +0200
+@@ -680,7 +680,7 @@
+                    &width, &height, &colors_cnt, &chars_per_pixel);
+     if ( count != 4 || width * height * colors_cnt == 0 )
+     {
+-        wxLogError(_("XPM: incorrect header format!"));
++        wxLogError("%s", _("XPM: incorrect header format!"));
+         return wxNullImage;
+     }
+ 
+@@ -792,7 +792,7 @@
+             entry = clr_tbl.find(key);
+             if ( entry == end )
+             {
+-                wxLogError(_("XPM: Malformed pixel data!"));
++                wxLogError("%s", _("XPM: Malformed pixel data!"));
+ 
+                 // better return right now as otherwise we risk to flood the
+                 // user with error messages as something seems to be seriously
