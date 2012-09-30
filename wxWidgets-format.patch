@@ -380,3 +380,23 @@
      }
  
      return exitcode;
+--- wxWidgets-2.8.12/src/unix/snglinst.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/snglinst.cpp	2012-09-30 10:01:41.101684296 +0200
+@@ -267,7 +267,7 @@
+         // another process managed to open and lock the file and terminate
+         // (erasing it) before we got here, but this should happen so
+         // rarely in practice that we don't care
+-        wxLogError(_("Failed to access lock file."));
++        wxLogError("%s", _("Failed to access lock file."));
+ 
+         return false;
+     }
+@@ -276,7 +276,7 @@
+     ssize_t count = file.Read(buf, WXSIZEOF(buf));
+     if ( count == wxInvalidOffset )
+     {
+-        wxLogError(_("Failed to read PID from lock file."));
++        wxLogError("%s", _("Failed to read PID from lock file."));
+     }
+     else
+     {
