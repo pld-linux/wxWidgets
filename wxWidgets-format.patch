@@ -358,3 +358,25 @@
      }
  
      return NULL;
+--- wxWidgets-2.8.12/include/wx/unix/pipe.h.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/include/wx/unix/pipe.h	2012-09-30 09:52:41.701695539 +0200
+@@ -44,7 +44,7 @@
+     {
+         if ( pipe(m_fds) == -1 )
+         {
+-            wxLogSysError(_("Pipe creation failed"));
++            wxLogSysError("%s", _("Pipe creation failed"));
+ 
+             return FALSE;
+         }
+--- wxWidgets-2.8.12/src/unix/baseunix.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/baseunix.cpp	2012-09-30 09:53:20.938361388 +0200
+@@ -75,7 +75,7 @@
+     int exitcode = 0;
+     if ( waitpid(execData.pid, &exitcode, 0) == -1 || !WIFEXITED(exitcode) )
+     {
+-        wxLogSysError(_("Waiting for subprocess termination failed"));
++        wxLogSysError("%s", _("Waiting for subprocess termination failed"));
+     }
+ 
+     return exitcode;
