@@ -33,6 +33,15 @@
      }
  
      else
+@@ -261,7 +261,7 @@
+         wxString s;
+         s.Printf(_("Failed to store image '%s' to memory VFS!"), filename.c_str());
+         wxPrintf(wxT("'%s'\n"), s.c_str());
+-        wxLogError(s);
++        wxLogError("%s", s);
+     }
+ }
+ 
 --- wxWidgets-2.8.12/src/common/file.cpp.orig	2011-03-22 12:59:40.000000000 +0100
 +++ wxWidgets-2.8.12/src/common/file.cpp	2012-09-30 08:19:02.785145988 +0200
 @@ -513,7 +513,7 @@
