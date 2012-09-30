@@ -96,3 +96,14 @@
  
          // VZ: the old code used to return "." on error which didn't make any
          //     sense at all to me - empty string is a better error indicator
+--- wxWidgets-2.8.12/src/common/init.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/init.cpp	2012-09-30 09:06:52.951752832 +0200
+@@ -237,7 +237,7 @@
+ 
+     if ( !wxModule::InitializeModules() )
+     {
+-        wxLogError(_("Initialization failed in post init, aborting."));
++        wxLogError("%s", _("Initialization failed in post init, aborting."));
+         return false;
+     }
+ 
