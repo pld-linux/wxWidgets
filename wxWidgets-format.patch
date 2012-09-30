@@ -480,3 +480,32 @@
  
          return false;
      }
+--- wxWidgets-2.8.12/src/common/ftp.cpp.orig	2011-03-22 12:59:41.000000000 +0100
++++ wxWidgets-2.8.12/src/common/ftp.cpp	2012-09-30 10:18:44.061662974 +0200
+@@ -628,7 +628,7 @@
+     if ( !sockSrv->WaitForAccept() )
+     {
+         m_lastError = wxPROTO_CONNERR;
+-        wxLogError(_("Timeout while waiting for FTP server to connect, try passive mode."));
++        wxLogError("%s", _("Timeout while waiting for FTP server to connect, try passive mode."));
+         delete sock;
+         sock = NULL;
+     }
+@@ -689,7 +689,7 @@
+     {
+         m_lastError = wxPROTO_PROTERR;
+         delete sockSrv;
+-        wxLogError(_("The FTP server doesn't support the PORT command."));
++        wxLogError("%s", _("The FTP server doesn't support the PORT command."));
+         return NULL;
+     }
+ 
+@@ -701,7 +701,7 @@
+ {
+     if ( !DoSimpleCommand(_T("PASV")) )
+     {
+-        wxLogError(_("The FTP server doesn't support passive mode."));
++        wxLogError("%s", _("The FTP server doesn't support passive mode."));
+         return NULL;
+     }
+ 
