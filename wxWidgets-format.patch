@@ -605,3 +605,34 @@
        return;
    }
  
+--- wxWidgets-2.8.12/src/unix/displayx11.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/displayx11.cpp	2012-09-30 15:55:56.814574597 +0200
+@@ -208,7 +208,7 @@
+     }
+     else //OOPS!
+     {
+-        wxLogSysError(_("Failed to enumerate video modes"));
++        wxLogSysError("%s", _("Failed to enumerate video modes"));
+     }
+ 
+     return Modes;
+@@ -231,7 +231,7 @@
+ 
+     if( !XF86VidModeGetAllModeLines((Display*)wxGetDisplay(), DefaultScreen((Display*)wxGetDisplay()), &nNumModes, &ppXModes) )
+     {
+-        wxLogSysError(_("Failed to change video mode"));
++        wxLogSysError("%s", _("Failed to change video mode"));
+         return false;
+     }
+ 
+--- wxWidgets-2.8.12/src/unix/dialup.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/dialup.cpp	2012-09-30 15:56:29.271240585 +0200
+@@ -353,7 +353,7 @@
+         return false;
+     if(IsDialing())
+     {
+-        wxLogError(_("Already dialling ISP."));
++        wxLogError("%s", _("Already dialling ISP."));
+         return false;
+     }
+     wxString cmd;
