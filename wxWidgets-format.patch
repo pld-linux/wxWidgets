@@ -547,3 +547,12 @@
      }
  
      return ok;
+@@ -842,7 +842,7 @@
+             struct hostent *host = gethostbyname(wxSafeConvertWX2MB(buf));
+             if ( !host )
+             {
+-                wxLogSysError(_("Cannot get the official hostname"));
++                wxLogSysError("%s", _("Cannot get the official hostname"));
+ 
+                 ok = false;
+             }
