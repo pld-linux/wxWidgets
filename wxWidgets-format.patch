@@ -1414,3 +1414,32 @@
          return;
      }
  
+--- wxWidgets-2.8.12/src/common/debugrpt.cpp.orig	2011-03-22 12:59:40.000000000 +0100
++++ wxWidgets-2.8.12/src/common/debugrpt.cpp	2012-09-30 21:10:30.830847867 +0200
+@@ -206,7 +206,7 @@
+     if ( !wxMkdir(m_dir, 0700) )
+     {
+         wxLogSysError(_("Failed to create directory \"%s\""), m_dir.c_str());
+-        wxLogError(_("Debug report couldn't be created."));
++        wxLogError("%s", _("Debug report couldn't be created."));
+ 
+         Reset();
+     }
+@@ -542,7 +542,7 @@
+ {
+     if ( !GetFilesCount() )
+     {
+-        wxLogError(_("Debug report generation has failed."));
++        wxLogError("%s", _("Debug report generation has failed."));
+ 
+         return false;
+     }
+@@ -669,7 +669,7 @@
+                        errors);
+     if ( rc == -1 )
+     {
+-        wxLogError(_("Failed to execute curl, please install it in PATH."));
++        wxLogError("%s", _("Failed to execute curl, please install it in PATH."));
+     }
+     else if ( rc != 0 )
+     {
