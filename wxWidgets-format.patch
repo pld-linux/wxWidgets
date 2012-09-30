@@ -556,3 +556,14 @@
  
                  ok = false;
              }
+--- wxWidgets-2.8.12/src/common/sckaddr.cpp.orig	2011-03-22 12:59:42.000000000 +0100
++++ wxWidgets-2.8.12/src/common/sckaddr.cpp	2012-09-30 10:54:15.261618553 +0200
+@@ -141,7 +141,7 @@
+   // Some people are sometimes fool.
+   if (name.empty())
+   {
+-    wxLogWarning( _("Trying to solve a NULL hostname: giving up") );
++    wxLogWarning("%s", _("Trying to solve a NULL hostname: giving up") );
+     return false;
+   }
+   m_origHostname = name;
