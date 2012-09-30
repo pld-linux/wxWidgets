@@ -1332,3 +1332,14 @@
              sm_lastError = wxPRINTER_ERROR;
              break;
          }
+--- wxWidgets-2.8.12/src/unix/sound.cpp.orig	2011-03-22 13:01:28.000000000 +0100
++++ wxWidgets-2.8.12/src/unix/sound.cpp	2012-09-30 20:03:09.254265441 +0200
+@@ -490,7 +490,7 @@
+     Free();
+     if (!LoadWAV(data, size, true))
+     {
+-        wxLogError(_("Sound data are in unsupported format."));
++        wxLogError("%s", _("Sound data are in unsupported format."));
+         return false;
+     }
+     return true;
