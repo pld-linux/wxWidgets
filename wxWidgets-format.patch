@@ -1394,3 +1394,23 @@
          return;
      }
      m_HandlersHash = *((wxHashTable*) first->GetData());
+--- wxWidgets-2.8.12/src/html/htmprint.cpp.orig	2011-03-22 12:59:44.000000000 +0100
++++ wxWidgets-2.8.12/src/html/htmprint.cpp	2012-09-30 21:01:26.160859220 +0200
+@@ -307,7 +307,7 @@
+ 
+     if (ff == NULL)
+     {
+-        wxLogError(htmlfile + _(": file does not exist!"));
++        wxLogError("%s", (htmlfile + _(": file does not exist!")).c_str());
+         return;
+     }
+ 
+@@ -615,7 +615,7 @@
+ {
+     if (!GetPrintData()->Ok())
+     {
+-        wxLogError(_("There was a problem during page setup: you may need to set a default printer."));
++        wxLogError("%s", _("There was a problem during page setup: you may need to set a default printer."));
+         return;
+     }
+ 
