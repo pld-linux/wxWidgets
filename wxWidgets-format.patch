@@ -38,7 +38,7 @@
          s.Printf(_("Failed to store image '%s' to memory VFS!"), filename.c_str());
          wxPrintf(wxT("'%s'\n"), s.c_str());
 -        wxLogError(s);
-+        wxLogError("%s", s);
++        wxLogError("%s", s.c_str());
      }
  }
  
