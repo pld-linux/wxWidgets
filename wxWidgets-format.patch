@@ -57,7 +57,7 @@
      {
          if (flagVerbose)
 -            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
-+            wxPrintf("processing %s...\n", parFiles[i].c_str());
++            wxPrintf(wxT("processing %s...\n"), parFiles[i].c_str());
  
          wxXmlDocument doc;
  
@@ -73,7 +73,7 @@
  
              if (flagVerbose)
 -                wxPrintf(wxT("adding     ") + fullname +  wxT("...\n"));
-+                wxPrintf("adding     %s...\n", fullname.c_str());
++                wxPrintf(wxT("adding     %s...\n"), fullname.c_str());
  
              wxString filename = GetInternalFileName(n->GetContent(), flist);
              n->SetContent(filename);
@@ -82,7 +82,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("compressing ") + parOutput +  wxT("...\n"));
-+        wxPrintf("compressing %s...\n", parOutput.c_str());
++        wxPrintf(wxT("compressing %s...\n"), parOutput.c_str());
  
      wxString cwd = wxGetCwd();
      wxSetWorkingDirectory(parOutputPath);
@@ -91,7 +91,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("creating C++ source file ") + parOutput +  wxT("...\n"));
-+        wxPrintf("creating C++ source file %s...\n", parOutput.c_str());
++        wxPrintf(wxT("creating C++ source file %s...\n"), parOutput.c_str());
  
      file.Write(wxT("")
  wxT("//\n")
@@ -100,7 +100,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("creating Python source file ") + parOutput +  wxT("...\n"));
-+        wxPrintf("creating Python source file %s...\n", parOutput.c_str());
++        wxPrintf(wxT("creating Python source file %s...\n"), parOutput.c_str());
  
      file.Write(
         wxT("#\n")
@@ -109,7 +109,7 @@
      {
          if (flagVerbose)
 -            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
-+            wxPrintf("processing %s...", parFiles[i].c_str());
++            wxPrintf(wxT("processing %s..."), parFiles[i].c_str());
  
          wxXmlDocument doc;
          if (!doc.Load(parFiles[i]))
