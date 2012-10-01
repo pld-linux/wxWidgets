@@ -46,7 +46,7 @@
          s.Printf(_("Failed to store image '%s' to memory VFS!"), filename.c_str());
          wxPrintf(wxT("'%s'\n"), s.c_str());
 -        wxLogError(s);
-+        wxLogError("%s", s.c_str());
++        wxLogError(wxT("%s"), s.c_str());
      }
  }
  
@@ -64,7 +64,7 @@
          if (!doc.Load(parFiles[i]))
          {
 -            wxLogError(wxT("Error parsing file ") + parFiles[i]);
-+            wxLogError("Error parsing file %s", parFiles[i].c_str());
++            wxLogError(wxT("Error parsing file %s"), parFiles[i].c_str());
              retCode = 1;
              continue;
          }
@@ -115,7 +115,7 @@
          if (!doc.Load(parFiles[i]))
          {
 -            wxLogError(wxT("Error parsing file ") + parFiles[i]);
-+            wxLogError("Error parsing file %s", parFiles[i].c_str());
++            wxLogError(wxT("Error parsing file %s"), parFiles[i].c_str());
              retCode = 1;
              continue;
          }
@@ -126,7 +126,7 @@
      {
  #ifndef __OS2__
 -        wxLogSysError(_("Failed to set temporary file permissions"));
-+        wxLogSysError("%s", _("Failed to set temporary file permissions"));
++        wxLogSysError(wxT("%s"), _("Failed to set temporary file permissions"));
  #endif
      }
  #endif // Unix
@@ -137,7 +137,7 @@
              if ( err != wxSTREAM_NO_ERROR && err != wxSTREAM_EOF )
              {
 -                wxLogError(_("Error reading config options."));
-+                wxLogError("%s", _("Error reading config options."));
++                wxLogError(wxT("%s"), _("Error reading config options."));
                  break;
              }
          }
@@ -146,7 +146,7 @@
    if ( !file.IsOpened() )
    {
 -    wxLogError(_("can't open user configuration file."));
-+    wxLogError("%s", _("can't open user configuration file."));
++    wxLogError(wxT("%s"), _("can't open user configuration file."));
      return false;
    }
  
@@ -155,14 +155,14 @@
    if ( !file.Write(filetext, *m_conv) )
    {
 -    wxLogError(_("can't write user configuration file."));
-+    wxLogError("%s", _("can't write user configuration file."));
++    wxLogError(wxT("%s"), _("can't write user configuration file."));
      return false;
    }
  
    if ( !file.Commit() )
    {
 -      wxLogError(_("Failed to update user configuration file."));
-+      wxLogError("%s", _("Failed to update user configuration file."));
++      wxLogError(wxT("%s"), _("Failed to update user configuration file."));
  
        return false;
    }
@@ -171,7 +171,7 @@
          if ( !os.Write(buf, strlen(buf)) )
          {
 -            wxLogError(_("Error saving user configuration data."));
-+            wxLogError("%s", _("Error saving user configuration data."));
++            wxLogError(wxT("%s"), _("Error saving user configuration data."));
  
              return false;
          }
@@ -182,7 +182,7 @@
      if ( path.empty() )
      {
 -        wxLogSysError(_("Failed to create a temporary file name"));
-+        wxLogSysError("%s", _("Failed to create a temporary file name"));
++        wxLogSysError(wxT("%s"), _("Failed to create a temporary file name"));
      }
      else
      {
@@ -191,7 +191,7 @@
              //        possible infinite looping too.
  
 -            wxLogError(_("Failed to open temporary file."));
-+            wxLogError("%s", _("Failed to open temporary file."));
++            wxLogError(wxT("%s"), _("Failed to open temporary file."));
  
              path.clear();
          }
@@ -202,7 +202,7 @@
      if ( !ok )
      {
 -        wxLogSysError(_("Failed to get the working directory"));
-+        wxLogSysError("%s", _("Failed to get the working directory"));
++        wxLogSysError(wxT("%s"), _("Failed to get the working directory"));
  
          // VZ: the old code used to return "." on error which didn't make any
          //     sense at all to me - empty string is a better error indicator
@@ -213,7 +213,7 @@
      if ( !wxModule::InitializeModules() )
      {
 -        wxLogError(_("Initialization failed in post init, aborting."));
-+        wxLogError("%s", _("Initialization failed in post init, aborting."));
++        wxLogError(wxT("%s"), _("Initialization failed in post init, aborting."));
          return false;
      }
  
@@ -224,7 +224,7 @@
          return (long)difftime(t1, t0) + (60 * 60 * 24 * 4);
  
 -    wxLogSysError(_("Failed to get the local system time"));
-+    wxLogSysError("%s", _("Failed to get the local system time"));
++    wxLogSysError(wxT("%s"), _("Failed to get the local system time"));
      return -1;
  }
  
@@ -233,7 +233,7 @@
      else
      {
 -        wxLogError(_("wxGetTimeOfDay failed."));
-+        wxLogError("%s", _("wxGetTimeOfDay failed."));
++        wxLogError(wxT("%s"), _("wxGetTimeOfDay failed."));
          return 0;
      }
  #elif defined(HAVE_FTIME)
@@ -244,7 +244,7 @@
          m_hdr->Read(*m_parent_i_stream);
          if (m_parent_i_stream->Eof())
 -            wxLogError(_("incomplete header block in tar"));
-+            wxLogError("%s", _("incomplete header block in tar"));
++            wxLogError(wxT("%s"), _("incomplete header block in tar"));
          if (!*m_parent_i_stream)
              return wxSTREAM_READ_ERROR;
          m_offset += TAR_BLOCKSIZE;
@@ -253,7 +253,7 @@
              ok = chksum == m_hdr->Sum(true);
          if (!ok) {
 -            wxLogError(_("checksum failure reading tar header block"));
-+            wxLogError("%s", _("checksum failure reading tar header block"));
++            wxLogError(wxT("%s"), _("checksum failure reading tar header block"));
              return wxSTREAM_READ_ERROR;
          }
  
@@ -271,7 +271,7 @@
  {
      if (!IsOpened()) {
 -        wxLogError(_("tar entry not open"));
-+        wxLogError("%s", _("tar entry not open"));
++        wxLogError(wxT("%s"), _("tar entry not open"));
          m_lasterror = wxSTREAM_READ_ERROR;
      }
      if (!IsOk())
@@ -280,7 +280,7 @@
  {
      if (!IsOpened()) {
 -        wxLogError(_("tar entry not open"));
-+        wxLogError("%s", _("tar entry not open"));
++        wxLogError(wxT("%s"), _("tar entry not open"));
          m_lasterror = wxSTREAM_READ_ERROR;
      }
      if (!IsOk() || !size)
@@ -289,7 +289,7 @@
          // any other error will have been reported by the underlying stream
          if (m_parent_i_stream->Eof())
 -            wxLogError(_("unexpected end of file"));
-+            wxLogError("%s", _("unexpected end of file"));
++            wxLogError(wxT("%s"), _("unexpected end of file"));
          m_lasterror = wxSTREAM_READ_ERROR;
      }
  
@@ -298,7 +298,7 @@
  
      if (sizePos == wxInvalidOffset || !m_hdr->SetOctal(TAR_SIZE, m_pos)) {
 -        wxLogError(_("incorrect size given for tar entry"));
-+        wxLogError("%s", _("incorrect size given for tar entry"));
++        wxLogError(wxT("%s"), _("incorrect size given for tar entry"));
          m_lasterror = wxSTREAM_WRITE_ERROR;
          return false;
      }
@@ -307,7 +307,7 @@
  {
      if (!IsOpened()) {
 -        wxLogError(_("tar entry not open"));
-+        wxLogError("%s", _("tar entry not open"));
++        wxLogError(wxT("%s"), _("tar entry not open"));
          m_lasterror = wxSTREAM_WRITE_ERROR;
      }
      if (!IsOk() || m_datapos == wxInvalidOffset)
@@ -316,7 +316,7 @@
  {
      if (!IsOpened()) {
 -        wxLogError(_("tar entry not open"));
-+        wxLogError("%s", _("tar entry not open"));
++        wxLogError(wxT("%s"), _("tar entry not open"));
          m_lasterror = wxSTREAM_WRITE_ERROR;
      }
      if (!IsOk() || !size)
@@ -327,7 +327,7 @@
      }
      else {
 -      wxLogError(_("Gzip not supported by this version of zlib"));
-+      wxLogError("%s", _("Gzip not supported by this version of zlib"));
++      wxLogError(wxT("%s"), _("Gzip not supported by this version of zlib"));
        m_lasterror = wxSTREAM_READ_ERROR;
        return;
      }
@@ -336,7 +336,7 @@
    }
  
 -  wxLogError(_("Can't initialize zlib inflate stream."));
-+  wxLogError("%s", _("Can't initialize zlib inflate stream."));
++  wxLogError(wxT("%s"), _("Can't initialize zlib inflate stream."));
    m_lasterror = wxSTREAM_READ_ERROR;
  }
  
@@ -345,7 +345,7 @@
          else
  #endif
 -          wxLogError(_("Can't read inflate stream: unexpected EOF in underlying stream."));
-+          wxLogError("%s", _("Can't read inflate stream: unexpected EOF in underlying stream."));
++          wxLogError(wxT("%s"), _("Can't read inflate stream: unexpected EOF in underlying stream."));
        break;
  
      default:
@@ -354,7 +354,7 @@
    // if gzip is asked for but not supported...
    if (flags == wxZLIB_GZIP && !CanHandleGZip()) {
 -    wxLogError(_("Gzip not supported by this version of zlib"));
-+    wxLogError("%s", _("Gzip not supported by this version of zlib"));
++    wxLogError(wxT("%s"), _("Gzip not supported by this version of zlib"));
      m_lasterror = wxSTREAM_WRITE_ERROR;
      return;
    }
@@ -363,7 +363,7 @@
    }
  
 -  wxLogError(_("Can't initialize zlib deflate stream."));
-+  wxLogError("%s", _("Can't initialize zlib deflate stream."));
++  wxLogError(wxT("%s"), _("Can't initialize zlib deflate stream."));
    m_lasterror = wxSTREAM_WRITE_ERROR;
  }
  
@@ -374,7 +374,7 @@
  
      if (deflateReset(m_deflate) != Z_OK) {
 -        wxLogError(_("can't re-initialize zlib deflate stream"));
-+        wxLogError("%s", _("can't re-initialize zlib deflate stream"));
++        wxLogError(wxT("%s"), _("can't re-initialize zlib deflate stream"));
          m_lasterror = wxSTREAM_WRITE_ERROR;
          return false;
      }
@@ -383,7 +383,7 @@
  
      if (inflateReset(m_inflate) != Z_OK) {
 -        wxLogError(_("can't re-initialize zlib inflate stream"));
-+        wxLogError("%s", _("can't re-initialize zlib inflate stream"));
++        wxLogError(wxT("%s"), _("can't re-initialize zlib inflate stream"));
          m_lasterror = wxSTREAM_READ_ERROR;
          return false;
      }
@@ -401,7 +401,7 @@
          if (m_parentSeekable) {
              m_lasterror = wxSTREAM_READ_ERROR;
 -            wxLogError(_("invalid zip file"));
-+            wxLogError("%s", _("invalid zip file"));
++            wxLogError(wxT("%s"), _("invalid zip file"));
              return false;
          }
          else {
@@ -410,7 +410,7 @@
      }
  
 -    wxLogError(_("can't find central directory in zip"));
-+    wxLogError("%s", _("can't find central directory in zip"));
++    wxLogError(wxT("%s"), _("can't find central directory in zip"));
      m_lasterror = wxSTREAM_READ_ERROR;
      return false;
  }
@@ -419,7 +419,7 @@
  
      if (m_signature != CENTRAL_MAGIC) {
 -        wxLogError(_("error reading zip central directory"));
-+        wxLogError("%s", _("error reading zip central directory"));
++        wxLogError(wxT("%s"), _("error reading zip central directory"));
          return wxSTREAM_READ_ERROR;
      }
  
@@ -428,7 +428,7 @@
      }
  
 -    wxLogError(_("error reading zip local header"));
-+    wxLogError("%s", _("error reading zip local header"));
++    wxLogError(wxT("%s"), _("error reading zip local header"));
      return wxSTREAM_READ_ERROR;
  }
  
@@ -437,7 +437,7 @@
              return false;
          if (ReadSignature() != LOCAL_MAGIC) {
 -            wxLogError(_("bad zipfile offset to entry"));
-+            wxLogError("%s", _("bad zipfile offset to entry"));
++            wxLogError(wxT("%s"), _("bad zipfile offset to entry"));
              return false;
          }
      }
@@ -446,7 +446,7 @@
          case wxZIP_METHOD_STORE:
              if (m_entry.GetSize() == wxInvalidOffset) {
 -                wxLogError(_("stored file length not in Zip header"));
-+                wxLogError("%s", _("stored file length not in Zip header"));
++                wxLogError(wxT("%s"), _("stored file length not in Zip header"));
                  break;
              }
              m_store->Open(m_entry.GetSize());
@@ -455,7 +455,7 @@
  
          default:
 -            wxLogError(_("unsupported Zip compression method"));
-+            wxLogError("%s", _("unsupported Zip compression method"));
++            wxLogError(wxT("%s"), _("unsupported Zip compression method"));
      }
  
      return NULL;
@@ -464,7 +464,7 @@
  
          default:
 -            wxLogError(_("unsupported Zip compression method"));
-+            wxLogError("%s", _("unsupported Zip compression method"));
++            wxLogError(wxT("%s"), _("unsupported Zip compression method"));
      }
  
      return NULL;
@@ -475,7 +475,7 @@
          if ( pipe(m_fds) == -1 )
          {
 -            wxLogSysError(_("Pipe creation failed"));
-+            wxLogSysError("%s", _("Pipe creation failed"));
++            wxLogSysError(wxT("%s"), _("Pipe creation failed"));
  
              return FALSE;
          }
@@ -486,7 +486,7 @@
      if ( waitpid(execData.pid, &exitcode, 0) == -1 || !WIFEXITED(exitcode) )
      {
 -        wxLogSysError(_("Waiting for subprocess termination failed"));
-+        wxLogSysError("%s", _("Waiting for subprocess termination failed"));
++        wxLogSysError(wxT("%s"), _("Waiting for subprocess termination failed"));
      }
  
      return exitcode;
@@ -497,7 +497,7 @@
          // (erasing it) before we got here, but this should happen so
          // rarely in practice that we don't care
 -        wxLogError(_("Failed to access lock file."));
-+        wxLogError("%s", _("Failed to access lock file."));
++        wxLogError(wxT("%s"), _("Failed to access lock file."));
  
          return false;
      }
@@ -506,7 +506,7 @@
      if ( count == wxInvalidOffset )
      {
 -        wxLogError(_("Failed to read PID from lock file."));
-+        wxLogError("%s", _("Failed to read PID from lock file."));
++        wxLogError(wxT("%s"), _("Failed to read PID from lock file."));
      }
      else
      {
@@ -517,7 +517,7 @@
      if ( rc != 0 )
      {
 -        wxLogSysError(rc, _("Cannot start thread: error writing TLS"));
-+        wxLogSysError(rc, "%s", _("Cannot start thread: error writing TLS"));
++        wxLogSysError(rc, wxT("%s"), _("Cannot start thread: error writing TLS"));
  
          return (void *)-1;
      }
@@ -526,7 +526,7 @@
                  // by creating too many threads and not joining them quite
                  // easily
 -                wxLogError(_("Failed to join a thread, potential memory leak detected - please restart the program"));
-+                wxLogError("%s", _("Failed to join a thread, potential memory leak detected - please restart the program"));
++                wxLogError(wxT("%s"), _("Failed to join a thread, potential memory leak detected - please restart the program"));
              }
  
              m_shouldBeJoined = false;
@@ -535,7 +535,7 @@
      if ( pthread_attr_getschedpolicy(&attr, &policy) != 0 )
      {
 -        wxLogError(_("Cannot retrieve thread scheduling policy."));
-+        wxLogError("%s", _("Cannot retrieve thread scheduling policy."));
++        wxLogError(wxT("%s"), _("Cannot retrieve thread scheduling policy."));
      }
  
  #ifdef __VMS__
@@ -553,7 +553,7 @@
  #endif // HAVE_PTHREAD_CANCEL
              {
 -                wxLogError(_("Failed to terminate a thread."));
-+                wxLogError("%s", _("Failed to terminate a thread."));
++                wxLogError(wxT("%s"), _("Failed to terminate a thread."));
  
                  return wxTHREAD_MISC_ERROR;
              }
@@ -562,7 +562,7 @@
      if ( rc != 0 )
      {
 -        wxLogSysError(rc, _("Thread module initialization failed: failed to create thread key"));
-+        wxLogSysError(rc, "%s", _("Thread module initialization failed: failed to create thread key"));
++        wxLogSysError(rc, wxT("%s"), _("Thread module initialization failed: failed to create thread key"));
  
          return false;
      }
@@ -573,7 +573,7 @@
      {
          m_lastError = wxPROTO_CONNERR;
 -        wxLogError(_("Timeout while waiting for FTP server to connect, try passive mode."));
-+        wxLogError("%s", _("Timeout while waiting for FTP server to connect, try passive mode."));
++        wxLogError(wxT("%s"), _("Timeout while waiting for FTP server to connect, try passive mode."));
          delete sock;
          sock = NULL;
      }
@@ -582,7 +582,7 @@
          m_lastError = wxPROTO_PROTERR;
          delete sockSrv;
 -        wxLogError(_("The FTP server doesn't support the PORT command."));
-+        wxLogError("%s", _("The FTP server doesn't support the PORT command."));
++        wxLogError(wxT("%s"), _("The FTP server doesn't support the PORT command."));
          return NULL;
      }
  
@@ -591,7 +591,7 @@
      if ( !DoSimpleCommand(_T("PASV")) )
      {
 -        wxLogError(_("The FTP server doesn't support passive mode."));
-+        wxLogError("%s", _("The FTP server doesn't support passive mode."));
++        wxLogError(wxT("%s"), _("The FTP server doesn't support passive mode."));
          return NULL;
      }
  
@@ -602,7 +602,7 @@
      {
          case -1:
 -            wxLogSysError(_("Impossible to get child process input"));
-+            wxLogSysError("%s", _("Impossible to get child process input"));
++            wxLogSysError(wxT("%s"), _("Impossible to get child process input"));
              // fall through
  
          case 0:
@@ -611,7 +611,7 @@
     if ( pid == -1 )     // error?
      {
 -        wxLogSysError( _("Fork failed") );
-+        wxLogSysError("%s", _("Fork failed") );
++        wxLogSysError(wxT("%s"), _("Fork failed") );
  
          ARGS_CLEANUP;
  
@@ -620,7 +620,7 @@
                   dup2(pipeErr[wxPipe::Write], STDERR_FILENO) == -1 )
              {
 -                wxLogSysError(_("Failed to redirect child process input/output"));
-+                wxLogSysError("%s", _("Failed to redirect child process input/output"));
++                wxLogSysError(wxT("%s"), _("Failed to redirect child process input/output"));
              }
  
              pipeIn.Close();
@@ -629,7 +629,7 @@
      if ( !ok )
      {
 -        wxLogSysError(_("Cannot get the hostname"));
-+        wxLogSysError("%s", _("Cannot get the hostname"));
++        wxLogSysError(wxT("%s"), _("Cannot get the hostname"));
      }
  
      return ok;
@@ -638,7 +638,7 @@
              if ( !host )
              {
 -                wxLogSysError(_("Cannot get the official hostname"));
-+                wxLogSysError("%s", _("Cannot get the official hostname"));
++                wxLogSysError(wxT("%s"), _("Cannot get the official hostname"));
  
                  ok = false;
              }
@@ -689,7 +689,7 @@
      else //OOPS!
      {
 -        wxLogSysError(_("Failed to enumerate video modes"));
-+        wxLogSysError("%s", _("Failed to enumerate video modes"));
++        wxLogSysError(wxT("%s"), _("Failed to enumerate video modes"));
      }
  
      return Modes;
@@ -698,7 +698,7 @@
      if( !XF86VidModeGetAllModeLines((Display*)wxGetDisplay(), DefaultScreen((Display*)wxGetDisplay()), &nNumModes, &ppXModes) )
      {
 -        wxLogSysError(_("Failed to change video mode"));
-+        wxLogSysError("%s", _("Failed to change video mode"));
++        wxLogSysError(wxT("%s"), _("Failed to change video mode"));
          return false;
      }
  
@@ -709,7 +709,7 @@
      if(IsDialing())
      {
 -        wxLogError(_("Already dialling ISP."));
-+        wxLogError("%s", _("Already dialling ISP."));
++        wxLogError(wxT("%s"), _("Already dialling ISP."));
          return false;
      }
      wxString cmd;
@@ -740,7 +740,7 @@
      }
  
 -    wxLogError(_("Sorry, could not open this file."));
-+    wxLogError("%s", _("Sorry, could not open this file."));
++    wxLogError(wxT("%s"), _("Sorry, could not open this file."));
      return false;
  }
  
@@ -762,7 +762,7 @@
      {
          if ( verbose )
 -            wxLogError(_("BMP: Couldn't save invalid image."));
-+            wxLogError("%s", _("BMP: Couldn't save invalid image."));
++            wxLogError(wxT("%s"), _("BMP: Couldn't save invalid image."));
          return false;
      }
  
@@ -771,7 +771,7 @@
          {
              if ( verbose )
 -                wxLogError(_("BMP: wxImage doesn't have own wxPalette."));
-+                wxLogError("%s", _("BMP: wxImage doesn't have own wxPalette."));
++                wxLogError(wxT("%s"), _("BMP: wxImage doesn't have own wxPalette."));
              return false;
          }
          bpp = 8;
@@ -780,7 +780,7 @@
          {
              if (verbose)
 -                wxLogError(_("BMP: Couldn't write the file (Bitmap) header."));
-+                wxLogError("%s", _("BMP: Couldn't write the file (Bitmap) header."));
++                wxLogError(wxT("%s"), _("BMP: Couldn't write the file (Bitmap) header."));
              return false;
          }
      }
@@ -789,7 +789,7 @@
          {
              if (verbose)
 -                wxLogError(_("BMP: Couldn't write the file (BitmapInfo) header."));
-+                wxLogError("%s", _("BMP: Couldn't write the file (BitmapInfo) header."));
++                wxLogError(wxT("%s"), _("BMP: Couldn't write the file (BitmapInfo) header."));
              return false;
          }
      }
@@ -798,7 +798,7 @@
              {
                  if (verbose)
 -                    wxLogError(_("BMP: Couldn't write RGB color map."));
-+                    wxLogError("%s", _("BMP: Couldn't write RGB color map."));
++                    wxLogError(wxT("%s"), _("BMP: Couldn't write RGB color map."));
                  delete[] rgbquad;
  #if wxUSE_PALETTE
                  delete palette;
@@ -807,7 +807,7 @@
          {
              if (verbose)
 -                wxLogError(_("BMP: Couldn't write data."));
-+                wxLogError("%s", _("BMP: Couldn't write data."));
++                wxLogError(wxT("%s"), _("BMP: Couldn't write data."));
              delete[] buffer;
  #if wxUSE_PALETTE
              delete palette;
@@ -816,7 +816,7 @@
          {
              if (verbose)
 -                wxLogError(_("BMP: Couldn't allocate memory."));
-+                wxLogError("%s", _("BMP: Couldn't allocate memory."));
++                wxLogError(wxT("%s"), _("BMP: Couldn't allocate memory."));
              return false;
          }
      }
@@ -825,7 +825,7 @@
      {
          if ( verbose )
 -            wxLogError( _("BMP: Couldn't allocate memory.") );
-+            wxLogError("%s", _("BMP: Couldn't allocate memory.") );
++            wxLogError(wxT("%s"), _("BMP: Couldn't allocate memory.") );
          delete[] cmap;
          return false;
      }
@@ -834,7 +834,7 @@
          {
              if ( verbose )
 -                wxLogError(_("BMP: Couldn't allocate memory."));
-+                wxLogError("%s", _("BMP: Couldn't allocate memory."));
++                wxLogError(wxT("%s"), _("BMP: Couldn't allocate memory."));
              delete[] cmap;
              return false;
          }
@@ -843,14 +843,14 @@
      {
          if (verbose)
 -            wxLogError( _("DIB Header: Image width > 32767 pixels for file.") );
-+            wxLogError("%s", _("DIB Header: Image width > 32767 pixels for file.") );
++            wxLogError(wxT("%s"), _("DIB Header: Image width > 32767 pixels for file.") );
          return false;
      }
      if ( height > 32767 )
      {
          if (verbose)
 -            wxLogError( _("DIB Header: Image height > 32767 pixels for file.") );
-+            wxLogError("%s", _("DIB Header: Image height > 32767 pixels for file.") );
++            wxLogError(wxT("%s"), _("DIB Header: Image height > 32767 pixels for file.") );
          return false;
      }
  
@@ -859,7 +859,7 @@
      {
          if (verbose)
 -            wxLogError( _("DIB Header: Unknown bitdepth in file.") );
-+            wxLogError("%s", _("DIB Header: Unknown bitdepth in file.") );
++            wxLogError(wxT("%s"), _("DIB Header: Unknown bitdepth in file.") );
          return false;
      }
  
@@ -868,7 +868,7 @@
      {
          if (verbose)
 -            wxLogError( _("DIB Header: Unknown encoding in file.") );
-+            wxLogError("%s", _("DIB Header: Unknown encoding in file.") );
++            wxLogError(wxT("%s"), _("DIB Header: Unknown encoding in file.") );
          return false;
      }
  
@@ -877,7 +877,7 @@
      {
          if (verbose)
 -            wxLogError( _("DIB Header: Encoding doesn't match bitdepth.") );
-+            wxLogError("%s", _("DIB Header: Encoding doesn't match bitdepth.") );
++            wxLogError(wxT("%s"), _("DIB Header: Encoding doesn't match bitdepth.") );
          return false;
      }
  
@@ -886,7 +886,7 @@
      {
          if (verbose)
 -            wxLogError( _("Error in reading image DIB.") );
-+            wxLogError("%s", _("Error in reading image DIB.") );
++            wxLogError(wxT("%s"), _("Error in reading image DIB.") );
          return false;
      }
  
@@ -895,7 +895,7 @@
          {
              if (verbose)
 -                wxLogError( _("ICO: Error in reading mask DIB.") );
-+                wxLogError("%s", _("ICO: Error in reading mask DIB.") );
++                wxLogError(wxT("%s"), _("ICO: Error in reading mask DIB.") );
              return false;
          }
          image->SetMaskFromImage(mask, 255, 255, 255);
@@ -904,14 +904,14 @@
      {
          if ( verbose )
 -            wxLogError(_("ICO: Image too tall for an icon."));
-+            wxLogError("%s", _("ICO: Image too tall for an icon."));
++            wxLogError(wxT("%s"), _("ICO: Image too tall for an icon."));
          return false;
      }
      if ( image->GetWidth () > 255 )
      {
          if ( verbose )
 -            wxLogError(_("ICO: Image too wide for an icon."));
-+            wxLogError("%s", _("ICO: Image too wide for an icon."));
++            wxLogError(wxT("%s"), _("ICO: Image too wide for an icon."));
          return false;
      }
  
@@ -920,7 +920,7 @@
      {
          if ( verbose )
 -            wxLogError(_("ICO: Error writing the image file!"));
-+            wxLogError("%s", _("ICO: Error writing the image file!"));
++            wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
          return false;
      }
  
@@ -929,7 +929,7 @@
          {
              if ( verbose )
 -                wxLogError(_("ICO: Error writing the image file!"));
-+                wxLogError("%s", _("ICO: Error writing the image file!"));
++                wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
              return false;
          }
          IsMask = true;
@@ -938,7 +938,7 @@
          {
              if ( verbose )
 -                wxLogError(_("ICO: Error writing the image file!"));
-+                wxLogError("%s", _("ICO: Error writing the image file!"));
++                wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
              return false;
          }
          wxUint32 Size = cStream.GetSize();
@@ -947,7 +947,7 @@
          {
              if ( verbose )
 -                wxLogError(_("ICO: Error writing the image file!"));
-+                wxLogError("%s", _("ICO: Error writing the image file!"));
++                wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
              return false;
          }
  
@@ -956,7 +956,7 @@
          {
              if ( verbose )
 -                wxLogError(_("ICO: Error writing the image file!"));
-+                wxLogError("%s", _("ICO: Error writing the image file!"));
++                wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
              return false;
          }
          IsMask = true;
@@ -965,7 +965,7 @@
          {
              if ( verbose )
 -                wxLogError(_("ICO: Error writing the image file!"));
-+                wxLogError("%s", _("ICO: Error writing the image file!"));
++                wxLogError(wxT("%s"), _("ICO: Error writing the image file!"));
              return false;
          }
  
@@ -974,7 +974,7 @@
      if ( iSel == wxNOT_FOUND || iSel < 0 || iSel >= nIcons )
      {
 -        wxLogError(_("ICO: Invalid icon index."));
-+        wxLogError("%s", _("ICO: Invalid icon index."));
++        wxLogError(wxT("%s"), _("ICO: Invalid icon index."));
          bResult = false;
      }
      else
@@ -985,7 +985,7 @@
      if ( (M_IMGDATA->m_height != mask.GetHeight() ) || (M_IMGDATA->m_width != mask.GetWidth () ) )
      {
 -        wxLogError( _("Image and mask have different sizes.") );
-+        wxLogError("%s", _("Image and mask have different sizes.") );
++        wxLogError(wxT("%s"), _("Image and mask have different sizes.") );
          return false;
      }
  
@@ -994,7 +994,7 @@
      if (!FindFirstUnusedColour(&r, &g, &b))
      {
 -        wxLogError( _("No unused colour in image being masked.") );
-+        wxLogError("%s", _("No unused colour in image being masked.") );
++        wxLogError(wxT("%s"), _("No unused colour in image being masked.") );
          return false ;
      }
  
@@ -1003,7 +1003,7 @@
      if (!FindFirstUnusedColour(&mr, &mg, &mb))
      {
 -        wxLogError( _("No unused colour in image being masked.") );
-+        wxLogError("%s", _("No unused colour in image being masked.") );
++        wxLogError(wxT("%s"), _("No unused colour in image being masked.") );
          return false;
      }
  
@@ -1030,7 +1030,7 @@
                  if ( b2 >= 255 )
                  {
 -                    wxLogError(_("No unused colour in image.") );
-+                    wxLogError("%s",_("No unused colour in image.") );
++                    wxLogError(wxT("%s"),_("No unused colour in image.") );
                      return false;
                  }
              }
@@ -1041,15 +1041,15 @@
              {
                  case wxGIF_INVFORMAT:
 -                    wxLogError(_("GIF: error in GIF image format."));
-+                    wxLogError("%s", _("GIF: error in GIF image format."));
++                    wxLogError(wxT("%s"), _("GIF: error in GIF image format."));
                      break;
                  case wxGIF_MEMERR:
 -                    wxLogError(_("GIF: not enough memory."));
-+                    wxLogError("%s", _("GIF: not enough memory."));
++                    wxLogError(wxT("%s"), _("GIF: not enough memory."));
                      break;
                  default:
 -                    wxLogError(_("GIF: unknown error!!!"));
-+                    wxLogError("%s", _("GIF: unknown error!!!"));
++                    wxLogError(wxT("%s"), _("GIF: unknown error!!!"));
                      break;
              }
          }
@@ -1058,7 +1058,7 @@
      if ((error == wxGIF_TRUNCATED) && verbose)
      {
 -        wxLogError(_("GIF: data stream seems to be truncated."));
-+        wxLogError("%s", _("GIF: data stream seems to be truncated."));
++        wxLogError(wxT("%s"), _("GIF: data stream seems to be truncated."));
          /* go on; image data is OK */
      }
  
@@ -1067,7 +1067,7 @@
      else
      {
 -        wxLogError(_("GIF: Invalid gif index."));
-+        wxLogError("%s", _("GIF: Invalid gif index."));
++        wxLogError(wxT("%s"), _("GIF: Invalid gif index."));
      }
  
      delete decod;
@@ -1078,7 +1078,7 @@
         */
        if (verbose)
 -        wxLogError(_("JPEG: Couldn't load - file is probably corrupted."));
-+        wxLogError("%s", _("JPEG: Couldn't load - file is probably corrupted."));
++        wxLogError(wxT("%s"), _("JPEG: Couldn't load - file is probably corrupted."));
        (cinfo.src->term_source)(&cinfo);
        jpeg_destroy_decompress(&cinfo);
        if (image->Ok()) image->Destroy();
@@ -1087,7 +1087,7 @@
           */
           if (verbose)
 -            wxLogError(_("JPEG: Couldn't save image."));
-+            wxLogError("%s", _("JPEG: Couldn't save image."));
++            wxLogError(wxT("%s"), _("JPEG: Couldn't save image."));
           jpeg_destroy_compress(&cinfo);
           return false;
      }
@@ -1098,7 +1098,7 @@
      {
          if (verbose)
 -            wxLogError(_("PCX: this is not a PCX file."));
-+            wxLogError("%s", _("PCX: this is not a PCX file."));
++            wxLogError(wxT("%s"), _("PCX: this is not a PCX file."));
  
          return false;
      }
@@ -1110,10 +1110,10 @@
 -                case wxPCX_MEMERR:    wxLogError(_("PCX: couldn't allocate memory")); break;
 -                case wxPCX_VERERR:    wxLogError(_("PCX: version number too low")); break;
 -                default:              wxLogError(_("PCX: unknown error !!!"));
-+                case wxPCX_INVFORMAT: wxLogError("%s", _("PCX: image format unsupported")); break;
-+                case wxPCX_MEMERR:    wxLogError("%s", _("PCX: couldn't allocate memory")); break;
-+                case wxPCX_VERERR:    wxLogError("%s", _("PCX: version number too low")); break;
-+                default:              wxLogError("%s", _("PCX: unknown error !!!"));
++                case wxPCX_INVFORMAT: wxLogError(wxT("%s"), _("PCX: image format unsupported")); break;
++                case wxPCX_MEMERR:    wxLogError(wxT("%s"), _("PCX: couldn't allocate memory")); break;
++                case wxPCX_VERERR:    wxLogError(wxT("%s"), _("PCX: version number too low")); break;
++                default:              wxLogError(wxT("%s"), _("PCX: unknown error !!!"));
              }
          }
          image->Destroy();
@@ -1124,9 +1124,9 @@
 -                case wxPCX_INVFORMAT: wxLogError(_("PCX: invalid image")); break;
 -                case wxPCX_MEMERR:    wxLogError(_("PCX: couldn't allocate memory")); break;
 -                default:              wxLogError(_("PCX: unknown error !!!"));
-+                case wxPCX_INVFORMAT: wxLogError("%s", _("PCX: invalid image")); break;
-+                case wxPCX_MEMERR:    wxLogError("%s", _("PCX: couldn't allocate memory")); break;
-+                default:              wxLogError("%s", _("PCX: unknown error !!!"));
++                case wxPCX_INVFORMAT: wxLogError(wxT("%s"), _("PCX: invalid image")); break;
++                case wxPCX_MEMERR:    wxLogError(wxT("%s"), _("PCX: couldn't allocate memory")); break;
++                default:              wxLogError(wxT("%s"), _("PCX: unknown error !!!"));
              }
          }
      }
@@ -1155,7 +1155,7 @@
  error:
      if (verbose)
 -       wxLogError(_("Couldn't load a PNG image - file is corrupted or not enough memory."));
-+       wxLogError("%s", _("Couldn't load a PNG image - file is corrupted or not enough memory."));
++       wxLogError(wxT("%s"), _("Couldn't load a PNG image - file is corrupted or not enough memory."));
  
      if ( image->Ok() )
      {
@@ -1164,7 +1164,7 @@
      {
          if (verbose)
 -           wxLogError(_("Couldn't save PNG image."));
-+           wxLogError("%s", _("Couldn't save PNG image."));
++           wxLogError(wxT("%s"), _("Couldn't save PNG image."));
          return false;
      }
  
@@ -1173,7 +1173,7 @@
          png_destroy_write_struct( &png_ptr, (png_infopp)NULL );
          if (verbose)
 -           wxLogError(_("Couldn't save PNG image."));
-+           wxLogError("%s", _("Couldn't save PNG image."));
++           wxLogError(wxT("%s"), _("Couldn't save PNG image."));
          return false;
      }
  
@@ -1182,7 +1182,7 @@
          png_destroy_write_struct( &png_ptr, (png_infopp)NULL );
          if (verbose)
 -           wxLogError(_("Couldn't save PNG image."));
-+           wxLogError("%s", _("Couldn't save PNG image."));
++           wxLogError(wxT("%s"), _("Couldn't save PNG image."));
          return false;
      }
  
@@ -1193,7 +1193,7 @@
          case wxT('6'): break;
          default:
 -            if (verbose) wxLogError(_("PNM: File format is not recognized."));
-+            if (verbose) wxLogError("%s", _("PNM: File format is not recognized."));
++            if (verbose) wxLogError(wxT("%s"), _("PNM: File format is not recognized."));
              return false;
      }
  
@@ -1202,7 +1202,7 @@
      {
          if (verbose)
 -           wxLogError( _("PNM: Couldn't allocate memory.") );
-+           wxLogError("%s",  _("PNM: Couldn't allocate memory.") );
++           wxLogError(wxT("%s"),  _("PNM: Couldn't allocate memory.") );
          return false;
      }
  
@@ -1211,7 +1211,7 @@
              if ( !buf_stream )
              {
 -                if (verbose) wxLogError(_("PNM: File seems truncated."));
-+                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
++                if (verbose) wxLogError(wxT("%s"), _("PNM: File seems truncated."));
                  return false;
              }
          }
@@ -1220,7 +1220,7 @@
              if ( !buf_stream )
                {
 -                if (verbose) wxLogError(_("PNM: File seems truncated."));
-+                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
++                if (verbose) wxLogError(wxT("%s"), _("PNM: File seems truncated."));
                  return false;
                }
            }
@@ -1229,7 +1229,7 @@
              if ( !buf_stream )
              {
 -                if (verbose) wxLogError(_("PNM: File seems truncated."));
-+                if (verbose) wxLogError("%s", _("PNM: File seems truncated."));
++                if (verbose) wxLogError(wxT("%s"), _("PNM: File seems truncated."));
                  return false;
              }
          }
@@ -1240,7 +1240,7 @@
      {
          if (verbose)
 -            wxLogError( _("TIFF: Error loading image.") );
-+            wxLogError("%s", _("TIFF: Error loading image.") );
++            wxLogError(wxT("%s"), _("TIFF: Error loading image.") );
  
          return false;
      }
@@ -1249,7 +1249,7 @@
      {
          if (verbose)
 -            wxLogError( _("Invalid TIFF image index.") );
-+            wxLogError("%s", _("Invalid TIFF image index.") );
++            wxLogError(wxT("%s"), _("Invalid TIFF image index.") );
  
          TIFFClose( tif );
  
@@ -1258,7 +1258,7 @@
      {
          if ( verbose )
 -            wxLogError( _("TIFF: Image size is abnormally big.") );
-+            wxLogError("%s", _("TIFF: Image size is abnormally big.") );
++            wxLogError(wxT("%s"), _("TIFF: Image size is abnormally big.") );
  
          TIFFClose(tif);
  
@@ -1267,7 +1267,7 @@
      {
          if (verbose)
 -            wxLogError( _("TIFF: Couldn't allocate memory.") );
-+            wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
++            wxLogError(wxT("%s"), _("TIFF: Couldn't allocate memory.") );
  
          TIFFClose( tif );
  
@@ -1276,7 +1276,7 @@
      {
          if (verbose)
 -            wxLogError( _("TIFF: Couldn't allocate memory.") );
-+            wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
++            wxLogError(wxT("%s"), _("TIFF: Couldn't allocate memory.") );
  
          _TIFFfree( raster );
          TIFFClose( tif );
@@ -1285,7 +1285,7 @@
      {
          if (verbose)
 -            wxLogError( _("TIFF: Error reading image.") );
-+            wxLogError("%s", _("TIFF: Error reading image.") );
++            wxLogError(wxT("%s"), _("TIFF: Error reading image.") );
  
          _TIFFfree( raster );
          image->Destroy();
@@ -1294,7 +1294,7 @@
      {
          if (verbose)
 -            wxLogError( _("TIFF: Error saving image.") );
-+            wxLogError("%s", _("TIFF: Error saving image.") );
++            wxLogError(wxT("%s"), _("TIFF: Error saving image.") );
  
          return false;
      }
@@ -1303,7 +1303,7 @@
          {
              if (verbose)
 -                wxLogError( _("TIFF: Couldn't allocate memory.") );
-+                wxLogError("%s", _("TIFF: Couldn't allocate memory.") );
++                wxLogError(wxT("%s"), _("TIFF: Couldn't allocate memory.") );
  
              TIFFClose( tif );
  
@@ -1312,7 +1312,7 @@
          {
              if (verbose)
 -                wxLogError( _("TIFF: Error writing image.") );
-+                wxLogError("%s", _("TIFF: Error writing image.") );
++                wxLogError(wxT("%s"), _("TIFF: Error writing image.") );
  
              TIFFClose( tif );
              if (buf)
@@ -1323,7 +1323,7 @@
      }
  
 -    wxLogError(_("File couldn't be loaded."));
-+    wxLogError("%s", _("File couldn't be loaded."));
++    wxLogError(wxT("%s"), _("File couldn't be loaded."));
  #endif // wxUSE_FFILE
  
      return false;
@@ -1332,7 +1332,7 @@
  #endif // wxUSE_FFILE
  
 -    wxLogError(_("The text couldn't be saved."));
-+    wxLogError("%s", _("The text couldn't be saved."));
++    wxLogError(wxT("%s"), _("The text couldn't be saved."));
  
      return false;
  }
@@ -1354,7 +1354,7 @@
      if ( count != 4 || width * height * colors_cnt == 0 )
      {
 -        wxLogError(_("XPM: incorrect header format!"));
-+        wxLogError("%s", _("XPM: incorrect header format!"));
++        wxLogError(wxT("%s"), _("XPM: incorrect header format!"));
          return wxNullImage;
      }
  
@@ -1363,7 +1363,7 @@
              if ( entry == end )
              {
 -                wxLogError(_("XPM: Malformed pixel data!"));
-+                wxLogError("%s", _("XPM: Malformed pixel data!"));
++                wxLogError(wxT("%s"), _("XPM: Malformed pixel data!"));
  
                  // better return right now as otherwise we risk to flood the
                  // user with error messages as something seems to be seriously
@@ -1374,7 +1374,7 @@
          if (!m_pstream)
          {
 -            wxLogError( _("Cannot open file for PostScript printing!"));
-+            wxLogError("%s", _("Cannot open file for PostScript printing!"));
++            wxLogError(wxT("%s"), _("Cannot open file for PostScript printing!"));
              m_ok = false;
              return false;
          }
@@ -1385,7 +1385,7 @@
  
      if ( !bOk ) {
 -        wxLogError(_("Can't save log contents to file."));
-+        wxLogError("%s", _("Can't save log contents to file."));
++        wxLogError(wxT("%s"), _("Can't save log contents to file."));
      }
      else {
          wxLogStatus(this, _("Log saved to the file '%s'."), filename.c_str());
@@ -1394,7 +1394,7 @@
  
      if ( !ok )
 -        wxLogError(_("Can't save log contents to file."));
-+        wxLogError("%s", _("Can't save log contents to file."));
++        wxLogError(wxT("%s"), _("Can't save log contents to file."));
  #endif // wxUSE_FILEDLG
  }
  
@@ -1405,7 +1405,7 @@
          {
              wxEndBusyCursor();
 -            wxLogError(_("Could not start printing."));
-+            wxLogError("%s", _("Could not start printing."));
++            wxLogError(wxT("%s"), _("Could not start printing."));
              sm_lastError = wxPRINTER_ERROR;
              break;
          }
@@ -1416,7 +1416,7 @@
      if (!LoadWAV(data, size, true))
      {
 -        wxLogError(_("Sound data are in unsupported format."));
-+        wxLogError("%s", _("Sound data are in unsupported format."));
++        wxLogError(wxT("%s"), _("Sound data are in unsupported format."));
          return false;
      }
      return true;
@@ -1427,7 +1427,7 @@
      if ( GetProtocol(left) != _T("file") )
      {
 -        wxLogError(_("CHM handler currently supports only local files!"));
-+        wxLogError("%s", _("CHM handler currently supports only local files!"));
++        wxLogError(wxT("%s"), _("CHM handler currently supports only local files!"));
          return NULL;
      }
  
@@ -1445,7 +1445,7 @@
      if ( GetProtocol(left) != _T("file") )
      {
 -        wxLogError(_("CHM handler currently supports only local files!"));
-+        wxLogError("%s", _("CHM handler currently supports only local files!"));
++        wxLogError(wxT("%s"), _("CHM handler currently supports only local files!"));
          return wxEmptyString;
      }
  
@@ -1478,7 +1478,7 @@
      if (ff == NULL)
      {
 -        wxLogError(htmlfile + _(": file does not exist!"));
-+        wxLogError("%s", (htmlfile + _(": file does not exist!")).c_str());
++        wxLogError(wxT("%s"), (htmlfile + _(": file does not exist!")).c_str());
          return;
      }
  
@@ -1487,7 +1487,7 @@
      if (!GetPrintData()->Ok())
      {
 -        wxLogError(_("There was a problem during page setup: you may need to set a default printer."));
-+        wxLogError("%s", _("There was a problem during page setup: you may need to set a default printer."));
++        wxLogError(wxT("%s"), _("There was a problem during page setup: you may need to set a default printer."));
          return;
      }
  
@@ -1498,7 +1498,7 @@
      {
          wxLogSysError(_("Failed to create directory \"%s\""), m_dir.c_str());
 -        wxLogError(_("Debug report couldn't be created."));
-+        wxLogError("%s", _("Debug report couldn't be created."));
++        wxLogError(wxT("%s"), _("Debug report couldn't be created."));
  
          Reset();
      }
@@ -1507,7 +1507,7 @@
      if ( !GetFilesCount() )
      {
 -        wxLogError(_("Debug report generation has failed."));
-+        wxLogError("%s", _("Debug report generation has failed."));
++        wxLogError(wxT("%s"), _("Debug report generation has failed."));
  
          return false;
      }
@@ -1516,7 +1516,7 @@
      if ( rc == -1 )
      {
 -        wxLogError(_("Failed to execute curl, please install it in PATH."));
-+        wxLogError("%s", _("Failed to execute curl, please install it in PATH."));
++        wxLogError(wxT("%s"), _("Failed to execute curl, please install it in PATH."));
      }
      else if ( rc != 0 )
      {
@@ -1527,7 +1527,7 @@
                  style[i] = wxSB_RAISED;
              else if (!first.empty())
 -                wxLogError(wxT("Error in resource, unknown statusbar field style: ") + first);
-+                wxLogError("%s", (wxT("Error in resource, unknown statusbar field style: ") + first).c_str());
++                wxLogError(wxT("%s"), (wxT("Error in resource, unknown statusbar field style: ") + first).c_str());
  
              if(styles.Find(wxT(',')))
                  styles.Remove(0, styles.Find(wxT(',')) + 1);
@@ -1538,7 +1538,7 @@
                  if (m_version != version)
                  {
 -                    wxLogError(_("Resource files must have same version number!"));
-+                    wxLogError("%s", _("Resource files must have same version number!"));
++                    wxLogError(wxT("%s"), _("Resource files must have same version number!"));
                      rt = false;
                  }
  
@@ -1547,7 +1547,7 @@
              style |= m_styleValues[index];
          else
 -            wxLogError(_("Unknown style flag ") + fl);
-+            wxLogError("%s", (_("Unknown style flag ") + fl).c_str());
++            wxLogError(wxT("%s"), (_("Unknown style flag ") + fl).c_str());
      }
      return style;
  }
@@ -1556,7 +1556,7 @@
          else
          {
 -            wxLogError(_("Cannot convert dialog units: dialog unknown."));
-+            wxLogError("%s", _("Cannot convert dialog units: dialog unknown."));
++            wxLogError(wxT("%s"), _("Cannot convert dialog units: dialog unknown."));
              return wxDefaultSize;
          }
      }
@@ -1565,7 +1565,7 @@
          else
          {
 -            wxLogError(_("Cannot convert dialog units: dialog unknown."));
-+            wxLogError("%s", _("Cannot convert dialog units: dialog unknown."));
++            wxLogError(wxT("%s"), _("Cannot convert dialog units: dialog unknown."));
              return defaultv;
          }
      }
@@ -1576,7 +1576,7 @@
      else
      {
 -        wxLogError(_("File couldn't be loaded."));
-+        wxLogError("%s", _("File couldn't be loaded."));
++        wxLogError(wxT("%s"), _("File couldn't be loaded."));
  
          return false;
      }
@@ -1585,7 +1585,7 @@
      }
  
 -    wxLogError(_("The text couldn't be saved."));
-+    wxLogError("%s", _("The text couldn't be saved."));
++    wxLogError(wxT("%s"), _("The text couldn't be saved."));
  
      return false;
  }
@@ -1596,7 +1596,7 @@
      if (!GetPrintData()->Ok())
      {
 -        wxLogError(_("There was a problem during page setup: you may need to set a default printer."));
-+        wxLogError("%s", _("There was a problem during page setup: you may need to set a default printer."));
++        wxLogError(wxT("%s"), _("There was a problem during page setup: you may need to set a default printer."));
          return;
      }
  
