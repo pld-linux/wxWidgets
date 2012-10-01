@@ -1443,3 +1443,14 @@
      }
      else if ( rc != 0 )
      {
+--- wxWidgets-2.8.12/src/xrc/xh_statbar.cpp.orig	2011-03-22 13:00:29.000000000 +0100
++++ wxWidgets-2.8.12/src/xrc/xh_statbar.cpp	2012-10-01 18:20:53.155925824 +0200
+@@ -79,7 +79,7 @@
+             else if (first == wxT("wxSB_RAISED"))
+                 style[i] = wxSB_RAISED;
+             else if (!first.empty())
+-                wxLogError(wxT("Error in resource, unknown statusbar field style: ") + first);
++                wxLogError("%s", (wxT("Error in resource, unknown statusbar field style: ") + first)).c_str();
+ 
+             if(styles.Find(wxT(',')))
+                 styles.Remove(0, styles.Find(wxT(',')) + 1);
