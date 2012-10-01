@@ -262,7 +262,7 @@
  
      if (!ok || recPos < len || size != lastread) {
 -        wxLogWarning(_("invalid data in extended tar header"));
-+        wxLogWarning("%s", _("invalid data in extended tar header"));
++        wxLogWarning(wxT("%s"), _("invalid data in extended tar header"));
          return false;
      }
  
@@ -392,7 +392,7 @@
      if (m_DiskNumber != 0 || m_StartDisk != 0 ||
              m_EntriesHere != m_TotalEntries)
 -        wxLogWarning(_("assuming this is a multi-part zip concatenated"));
-+        wxLogWarning("%s", _("assuming this is a multi-part zip concatenated"));
++        wxLogWarning(wxT("%s"), _("assuming this is a multi-part zip concatenated"));
  
      return true;
  }
@@ -544,7 +544,7 @@
          {
              // notify the programmer that this doesn't work here
 -            wxLogWarning(_("Thread priority setting is ignored."));
-+            wxLogWarning("%s", _("Thread priority setting is ignored."));
++            wxLogWarning(wxT("%s"), _("Thread priority setting is ignored."));
          }
          //else: we have default priority, so don't complain
  
@@ -649,7 +649,7 @@
    if (name.empty())
    {
 -    wxLogWarning( _("Trying to solve a NULL hostname: giving up") );
-+    wxLogWarning("%s", _("Trying to solve a NULL hostname: giving up") );
++    wxLogWarning(wxT("%s"), _("Trying to solve a NULL hostname: giving up") );
      return false;
    }
    m_origHostname = name;
@@ -660,7 +660,7 @@
    if (sig != 0xfeeddead)
    {
 -    wxLogWarning(_("wxSocket: invalid signature in ReadMsg."));
-+    wxLogWarning("%s", _("wxSocket: invalid signature in ReadMsg."));
++    wxLogWarning(wxT("%s"), _("wxSocket: invalid signature in ReadMsg."));
      goto exit;
    }
  
@@ -669,7 +669,7 @@
    if (sig != 0xdeadfeed)
    {
 -    wxLogWarning(_("wxSocket: invalid signature in ReadMsg."));
-+    wxLogWarning("%s", _("wxSocket: invalid signature in ReadMsg."));
++    wxLogWarning(wxT("%s"), _("wxSocket: invalid signature in ReadMsg."));
      goto exit;
    }
  
@@ -678,7 +678,7 @@
      case GSOCK_LOST:       flag = GSOCK_LOST_FLAG; break;
      default:
 -      wxLogWarning(_("wxSocket: unknown event!."));
-+      wxLogWarning("%s", _("wxSocket: unknown event!."));
++      wxLogWarning(wxT("%s"), _("wxSocket: unknown event!."));
        return;
    }
  
@@ -720,7 +720,7 @@
          // see comment in WriteText() as to why we must warn the user about
          // this
 -        wxLogWarning(_("Failed to set text in the text control."));
-+        wxLogWarning("%s", _("Failed to set text in the text control."));
++        wxLogWarning(wxT("%s"), _("Failed to set text in the text control."));
          return;
      }
  
@@ -729,7 +729,7 @@
          // serious problem (e.g. imagine the document edited by user being
          // empty instead of containing the correct text)
 -        wxLogWarning(_("Failed to insert text in the control."));
-+        wxLogWarning("%s", _("Failed to insert text in the control."));
++        wxLogWarning(wxT("%s"), _("Failed to insert text in the control."));
          return;
      }
  
@@ -1012,7 +1012,7 @@
          }
  
 -        wxLogWarning(_("No handler found for image type."));
-+        wxLogWarning("%s", _("No handler found for image type."));
++        wxLogWarning(wxT("%s"), _("No handler found for image type."));
          return 0;
      }
  
@@ -1021,7 +1021,7 @@
          }
  
 -        wxLogWarning( _("No handler found for image type.") );
-+        wxLogWarning("%s", _("No handler found for image type.") );
++        wxLogWarning(wxT("%s"), _("No handler found for image type.") );
          return false;
      }
  
@@ -1137,7 +1137,7 @@
      wxPNGInfoStruct *info = png_ptr ? WX_PNG_INFO(png_ptr) : NULL;
      if ( !info || info->verbose )
 -        wxLogWarning( wxString::FromAscii(message) );
-+        wxLogWarning("%s", message );
++        wxLogWarning(wxT("%s"), message );
  }
  
  // from pngerror.c
@@ -1146,7 +1146,7 @@
      if ( !h.FindFirstUnusedColour(&rMask, &gMask, &bMask) )
      {
 -        wxLogWarning(_("Too many colours in PNG, the image may be slightly blurred."));
-+        wxLogWarning("%s", _("Too many colours in PNG, the image may be slightly blurred."));
++        wxLogWarning(wxT("%s"), _("Too many colours in PNG, the image may be slightly blurred."));
  
          // use a fixed mask colour and we'll fudge
          // the real pixels with this colour (see
@@ -1343,7 +1343,7 @@
          if ( validator && !validator->TransferToWindow() )
          {
 -            wxLogWarning(_("Could not transfer data to window"));
-+            wxLogWarning("%s", _("Could not transfer data to window"));
++            wxLogWarning(wxT("%s"), _("Could not transfer data to window"));
  #if wxUSE_LOG
              wxLog::FlushActive();
  #endif // wxUSE_LOG
@@ -1436,7 +1436,7 @@
      {
          right=wxString(right.Mid(index+1));
 -        wxLogWarning(_("Link contained '//', converted to absolute link."));
-+        wxLogWarning("%s", _("Link contained '//', converted to absolute link."));
++        wxLogWarning(wxT("%s"), _("Link contained '//', converted to absolute link."));
      }
  
      wxFileName leftFilename = wxFileSystem::URLToFileName(left);
@@ -1456,7 +1456,7 @@
                      m_Printer = new wxHtmlEasyPrinting(_("Help Printing"), this);
                  if (!m_HtmlWin->GetOpenedPage())
 -                    wxLogWarning(_("Cannot print empty page."));
-+                    wxLogWarning("%s", _("Cannot print empty page."));
++                    wxLogWarning(wxT("%s"), _("Cannot print empty page."));
                  else
                      m_Printer->PrintFile(m_HtmlWin->GetOpenedPage());
              }
@@ -1467,7 +1467,7 @@
          )
      {
 -        wxLogWarning(_("Warning: attempt to remove HTML tag handler from empty stack."));
-+        wxLogWarning("%s", _("Warning: attempt to remove HTML tag handler from empty stack."));
++        wxLogWarning(wxT("%s"), _("Warning: attempt to remove HTML tag handler from empty stack."));
          return;
      }
      m_HandlersHash = *((wxHashTable*) first->GetData());
