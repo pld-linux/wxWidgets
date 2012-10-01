@@ -1492,3 +1492,23 @@
              return defaultv;
          }
      }
+--- wxWidgets-2.8.12/src/richtext/richtextctrl.cpp.orig	2011-03-22 12:59:44.000000000 +0100
++++ wxWidgets-2.8.12/src/richtext/richtextctrl.cpp	2012-10-01 18:56:32.329214568 +0200
+@@ -2135,7 +2135,7 @@
+         return true;
+     else
+     {
+-        wxLogError(_("File couldn't be loaded."));
++        wxLogError("%s", _("File couldn't be loaded."));
+ 
+         return false;
+     }
+@@ -2152,7 +2152,7 @@
+         return true;
+     }
+ 
+-    wxLogError(_("The text couldn't be saved."));
++    wxLogError("%s", _("The text couldn't be saved."));
+ 
+     return false;
+ }
