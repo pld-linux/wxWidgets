@@ -1454,3 +1454,41 @@
  
              if(styles.Find(wxT(',')))
                  styles.Remove(0, styles.Find(wxT(',')) + 1);
+--- wxWidgets-2.8.12/src/xrc/xmlres.cpp.orig	2011-03-22 13:00:29.000000000 +0100
++++ wxWidgets-2.8.12/src/xrc/xmlres.cpp	2012-10-01 18:38:22.405903953 +0200
+@@ -501,7 +501,7 @@
+                     m_version = version;
+                 if (m_version != version)
+                 {
+-                    wxLogError(_("Resource files must have same version number!"));
++                    wxLogError("%s", _("Resource files must have same version number!"));
+                     rt = false;
+                 }
+ 
+@@ -863,7 +863,7 @@
+         if (index != wxNOT_FOUND)
+             style |= m_styleValues[index];
+         else
+-            wxLogError(_("Unknown style flag ") + fl);
++            wxLogError("%s", (_("Unknown style flag ") + fl).c_str());
+     }
+     return style;
+ }
+@@ -1268,7 +1268,7 @@
+         }
+         else
+         {
+-            wxLogError(_("Cannot convert dialog units: dialog unknown."));
++            wxLogError("%s", _("Cannot convert dialog units: dialog unknown."));
+             return wxDefaultSize;
+         }
+     }
+@@ -1316,7 +1316,7 @@
+         }
+         else
+         {
+-            wxLogError(_("Cannot convert dialog units: dialog unknown."));
++            wxLogError("%s", _("Cannot convert dialog units: dialog unknown."));
+             return defaultv;
+         }
+     }
