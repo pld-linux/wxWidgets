@@ -1600,3 +1600,14 @@
          return;
      }
  
+--- wxWidgets-2.8.12/src/x11/app.cpp.orig	2011-03-22 13:01:37.000000000 +0100
++++ wxWidgets-2.8.12/src/x11/app.cpp	2012-10-01 21:27:19.175692671 +0200
+@@ -167,7 +167,7 @@
+     // open and set up the X11 display
+     if ( !wxSetDisplay(displayName) )
+     {
+-        wxLogError(_("wxWidgets could not open display. Exiting."));
++        wxLogError(wxT("%s"), _("wxWidgets could not open display. Exiting."));
+         return false;
+     }
+ 
