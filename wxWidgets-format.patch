@@ -42,6 +42,75 @@
      }
  }
  
+--- wxWidgets-2.8.12/utils/wxrc/wxrc.cpp.orig	2011-03-22 13:00:31.000000000 +0100
++++ wxWidgets-2.8.12/utils/wxrc/wxrc.cpp	2012-10-01 19:13:05.222527207 +0200
+@@ -391,13 +391,13 @@
+     for (size_t i = 0; i < parFiles.Count(); i++)
+     {
+         if (flagVerbose)
+-            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
++            wxPrintf("processing %s...\n", parFiles[i]);
+ 
+         wxXmlDocument doc;
+ 
+         if (!doc.Load(parFiles[i]))
+         {
+-            wxLogError(wxT("Error parsing file ") + parFiles[i]);
++            wxLogError("Error parsing file %s", parFiles[i]);
+             retCode = 1;
+             continue;
+         }
+@@ -497,7 +497,7 @@
+                 fullname = inputPath + wxFILE_SEP_PATH + n->GetContent();
+ 
+             if (flagVerbose)
+-                wxPrintf(wxT("adding     ") + fullname +  wxT("...\n"));
++                wxPrintf("adding     %s...\n", fullname.c_str());
+ 
+             wxString filename = GetInternalFileName(n->GetContent(), flist);
+             n->SetContent(filename);
+@@ -537,7 +537,7 @@
+     files.RemoveLast();
+ 
+     if (flagVerbose)
+-        wxPrintf(wxT("compressing ") + parOutput +  wxT("...\n"));
++        wxPrintf("compressing %s...\n", parOutput);
+ 
+     wxString cwd = wxGetCwd();
+     wxSetWorkingDirectory(parOutputPath);
+@@ -604,7 +604,7 @@
+     size_t i;
+ 
+     if (flagVerbose)
+-        wxPrintf(wxT("creating C++ source file ") + parOutput +  wxT("...\n"));
++        wxPrintf("creating C++ source file %s...\n", parOutput);
+ 
+     file.Write(wxT("")
+ wxT("//\n")
+@@ -764,7 +764,7 @@
+     size_t i;
+ 
+     if (flagVerbose)
+-        wxPrintf(wxT("creating Python source file ") + parOutput +  wxT("...\n"));
++        wxPrintf("creating Python source file %s...\n", parOutput);
+ 
+     file.Write(
+        wxT("#\n")
+@@ -839,12 +839,12 @@
+     for (size_t i = 0; i < parFiles.Count(); i++)
+     {
+         if (flagVerbose)
+-            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
++            wxPrintf("processing %s...", parFiles[i]);
+ 
+         wxXmlDocument doc;
+         if (!doc.Load(parFiles[i]))
+         {
+-            wxLogError(wxT("Error parsing file ") + parFiles[i]);
++            wxLogError("Error parsing file %s", parFiles[i]);
+             retCode = 1;
+             continue;
+         }
 --- wxWidgets-2.8.12/src/common/file.cpp.orig	2011-03-22 12:59:40.000000000 +0100
 +++ wxWidgets-2.8.12/src/common/file.cpp	2012-09-30 08:19:02.785145988 +0200
 @@ -513,7 +513,7 @@
