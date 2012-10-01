@@ -1450,7 +1450,7 @@
                  style[i] = wxSB_RAISED;
              else if (!first.empty())
 -                wxLogError(wxT("Error in resource, unknown statusbar field style: ") + first);
-+                wxLogError("%s", (wxT("Error in resource, unknown statusbar field style: ") + first)).c_str();
++                wxLogError("%s", (wxT("Error in resource, unknown statusbar field style: ") + first).c_str());
  
              if(styles.Find(wxT(',')))
                  styles.Remove(0, styles.Find(wxT(',')) + 1);
