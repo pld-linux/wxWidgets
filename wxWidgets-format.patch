@@ -49,14 +49,14 @@
      {
          if (flagVerbose)
 -            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
-+            wxPrintf("processing %s...\n", parFiles[i]);
++            wxPrintf("processing %s...\n", parFiles[i].c_str());
  
          wxXmlDocument doc;
  
          if (!doc.Load(parFiles[i]))
          {
 -            wxLogError(wxT("Error parsing file ") + parFiles[i]);
-+            wxLogError("Error parsing file %s", parFiles[i]);
++            wxLogError("Error parsing file %s", parFiles[i].c_str());
              retCode = 1;
              continue;
          }
@@ -74,7 +74,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("compressing ") + parOutput +  wxT("...\n"));
-+        wxPrintf("compressing %s...\n", parOutput);
++        wxPrintf("compressing %s...\n", parOutput.c_str());
  
      wxString cwd = wxGetCwd();
      wxSetWorkingDirectory(parOutputPath);
@@ -83,7 +83,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("creating C++ source file ") + parOutput +  wxT("...\n"));
-+        wxPrintf("creating C++ source file %s...\n", parOutput);
++        wxPrintf("creating C++ source file %s...\n", parOutput.c_str());
  
      file.Write(wxT("")
  wxT("//\n")
@@ -92,7 +92,7 @@
  
      if (flagVerbose)
 -        wxPrintf(wxT("creating Python source file ") + parOutput +  wxT("...\n"));
-+        wxPrintf("creating Python source file %s...\n", parOutput);
++        wxPrintf("creating Python source file %s...\n", parOutput.c_str());
  
      file.Write(
         wxT("#\n")
@@ -101,13 +101,13 @@
      {
          if (flagVerbose)
 -            wxPrintf(wxT("processing ") + parFiles[i] +  wxT("...\n"));
-+            wxPrintf("processing %s...", parFiles[i]);
++            wxPrintf("processing %s...", parFiles[i].c_str());
  
          wxXmlDocument doc;
          if (!doc.Load(parFiles[i]))
          {
 -            wxLogError(wxT("Error parsing file ") + parFiles[i]);
-+            wxLogError("Error parsing file %s", parFiles[i]);
++            wxLogError("Error parsing file %s", parFiles[i].c_str());
              retCode = 1;
              continue;
          }
