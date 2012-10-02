@@ -43,6 +43,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+%{?with_x11:BuildRequires:	pangox-compat}
 BuildRequires:	pkgconfig
 %{?with_odbc:BuildRequires:	unixODBC-devel}
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
