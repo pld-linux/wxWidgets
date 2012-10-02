@@ -1622,3 +1622,14 @@
  
          return false;
      }
+--- wxWidgets-2.8.12/src/generic/animateg.cpp.orig	2011-03-22 12:59:43.000000000 +0100
++++ wxWidgets-2.8.12/src/generic/animateg.cpp	2012-10-02 19:46:51.397350796 +0200
+@@ -141,7 +141,7 @@
+ 
+         }
+ 
+-        wxLogWarning( _("No handler found for animation type.") );
++        wxLogWarning(wxT("%s"), _("No handler found for animation type.") );
+         return false;
+     }
+ 
