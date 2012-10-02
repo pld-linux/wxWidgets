@@ -1633,3 +1633,27 @@
          return false;
      }
  
+--- wxWidgets-2.8.12/utils/emulator/src/emulator.cpp.orig	2011-03-22 13:00:37.000000000 +0100
++++ wxWidgets-2.8.12/utils/emulator/src/emulator.cpp	2012-10-02 20:48:39.157273514 +0200
+@@ -144,9 +144,7 @@
+ #ifdef __X__
+         wxLog::SetActiveTarget(new wxLogStderr);
+ #endif
+-        wxString msg;
+-        msg.Printf(wxT("wxWidgets PDA Emulator (c) Julian Smart, 2002 Version %.2f, %s"), wxEMULATOR_VERSION, __DATE__);
+-        wxLogMessage(msg);
++        wxLogMessage(wxT("wxWidgets PDA Emulator (c) Julian Smart, 2002 Version %.2f, %s"), wxEMULATOR_VERSION, __DATE__);
+         return false;
+     }
+     if (parser.Found(wxT("u"), & m_displayNumber))
+--- wxWidgets-2.8.12/utils/helpview/src/helpview.cpp.orig	2011-03-22 13:00:38.000000000 +0100
++++ wxWidgets-2.8.12/utils/helpview/src/helpview.cpp	2012-10-02 20:49:22.497272612 +0200
+@@ -184,7 +184,7 @@
+         {
+             wxString wxm = wxT("Server Create failed - service: ");
+             wxString xxm = wxm << service;
+-            wxLogError( xxm );
++            wxLogError(wxT("%s"), xxm );
+             //if MSW quits here, probably another copy already exists
+             return false;
+         }
