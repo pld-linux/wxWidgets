@@ -1611,3 +1611,14 @@
          return false;
      }
  
+--- wxWidgets-2.8.12/src/univ/theme.cpp.orig	2011-03-22 13:01:29.000000000 +0100
++++ wxWidgets-2.8.12/src/univ/theme.cpp	2012-10-02 18:52:10.454085849 +0200
+@@ -111,7 +111,7 @@
+     // abort if still nothing
+     if ( !theme )
+     {
+-        wxLogError(_("Failed to initialize GUI: no built-in themes found."));
++        wxLogError(wxT("%s"), _("Failed to initialize GUI: no built-in themes found."));
+ 
+         return false;
+     }
