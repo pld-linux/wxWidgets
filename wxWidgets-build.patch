@@ -1,0 +1,29 @@
+commit c8723b866e31b8a506a87b4bff5c2d6ed092dd80
+Author: Vadim Zeitlin <vadim@wxwidgets.org>
+Date:   Fri Feb 15 12:40:17 2013 +0000
+
+    sAlways iInclude wx/encinfo.h from src/unix/fontutil.cpp.
+    
+    We use wxNativeEncodingInfo in this file, so we always need this header, not
+    just when not using PCH.
+    
+    git-svn-id: https://svn.wxwidgets.org/svn/wx/wxWidgets/trunk@73519 c3d73ce0-8a6f-49c7-b76d-6d57e0e08775
+
+diff --git a/src/unix/fontutil.cpp b/src/unix/fontutil.cpp
+index 23fc29e..07ee323 100644
+--- a/src/unix/fontutil.cpp
++++ b/src/unix/fontutil.cpp
+@@ -29,12 +29,12 @@
+ #ifndef WX_PRECOMP
+     #include "wx/app.h"
+     #include "wx/font.h" // wxFont enums
+-    #include "wx/encinfo.h"
+     #include "wx/hash.h"
+     #include "wx/utils.h"       // for wxGetDisplay()
+     #include "wx/module.h"
+ #endif // PCH
+ 
++#include "wx/encinfo.h"
+ #include "wx/fontmap.h"
+ #include "wx/tokenzr.h"
+ #include "wx/fontenum.h"
