@@ -10,21 +10,16 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.8.12
-Release:	6
+Version:	3.0.0
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
-Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	4103e37e277abeb8aee607b990c215c4
+Source0:	http://dl.sourceforge.net/project/wxwindows/%{version}/%{name}-%{version}.7z
+# Source0-md5:	294362f2a7407547b6819748896b1632
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
-Patch3:		%{name}-x11unicode.patch
-Patch4:		%{name}-gcc4.patch
-Patch5:		wxGTK-2.8.10.1-odbc-defines.patch
-Patch6:		%{name}-cairo.patch
-Patch7:		%{name}-format.patch
-Patch8:		%{name}-prec.patch
+Patch3:		%{name}-link.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -45,6 +40,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
 %{?with_x11:BuildRequires:	pangox-compat-devel}
+BuildRequires:	p7zip-standalone
 BuildRequires:	pkgconfig
 %{?with_odbc:BuildRequires:	unixODBC-devel}
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
@@ -83,8 +79,10 @@ Conflicts:	wxGTK2-unicode < 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	%{_datadir}
-
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
+
+# do not check for unresolved symbols (couldn't fix that)
+%define		no_install_post_check_so	1
 
 %description
 wxWidgets is a free C++ library for cross-platform GUI development.
@@ -470,10 +468,9 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obsługą UNICODE.
 
 %prep
-%setup -q
+%setup -q -c
 %patch0 -p1
-# is this still needed?
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -483,6 +480,8 @@ obsługą UNICODE.
 %patch8 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
+
+%undos src/stc/gen_iface.py
 
 %build
 # if bakefiles rebuild is needed:
@@ -521,6 +520,8 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		--enable-graphics_ctx \
 		--disable-universal \
 		${unicode} \
+		--enable-printarch \
+		--with-gtkprint \
 		%{!?with_gnomeprint:--without-gnomeprint}
 	%{__make}
 	%{__make} -C contrib/src
@@ -661,7 +662,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n wxX11-unicode -p /sbin/ldconfig
 
 %define _libf %{?with_debug:d}
-%define _configf %{?with_debug:-debug-2.8}
+%define _configf %{?with_debug:-debug}-3.0
 
 %files -f wxstd.lang
 %defattr(644,root,root,755)

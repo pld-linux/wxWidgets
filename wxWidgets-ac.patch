@@ -1,20 +1,20 @@
---- wxWidgets-2.5.3/configure.in.orig	2005-02-20 19:38:45.461014000 +0100
-+++ wxWidgets-2.5.3/configure.in	2005-02-20 20:58:15.485860176 +0100
-@@ -2670,7 +2670,7 @@
-             dnl HAVE_STDLIB_H which are already defined and this provokes
-             dnl a compiler warning which configure considers as an error...
-             AC_MSG_CHECKING(for jpeglib.h)
--            AC_CACHE_VAL(ac_cv_header_jpeglib_h,
-+            AC_CACHE_VAL(ac_cv_header_jpeglib_h,[
-                 AC_TRY_COMPILE(
-                     [
-                         #undef HAVE_STDLIB_H
-@@ -2682,7 +2682,7 @@
-                     ac_cv_header_jpeglib_h=yes,
-                     ac_cv_header_jpeglib_h=no
-                 )
--            )
-+            ])
-             AC_MSG_RESULT($ac_cv_header_jpeglib_h)
+--- wxWidgets-2.9.4/configure.in~	2013-04-19 17:20:35.000000000 +0200
++++ wxWidgets-2.9.4/configure.in	2013-04-19 17:24:04.366820089 +0200
+@@ -2583,7 +2583,7 @@
+         dnl HAVE_STDLIB_H which are already defined and this provokes
+         dnl a compiler warning which configure considers as an error...
+         AC_MSG_CHECKING(for jpeglib.h)
+-        AC_CACHE_VAL(ac_cv_header_jpeglib_h,
++        AC_CACHE_VAL(ac_cv_header_jpeglib_h,[
+             AC_TRY_COMPILE(
+                 [
+                     #undef HAVE_STDLIB_H
+@@ -2595,7 +2595,7 @@
+                 ac_cv_header_jpeglib_h=yes,
+                 ac_cv_header_jpeglib_h=no
+             )
+-        )
++        ])
+         AC_MSG_RESULT($ac_cv_header_jpeglib_h)
  
-             if test "$ac_cv_header_jpeglib_h" = "yes"; then
+         if test "$ac_cv_header_jpeglib_h" = "yes"; then
