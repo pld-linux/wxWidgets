@@ -10,6 +10,7 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
+%define majver 3.0
 Version:	3.0.0
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
@@ -580,7 +581,12 @@ done
 for i in $RPM_BUILD_ROOT%{_libdir}/wx/config/*
 do
 	b=`basename $i`
-	cp $i $RPM_BUILD_ROOT%{_bindir}/wx-`echo $b|sed -e 's/\(.*\)-release-.*/\1/'`-config
+	c=`echo $b|sed -e 's/\(.*\)-%{majver}/\1/'`
+	if [ "$b" = "$c" ]; then
+		echo "Something is not right... Sed rule failed"
+		exit 1
+	fi
+	cp $i $RPM_BUILD_ROOT%{_bindir}/wx-${c}-config
 done
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -617,7 +623,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n wxX11-unicode -p /sbin/ldconfig
 
 %define _libf %{?with_debug:d}
-%define _configf %{?with_debug:-debug}-3.0
+%define _configf %{?with_debug:-debug-%{majver}}
 
 %files -f wxstd.lang
 %defattr(644,root,root,755)
