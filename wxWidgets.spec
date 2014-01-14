@@ -14,7 +14,7 @@ Version:	3.0.0
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
-Source0:	http://dl.sourceforge.net/project/wxwindows/%{version}/%{name}-%{version}.7z
+Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.7z
 # Source0-md5:	294362f2a7407547b6819748896b1632
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
@@ -39,8 +39,8 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
-%{?with_x11:BuildRequires:	pangox-compat-devel}
 BuildRequires:	p7zip-standalone
+%{?with_x11:BuildRequires:	pangox-compat-devel}
 BuildRequires:	pkgconfig
 %{?with_odbc:BuildRequires:	unixODBC-devel}
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
