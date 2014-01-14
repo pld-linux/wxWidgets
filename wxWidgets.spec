@@ -17,9 +17,8 @@ Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.7z
 # Source0-md5:	294362f2a7407547b6819748896b1632
 Patch0:		%{name}-samples.patch
-Patch1:		%{name}-ogl.patch
-Patch2:		%{name}-ac.patch
-Patch3:		%{name}-link.patch
+Patch1:		%{name}-ac.patch
+Patch2:		%{name}-link.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -472,12 +471,6 @@ obsługą UNICODE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
