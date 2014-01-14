@@ -10,18 +10,16 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-Version:	2.9.4
+Version:	3.0.0
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
-Source0:	http://ftp.wxwidgets.org/pub/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1348f740a569ce2945512d5b0e70e87
+Source0:	http://dl.sourceforge.net/project/wxwindows/%{version}/%{name}-%{version}.7z
+# Source0-md5:	294362f2a7407547b6819748896b1632
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ogl.patch
 Patch2:		%{name}-ac.patch
-Patch3:		%{name}-x11unicode.patch
-Patch4:		%{name}-link.patch
-Patch5:		%{name}-build.patch
+Patch3:		%{name}-link.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -41,6 +39,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool
+BuildRequires:	p7zip-standalone
 BuildRequires:	pkgconfig
 %{?with_x11:BuildRequires:	xorg-lib-libXext-devel}
 # these are not supported by wxWidgets
@@ -453,14 +452,13 @@ Pliki programistyczne biblioteki GL dla opartej na wxUniversal wxX11 z
 obsługą UNICODE.
 
 %prep
-%setup -q
+%setup -q -c
 %patch0 -p1
-# is this still needed?
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
+
+%undos src/stc/gen_iface.py
 
 %build
 # if bakefiles rebuild is needed:
@@ -496,6 +494,8 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 		${gui} \
 		--disable-universal \
 		${unicode} \
+		--enable-printarch \
+		--with-gtkprint \
 		%{!?with_gnomeprint:--without-gnomeprint}
 	%{__make}
 	cd ..
@@ -612,7 +612,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n wxX11-unicode -p /sbin/ldconfig
 
 %define _libf %{?with_debug:d}
-%define _configf %{?with_debug:-debug}-2.9
+%define _configf %{?with_debug:-debug}-3.0
 
 %files -f wxstd.lang
 %defattr(644,root,root,755)
@@ -641,8 +641,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_base%{_libf}-*.so.*.*
 %attr(755,root,root) %{_libdir}/libwx_base%{_libf}_*.so.*.*
 #%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdl-*.so
-%attr(755,root,root) %ghost %{_libdir}/libwx_base%{_libf}-*.so.4
-%attr(755,root,root) %ghost %{_libdir}/libwx_base%{_libf}_*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_base%{_libf}-*.so.0
+%attr(755,root,root) %ghost %{_libdir}/libwx_base%{_libf}_*.so.0
 
 %files -n wxBase-devel
 %defattr(644,root,root,755)
@@ -655,8 +655,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_baseu%{_libf}-*.so.*.*
 %attr(755,root,root) %{_libdir}/libwx_baseu%{_libf}_*.so.*.*
 #%attr(755,root,root) %{_libdir}/wx/%{version}/sound_sdlu-*.so
-%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{_libf}-*.so.4
-%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{_libf}_*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{_libf}-*.so.0
+%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{_libf}_*.so.0
 
 %files -n wxBase-unicode-devel
 %defattr(644,root,root,755)
@@ -668,8 +668,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{_libf}_*.so.*.*
 %exclude %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{_libf}_*.so.4
-%exclude %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{_libf}_*.so.0
+%exclude %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.0
 
 %files -n wxGTK2-devel
 %defattr(644,root,root,755)
@@ -682,7 +682,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{_libf}_gl-*.so.0
 
 %files -n wxGTK2-gl-devel
 %defattr(644,root,root,755)
@@ -693,8 +693,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{_libf}_*-*.so.*.*
 %exclude %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{_libf}_*-*.so.4
-%exclude %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{_libf}_*-*.so.0
+%exclude %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.0
 
 %files -n wxGTK2-unicode-devel
 %defattr(644,root,root,755)
@@ -707,7 +707,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{_libf}_gl-*.so.0
 
 %files -n wxGTK2-unicode-gl-devel
 %defattr(644,root,root,755)
@@ -727,8 +727,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/wxX11-readme.txt
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{_libf}_*-*.so.*.*
 %exclude %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{_libf}_*-*.so.4
-%exclude %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{_libf}_*-*.so.0
+%exclude %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.0
 
 %files -n wxX11-devel
 %defattr(644,root,root,755)
@@ -741,7 +741,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{_libf}_gl-*.so.0
 
 %files -n wxX11-gl-devel
 %defattr(644,root,root,755)
@@ -752,8 +752,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{_libf}_*-*.so.*.*
 %exclude %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{_libf}_*-*.so.4
-%exclude %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{_libf}_*-*.so.0
+%exclude %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.0
 
 %files -n wxX11-unicode-devel
 %defattr(644,root,root,755)
@@ -766,7 +766,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.4
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{_libf}_gl-*.so.0
 
 %files -n wxX11-unicode-gl-devel
 %defattr(644,root,root,755)
