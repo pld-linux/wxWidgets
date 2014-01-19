@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define majver 3.0
 Version:	3.0.0
-Release:	2
+Release:	3
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
@@ -20,6 +20,7 @@ Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-link.patch
+Patch3:		export-wxGetRootWindow.patch
 URL:		http://www.wxWidgets.org/
 BuildRequires:	OpenGL-GLU-devel
 #BuildRequires:	SDL-devel
@@ -459,6 +460,7 @@ obsługą UNICODE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
