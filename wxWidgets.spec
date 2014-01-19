@@ -12,7 +12,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define majver 3.0
 Version:	3.0.0
-Release:	1
+Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
@@ -577,6 +577,10 @@ for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
 	cd ..
 done
 %endif
+
+# public headers include from wx/private
+cp -a include/wx/private $RPM_BUILD_ROOT/%{_includedir}/wx*/wx/
+cp -a include/wx/unix/private $RPM_BUILD_ROOT/%{_includedir}/wx*/wx/unix/
 
 for i in $RPM_BUILD_ROOT%{_libdir}/wx/config/*
 do
