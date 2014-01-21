@@ -772,7 +772,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme}.txt
 %dir %{_libdir}/wx
-%dir %{_libdir}/wx/%{version}
+%dir %{_libdir}/wx/%{majver}
 
 %files devel
 %defattr(644,root,root,755)
