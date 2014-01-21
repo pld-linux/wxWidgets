@@ -158,6 +158,7 @@ Summary:	wxBase library - non-GUI support classes of wxWidgets toolkit
 Summary(pl.UTF-8):	wxBase - biblioteka klas wxWidgets nie związanych z GUI
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	zlib >= 1.1.4
 
 %description -n wxBase
 wxBase is a collection of C++ classes providing basic data structures
@@ -197,6 +198,7 @@ Summary:	wxBase library - non-GUI support classes of wxWidgets toolkit with UNIC
 Summary(pl.UTF-8):	wxBase - biblioteka klas wxWidgets nie związanych z GUI ze wsparciem dla UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	zlib >= 1.1.4
 
 %description -n wxBase-unicode
 wxBase is a collection of C++ classes providing basic data structures
@@ -238,6 +240,8 @@ Summary(pl.UTF-8):	Biblioteka wxGTK2
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+2 >= 2:2.10
+Requires:	gtk-webkit >= 1.3.1
+Requires:	wxBase = %{version}-%{release}
 Obsoletes:	wxGTK2-univ
 
 %description -n wxGTK2
@@ -293,6 +297,9 @@ Summary:	wxGTK2 library with UNICODE support
 Summary(pl.UTF-8):	Biblioteka wxGTK2 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	wxBase-unicode = %{version}-%{release}
+Requires:	gtk+2 >= 2:2.10
+Requires:	gtk-webkit >= 1.3.1
 Obsoletes:	wxGTK2-univ-unicode
 
 %description -n wxGTK2-unicode
@@ -351,7 +358,8 @@ Summary:	wxGTK3 library
 Summary(pl.UTF-8):	Biblioteka wxGTK3
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk+2 >= 2:2.10
+Requires:	gtk-webkit3 >= 1.3.1
+Requires:	wxBase = %{version}-%{release}
 Obsoletes:	wxGTK3-univ
 
 %description -n wxGTK3
@@ -407,6 +415,8 @@ Summary:	wxGTK3 library with UNICODE support
 Summary(pl.UTF-8):	Biblioteka wxGTK3 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	gtk-webkit3 >= 1.3.1
+Requires:	wxBase-unicode = %{version}-%{release}
 Obsoletes:	wxGTK3-univ-unicode
 
 %description -n wxGTK3-unicode
@@ -478,6 +488,7 @@ Summary:	wxUniversal-based wxX11 library
 Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	wxBase = %{version}-%{release}
 Obsoletes:	wxX11-univ
 
 %description -n wxX11
@@ -491,6 +502,7 @@ Summary:	Header files for wxUniversal-based wxX11 library
 Summary(pl.UTF-8):	Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11
 Group:		X11/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxX11 = %{version}-%{release}
 Obsoletes:	wxX11-univ-devel
 
@@ -533,6 +545,7 @@ Summary:	wxUniversal-based wxX11 library with UNICODE support
 Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	wxBase-unicode = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode
 
 %description -n wxX11-unicode
@@ -546,6 +559,7 @@ Summary:	Header files for wxUniversal-based wxX11 library with UNICODE support
 Summary(pl.UTF-8):	Pliki nagłówkowe opartej na wxUniversal biblioteki wxX11 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxX11-unicode = %{version}-%{release}
 Obsoletes:	wxX11-univ-unicode-devel
 
@@ -743,28 +757,40 @@ cp -f docs/x11/readme.txt docs/wxX11-readme.txt
 rm -rf $RPM_BUILD_ROOT
 
 %post	-n wxBase -p /sbin/ldconfig
-%postun -n wxBase -p /sbin/ldconfig
+%postun	-n wxBase -p /sbin/ldconfig
 
 %post	-n wxBase-unicode -p /sbin/ldconfig
-%postun -n wxBase-unicode -p /sbin/ldconfig
+%postun	-n wxBase-unicode -p /sbin/ldconfig
 
 %post	-n wxGTK2 -p /sbin/ldconfig
-%postun -n wxGTK2 -p /sbin/ldconfig
+%postun	-n wxGTK2 -p /sbin/ldconfig
 
 %post	-n wxGTK2-gl -p /sbin/ldconfig
-%postun -n wxGTK2-gl -p /sbin/ldconfig
+%postun	-n wxGTK2-gl -p /sbin/ldconfig
 
 %post	-n wxGTK2-unicode -p /sbin/ldconfig
-%postun -n wxGTK2-unicode -p /sbin/ldconfig
+%postun	-n wxGTK2-unicode -p /sbin/ldconfig
 
 %post	-n wxGTK2-unicode-gl -p /sbin/ldconfig
-%postun -n wxGTK2-unicode-gl -p /sbin/ldconfig
+%postun	-n wxGTK2-unicode-gl -p /sbin/ldconfig
+
+%post	-n wxGTK3 -p /sbin/ldconfig
+%postun	-n wxGTK3 -p /sbin/ldconfig
+
+%post	-n wxGTK3-gl -p /sbin/ldconfig
+%postun	-n wxGTK3-gl -p /sbin/ldconfig
+
+%post	-n wxGTK3-unicode -p /sbin/ldconfig
+%postun	-n wxGTK3-unicode -p /sbin/ldconfig
+
+%post	-n wxGTK3-unicode-gl -p /sbin/ldconfig
+%postun	-n wxGTK3-unicode-gl -p /sbin/ldconfig
 
 %post	-n wxX11 -p /sbin/ldconfig
-%postun -n wxX11 -p /sbin/ldconfig
+%postun	-n wxX11 -p /sbin/ldconfig
 
 %post	-n wxX11-unicode -p /sbin/ldconfig
-%postun -n wxX11-unicode -p /sbin/ldconfig
+%postun	-n wxX11-unicode -p /sbin/ldconfig
 
 %define libflag %{?with_debug:d}
 
