@@ -1,7 +1,6 @@
 #
 # Conditional build:
 %bcond_without	ansi		# only unicode packages
-%bcond_without	odbc		# without ODBC support
 %bcond_with	directfb	# build wxDFB packages
 %bcond_without	gtk3		# don't build wxGTK3 packages
 %bcond_with	motif		# build wxMotif packages
@@ -53,7 +52,6 @@ BuildRequires:	libtool
 %{?with_motif:BuildRequires:	motif-devel}
 %{?with_x11:BuildRequires:	pango-devel}
 BuildRequires:	pkgconfig
-%{?with_odbc:BuildRequires:	unixODBC-devel}
 %if %{with x11}
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -89,8 +87,10 @@ Obsoletes:	wxMotif-devel
 Obsoletes:	wxMotif-gl
 Obsoletes:	wxMotif-gl-devel
 %endif
+Obsoletes:	wxWidgets-HelpGen
 Obsoletes:	wxWidgets-afm
 Obsoletes:	wxWindows
+Obsoletes:	wxWindows-HelpGen
 Obsoletes:	wxWindows-afm
 Obsoletes:	wxwin-afm
 Obsoletes:	wxwin-common
@@ -120,7 +120,6 @@ Summary:	wxWidgets header files and development documentation
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do wxWidgets
 Group:		X11/Development/Libraries
 Requires:	libstdc++-devel
-%{?with_odbc:Requires:	unixODBC-devel}
 Obsoletes:	wxWindows-devel
 
 %description devel
@@ -797,8 +796,6 @@ CPPFLAGS="%{rpmcppflags} %{rpmcflags} -fPIC -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
-	ac_cv_lib_iodbc_SQLAllocEnv=no \
-	ac_cv_lib_unixodbc_SQLAllocEnv=no \
 	--enable-calendar \
 	--enable-controls \
 	--enable-plugins \
@@ -809,8 +806,7 @@ args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--with-opengl"
 
 for gui in '--with-gtk' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
-for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
-	'--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir $objdir
 	cd $objdir
@@ -828,8 +824,7 @@ done
 
 %if %{with x11} || %{with directfb}
 for gui in %{?with_x11:'--with-x11'} %{?with_directfb:--with-directfb} ; do
-for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
-	'--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir $objdir
 	cd $objdir
@@ -857,8 +852,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 for gui in '--with-gtk' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
-for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
-	'--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
 		prefix=$RPM_BUILD_ROOT%{_prefix} \
@@ -874,8 +868,7 @@ done
 
 %if %{with x11} || %{with directfb}
 for gui in %{?with_x11:'--with-x11'} %{?with_directfb:--with-directfb} ; do
-for unicode in %{?with_ansi:'--disable-unicode %{?with_odbc:--with-odbc}'} \
-	'--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	cd $objdir
 	%{__make} install \
