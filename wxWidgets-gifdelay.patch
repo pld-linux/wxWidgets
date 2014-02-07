@@ -1,0 +1,24 @@
+--- wxWidgets-3.0.0/src/html/m_image.cpp.orig	2013-11-11 14:10:39.000000000 +0100
++++ wxWidgets-3.0.0/src/html/m_image.cpp	2014-02-06 19:55:34.160255248 +0100
+@@ -403,8 +403,8 @@
+                         {
+                             m_gifTimer = new wxGIFTimer(this);
+                             long delay = m_gifDecoder->GetDelay(0);
+-                            if ( delay == 0 )
+-                                delay = 1;
++                            if ( delay < 10 )
++                                delay = 10;
+                             m_gifTimer->Start(delay, true);
+                         }
+                         else
+@@ -534,8 +534,8 @@
+     }
+ 
+     long delay = m_gifDecoder->GetDelay(m_nCurrFrame);
+-    if ( delay == 0 )
+-        delay = 1;
++    if ( delay < 10 )
++        delay = 10;
+     timer->Start(delay, true);
+ }
+ 

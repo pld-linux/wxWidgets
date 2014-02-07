@@ -14,7 +14,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define majver 3.0
 Version:	3.0.0
-Release:	3
+Release:	4
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	http://downloads.sourceforge.net/wxwindows/%{name}-%{version}.tar.bz2
@@ -24,6 +24,7 @@ Patch1:		%{name}-ac.patch
 Patch2:		%{name}-link.patch
 Patch3:		export-wxGetRootWindow.patch
 Patch4:		%{name}-gtk3.patch
+Patch5:		%{name}-gifdelay.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 BuildRequires:	OpenGL-GLU-devel
@@ -778,6 +779,7 @@ obsługą UNICODE.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
