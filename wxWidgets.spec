@@ -35,7 +35,7 @@ BuildRequires:	bakefile >= 0.2.9
 BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	expat-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gstreamer0.10-devel >= 0.10
 BuildRequires:	gstreamer0.10-plugins-base-devel >= 0.10
 BuildRequires:	gtk+2-devel >= 2:2.10
