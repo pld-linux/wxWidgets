@@ -23,6 +23,7 @@ Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-link.patch
 Patch3:		export-wxGetRootWindow.patch
+Patch4:		%{name}-c++.patch
 Patch5:		%{name}-gifdelay.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
@@ -777,17 +778,17 @@ obsługą UNICODE.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 %patch5 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
 %build
-# if bakefiles rebuild is needed:
-#%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.1"
-#cd build/bakefiles
-#bakefile_gen -f autoconf
-#cd ../..
-#%endif
+%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.9"
+cd build/bakefiles
+bakefile_gen -f autoconf
+cd ../..
+%endif
 cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
@@ -992,6 +993,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n bakefile-wxWidgets
 %defattr(644,root,root,755)
 %{_datadir}/bakefile/presets/wx*.bkl
+%{_datadir}/bakefile/presets/wx_presets.py
 
 %files examples
 %defattr(644,root,root,755)
