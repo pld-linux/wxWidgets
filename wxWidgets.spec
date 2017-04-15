@@ -25,6 +25,8 @@ Patch2:		%{name}-link.patch
 Patch3:		export-wxGetRootWindow.patch
 Patch4:		%{name}-c++.patch
 Patch5:		%{name}-gifdelay.patch
+Patch6:		relax-abicheck.patch
+Patch7:		gcc6.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 BuildRequires:	OpenGL-GLU-devel
@@ -780,6 +782,8 @@ obsługą UNICODE.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
