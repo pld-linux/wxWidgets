@@ -797,7 +797,7 @@ cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
 
-CPPFLAGS="%{rpmcppflags} %{rpmcflags} -fPIC -I`pwd`/include"; export CPPFLAGS
+CPPFLAGS="%{rpmcppflags} %{rpmcflags} -Wno-narrowing -fPIC -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
