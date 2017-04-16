@@ -35,3 +35,14 @@ index cd72953a..2081df28 100644
  		return false;
  	return true;
  }
+--- wxWidgets-3.0.2/utils/ifacecheck/src/xmlparser.cpp~	2014-10-06 23:33:44.000000000 +0200
++++ wxWidgets-3.0.2/utils/ifacecheck/src/xmlparser.cpp	2017-04-16 02:00:59.184716773 +0200
+@@ -570,7 +570,7 @@
+             if (!parent) {
+                 wxLogError("Could not find parent '%s' of class '%s'...",
+                          m_parents[i], GetName());
+-                return false;
++                return NULL;
+             }
+ 
+             const wxMethod *parentMethod = parent->RecursiveUpwardFindMethod(m, allclasses);
