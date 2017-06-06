@@ -38,8 +38,8 @@ BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	expat-devel
 BuildRequires:	gettext-tools
-BuildRequires:	gstreamer0.10-devel >= 0.10
-BuildRequires:	gstreamer0.10-plugins-base-devel >= 0.10
+BuildRequires:	gstreamer-devel >= 1.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	gtk+2-devel >= 2:2.10
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
 BuildRequires:	gtk-webkit-devel >= 1.3.1
