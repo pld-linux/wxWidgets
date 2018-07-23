@@ -12,9 +12,9 @@
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-%define majver 3.0
+%define	majver	3.0
 Version:	3.0.4
-Release:	1
+Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
@@ -26,6 +26,7 @@ Patch3:		export-wxGetRootWindow.patch
 Patch4:		%{name}-c++.patch
 Patch5:		%{name}-gifdelay.patch
 Patch6:		relax-abicheck.patch
+Patch7:		%{name}-bakefile-update.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 BuildRequires:	OpenGL-GLU-devel
@@ -782,6 +783,7 @@ obsługą UNICODE.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
@@ -898,8 +900,8 @@ done
 cp -a include/wx/private $RPM_BUILD_ROOT%{_includedir}/wx-%{majver}/wx/
 cp -a include/wx/unix/private $RPM_BUILD_ROOT%{_includedir}/wx-%{majver}/wx/unix/
 
-%if %{without sdl}
-install -d $RPM_BUILD_ROOT%{_libdir}/wx/%{majver}
+%if %{without gtk3}
+install -d $RPM_BUILD_ROOT%{_libdir}/wx/%{majver}/web-extensions
 %endif
 
 for i in $RPM_BUILD_ROOT%{_libdir}/wx/config/*
@@ -983,6 +985,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/{changes,licence,licendoc,preamble,readme}.txt
 %dir %{_libdir}/wx
 %dir %{_libdir}/wx/%{majver}
+%dir %{_libdir}/wx/%{majver}/web-extensions
 
 %files devel
 %defattr(644,root,root,755)
@@ -1265,6 +1268,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.0
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_ext-3.0.so
 
 %files -n wxGTK3-devel
 %defattr(644,root,root,755)
@@ -1320,6 +1324,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.0
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_extu-3.0.so
 
 %files -n wxGTK3-unicode-devel
 %defattr(644,root,root,755)
