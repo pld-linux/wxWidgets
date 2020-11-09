@@ -13,12 +13,12 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.0
-Version:	3.0.4
-Release:	2
+Version:	3.0.5
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b0035731777acc5597cea8982da10317
+# Source0-md5:	b4304777652acee8358066cdce5f6f27
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-link.patch
@@ -26,7 +26,6 @@ Patch3:		export-wxGetRootWindow.patch
 Patch4:		%{name}-c++.patch
 Patch5:		%{name}-gifdelay.patch
 Patch6:		relax-abicheck.patch
-Patch7:		%{name}-bakefile-update.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 BuildRequires:	OpenGL-GLU-devel
@@ -783,7 +782,6 @@ obsługą UNICODE.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
@@ -918,6 +916,8 @@ done
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a demos samples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -f docs/x11/readme.txt docs/wxX11-readme.txt
+
+rm -f $RPM_BUILD_ROOT%{_bindir}/wx-config
 
 %find_lang wxstd
 
