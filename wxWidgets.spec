@@ -14,12 +14,12 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 %define	majver	3.1
 Name:		wxWidgets
-Version:	3.1.6
+Version:	3.1.7
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	7a6972e40f9d81dc2141ac0dd31249ee
+# Source0-md5:	3b1ab66988a31803be3f5dd46634efb0
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-c++.patch
@@ -894,7 +894,7 @@ obsługą UNICODE.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 #%patch4 -p1
 
@@ -1084,6 +1084,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme}.txt
 %dir %{_libdir}/wx
+%dir %{_libdir}/wx/%{version}/web-extensions
 
 %files devel
 %defattr(644,root,root,755)
@@ -1106,11 +1107,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxBase
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_base%{libflag}-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_base%{libflag}_net-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}_net-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}_net-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_base%{libflag}_xml-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}_xml-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_base%{libflag}_xml-%{majver}.so.7
 %if %{with sdl}
 %attr(755,root,root) %{_libdir}/wx/%{majver}/sound_sdl%{libflag}-%{majver}.so
 %endif
@@ -1125,11 +1126,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxBase-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}_net-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}_net-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}_net-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}_xml-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}_xml-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_baseu%{libflag}_xml-%{majver}.so.7
 %if %{with sdl}
 %attr(755,root,root) %{_libdir}/wx/%{majver}/sound_sdlu%{libflag}-%{majver}.so
 %endif
@@ -1145,27 +1146,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxDFB
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbuniv%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbuniv%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxDFB-devel
 %defattr(644,root,root,755)
@@ -1188,27 +1189,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxDFB-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_dfbunivu%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxDFB-unicode-devel
 %defattr(644,root,root,755)
@@ -1233,29 +1234,29 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_webview-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_webview-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_webview-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxGTK2-devel
 %defattr(644,root,root,755)
@@ -1278,7 +1279,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2%{libflag}_gl-%{majver}.so.7
 
 %files -n wxGTK2-gl-devel
 %defattr(644,root,root,755)
@@ -1288,29 +1289,29 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_webview-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_webview-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_webview-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxGTK2-unicode-devel
 %defattr(644,root,root,755)
@@ -1333,7 +1334,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk2u%{libflag}_gl-%{majver}.so.7
 
 %files -n wxGTK2-unicode-gl-devel
 %defattr(644,root,root,755)
@@ -1344,29 +1345,30 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK3
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.7
+%attr(755,root,root) %{_libdir}/wx/%{version}/web-extensions/webkit2_ext-%{version}.so
 
 %files -n wxGTK3-devel
 %defattr(644,root,root,755)
@@ -1389,7 +1391,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK3-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_gl-%{majver}.so.7
 
 %files -n wxGTK3-gl-devel
 %defattr(644,root,root,755)
@@ -1399,29 +1401,30 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK3-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.7
+%attr(755,root,root) %{_libdir}/wx/%{version}/web-extensions/webkit2_extu-%{version}.so
 
 %files -n wxGTK3-unicode-devel
 %defattr(644,root,root,755)
@@ -1444,7 +1447,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK3-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_gl-%{majver}.so.7
 
 %files -n wxGTK3-unicode-gl-devel
 %defattr(644,root,root,755)
@@ -1455,27 +1458,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxMotif-devel
 %defattr(644,root,root,755)
@@ -1497,7 +1500,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motif%{libflag}_gl-%{majver}.so.7
 
 %files -n wxMotif-gl-devel
 %defattr(644,root,root,755)
@@ -1507,27 +1510,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxMotif-unicode-devel
 %defattr(644,root,root,755)
@@ -1549,7 +1552,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_motifu%{libflag}_gl-%{majver}.so.7
 
 %files -n wxMotif-unicode-gl-devel
 %defattr(644,root,root,755)
@@ -1561,27 +1564,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxQT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxQT-devel
 %defattr(644,root,root,755)
@@ -1603,7 +1606,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxQT-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so.7
 
 %files -n wxQT-gl-devel
 %defattr(644,root,root,755)
@@ -1613,27 +1616,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxQT-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxQT-unicode-devel
 %defattr(644,root,root,755)
@@ -1655,7 +1658,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxQT-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so.7
 
 %files -n wxQT-unicode-gl-devel
 %defattr(644,root,root,755)
@@ -1675,27 +1678,27 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc docs/wxX11-readme.txt
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxX11-devel
 %defattr(644,root,root,755)
@@ -1717,7 +1720,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univ%{libflag}_gl-%{majver}.so.7
 
 %files -n wxX11-gl-devel
 %defattr(644,root,root,755)
@@ -1727,27 +1730,27 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_adv-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_adv-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_adv-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_aui-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_aui-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_aui-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_core-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_core-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_core-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_html-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_html-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_html-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_media-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_media-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_media-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_propgrid-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_propgrid-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_propgrid-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_qa-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_qa-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_qa-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_ribbon-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_ribbon-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_ribbon-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_richtext-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_richtext-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_richtext-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_stc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_stc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_stc-%{majver}.so.7
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_xrc-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_xrc-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_xrc-%{majver}.so.7
 
 %files -n wxX11-unicode-devel
 %defattr(644,root,root,755)
@@ -1769,7 +1772,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-unicode-gl
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_gl-%{majver}.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_gl-%{majver}.so.6
+%attr(755,root,root) %ghost %{_libdir}/libwx_x11univu%{libflag}_gl-%{majver}.so.7
 
 %files -n wxX11-unicode-gl-devel
 %defattr(644,root,root,755)
