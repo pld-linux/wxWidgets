@@ -14,12 +14,12 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 %define	majver	3.2
 Name:		wxWidgets
-Version:	3.2.0
+Version:	3.2.1
 Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	4e3b34a952f487255d5c52644ff3249f
+# Source0-md5:	cf7d30b77343387a49ab75b6e970abc5
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-c++.patch
