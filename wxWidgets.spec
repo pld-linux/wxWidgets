@@ -1,31 +1,29 @@
 #
 # Conditional build:
-%bcond_without	ansi		# only unicode packages
+%bcond_with	ansi		# only unicode packages
 %bcond_with	directfb	# build wxDFB packages
 %bcond_without	gtk3		# don't build wxGTK3 packages
 %bcond_with	motif		# build wxMotif packages
 %bcond_without	x11		# don't build wxX11 packages
-%bcond_with	sdl		# SDL sound support
-%bcond_with	debug		# build with \--enable-debug
-				# (binary incompatible with non-debug)
+%bcond_without	sdl		# SDL sound support
+%bcond_with	debug		# build with \--enable-debug (binary incompatible with non-debug)
 #
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
-%define	majver	3.0
-Version:	3.0.5
-Release:	1
+%define	majver	3.2
+Version:	3.2.2.1
+Release:	0.1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b4304777652acee8358066cdce5f6f27
+# Source0-md5:	45bd5f56a06e7c4ca7caf6c0b4d5d506
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
-Patch2:		%{name}-link.patch
-Patch3:		export-wxGetRootWindow.patch
-Patch4:		%{name}-c++.patch
-Patch5:		%{name}-gifdelay.patch
-Patch6:		relax-abicheck.patch
+Patch2:		%{name}-gifdelay.patch
+Patch3:		relax-abicheck.patch
+Patch4:		os-release.patch
+Patch5:		webkit2gtk4.1.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 BuildRequires:	OpenGL-GLU-devel
@@ -33,17 +31,17 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 # for m4 files
-BuildRequires:	bakefile >= 0.2.9
+BuildRequires:	bakefile >= 0.2.12
 BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	expat-devel
 BuildRequires:	gettext-tools
-BuildRequires:	gstreamer-devel >= 1.0
-BuildRequires:	gstreamer-plugins-base-devel >= 1.0
+BuildRequires:	gstreamer-devel >= 1.7.2
+BuildRequires:	gstreamer-plugins-base-devel >= 1.7.2
 BuildRequires:	gtk+2-devel >= 2:2.10
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
 BuildRequires:	gtk-webkit-devel >= 1.3.1
-%{?with_gtk3:BuildRequires:	gtk-webkit3-devel >= 1.3.1}
+%{?with_gtk3:BuildRequires:	gtk-webkit4.1-devel}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmspack-devel
 BuildRequires:	libnotify-devel >= 0.7
@@ -62,6 +60,7 @@ BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
 %endif
+BuildRequires:	xz-devel
 BuildRequires:	zlib-devel >= 1.1.4
 # these are not supported by wxWidgets
 Obsoletes:	LDAPExplorerTool <= 0.6-1
@@ -781,17 +780,15 @@ obsługą UNICODE.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
 %build
-%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.9"
+%if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.13"
 cd build/bakefiles
 bakefile_gen -f autoconf
 cd ../..
 %endif
-cp -f /usr/share/automake/config.sub .
 %{__aclocal} -I build/aclocal
 %{__autoconf}
 
@@ -799,19 +796,23 @@ CPPFLAGS="%{rpmcppflags} %{rpmcflags} -Wno-narrowing -fPIC -I`pwd`/include"; exp
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
+	--enable-ipv6 \
 	--enable-calendar \
 	--enable-controls \
 	--enable-plugins \
 	--enable-std_iostreams \
-	--enable-tabdialog \
 	--with-libmspack \
+	--with-liblzma \
+	--with-libpng \
+	--with-libjpeg \
+	--with-libtiff \
 	%{?with_sdl:--with-sdl} \
 	--with-opengl"
 
-for gui in '--with-gtk' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in '--with-gtk=2' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
-	mkdir $objdir
+	mkdir -p $objdir
 	cd $objdir
 	../%configure \
 		${args} \
@@ -829,7 +830,7 @@ done
 for gui in %{?with_x11:'--with-x11'} %{?with_directfb:--with-directfb} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
-	mkdir $objdir
+	mkdir -p $objdir
 	cd $objdir
 	../%configure \
 		${args} \
@@ -837,11 +838,10 @@ for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 		--enable-universal \
 		${unicode}
 	%{__make}
-	if echo $objdir| grep -q 'with-x11--disable-unicode' ; then
+	if echo $objdir| grep -q 'with-x11--enable-unicode' ; then
 		%{__make} -C utils
 		%{__make} -C utils/emulator
 		%{__make} -C utils/hhp2cached
-		# %{__make} -C contrib/utils
 	fi
 	cd ..
 done
@@ -854,7 +854,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-for gui in '--with-gtk' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in '--with-gtk=2' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
@@ -883,11 +883,10 @@ for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 		mandir=$RPM_BUILD_ROOT%{_mandir} \
 		includedir=$RPM_BUILD_ROOT%{_includedir} \
 		LOCALE_MSW_LINGUAS=
-	if echo $objdir| grep -q 'with-x11--disable-unicode' ; then
+	if echo $objdir| grep -q 'with-x11--enable-unicode' ; then
 		# TODO: install default config files and default backgrouds
 		install utils/emulator/src/wxemulator $RPM_BUILD_ROOT%{_bindir}
 		install utils/hhp2cached/hhp2cached $RPM_BUILD_ROOT%{_bindir}
-		install utils/wxrc/wxrc $RPM_BUILD_ROOT%{_bindir}
 	fi
 	cd ..
 done
@@ -917,9 +916,9 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a demos samples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -f docs/x11/readme.txt docs/wxX11-readme.txt
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/wx-config
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/wx-config
 
-%find_lang wxstd
+%find_lang wxstd-%{majver}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -980,7 +979,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %define libflag %{?with_debug:d}
 
-%files -f wxstd.lang
+%files -f wxstd-%{majver}.lang
 %defattr(644,root,root,755)
 %doc docs/{changes,licence,licendoc,preamble,readme}.txt
 %dir %{_libdir}/wx
@@ -1268,7 +1267,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.0
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.0
-%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_ext-3.0.so
+%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_ext-%{majver}.so
 
 %files -n wxGTK3-devel
 %defattr(644,root,root,755)
@@ -1324,7 +1323,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.0
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.0
-%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_extu-3.0.so
+%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_extu-%{majver}.so
 
 %files -n wxGTK3-unicode-devel
 %defattr(644,root,root,755)
@@ -1461,7 +1460,6 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with x11}
-%if %{with ansi}
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/hhp2cached
@@ -1469,6 +1467,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wxrc
 %attr(755,root,root) %{_bindir}/wxrc-%{majver}
 
+%if %{with ansi}
 %files -n wxX11
 %defattr(644,root,root,755)
 %doc docs/wxX11-readme.txt

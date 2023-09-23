@@ -1,0 +1,77 @@
+From 1b0c5d63f6269afa46d121c28160a339da5dd5b7 Mon Sep 17 00:00:00 2001
+From: Scott Talbert <swt@techie.net>
+Date: Fri, 14 Jul 2023 11:45:19 -0400
+Subject: [PATCH] Read Linux distribution info from os-release file
+
+The Linux distribution community has somewhat deprecated the lsb_release
+utility and has standardized on a new file, os-release, that can be
+simply parsed to get the same information.  Attempt to read this file in
+/etc/os-release, then /usr/lib/os-release, and finally, fall back to
+using the lsb_release utility if neither of those files are found.
+
+See: https://www.freedesktop.org/software/systemd/man/os-release.html
+Fixes: https://bugzilla.redhat.com/show_bug.cgi?id=2184391
+
+See #23712.
+
+(cherry picked from commit aef7df6c9f44f751d97f4f6519ae6e5c3b81019d)
+---
+ docs/changes.txt      |  1 +
+ src/unix/utilsunx.cpp | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 31 insertions(+)
+
+diff --git a/src/unix/utilsunx.cpp b/src/unix/utilsunx.cpp
+index ac5181e187f3..302aaa25b8f5 100644
+--- a/src/unix/utilsunx.cpp
++++ b/src/unix/utilsunx.cpp
+@@ -62,6 +62,8 @@
+ #include "wx/evtloop.h"
+ #include "wx/mstream.h"
+ #include "wx/private/fdioeventloopsourcehandler.h"
++#include "wx/config.h"
++#include "wx/filename.h"
+ 
+ #include <pwd.h>
+ #include <sys/wait.h>       // waitpid()
+@@ -1147,6 +1149,23 @@ wxString wxGetNativeCpuArchitectureName()
+ 
+ #ifdef __LINUX__
+ 
++static bool
++wxGetValuesFromOSRelease(const wxString& filename, wxLinuxDistributionInfo& ret)
++{
++    if ( !wxFileName::Exists(filename) )
++    {
++        return false;
++    }
++
++    wxFileConfig fc(wxEmptyString, wxEmptyString, wxEmptyString, filename);
++    ret.Id = fc.Read(wxS("ID"), wxEmptyString).Capitalize();
++    ret.Description = fc.Read(wxS("PRETTY_NAME"), wxEmptyString);
++    ret.Release = fc.Read(wxS("VERSION_ID"), wxEmptyString);
++    ret.CodeName = fc.Read(wxS("VERSION_CODENAME"), wxEmptyString);
++
++    return true;
++}
++
+ static bool
+ wxGetValueFromLSBRelease(const wxString& arg, const wxString& lhs, wxString* rhs)
+ {
+@@ -1161,6 +1180,17 @@ wxLinuxDistributionInfo wxGetLinuxDistributionInfo()
+ {
+     wxLinuxDistributionInfo ret;
+ 
++    // Read /etc/os-release and fall back to /usr/lib/os-release per below
++    // https://www.freedesktop.org/software/systemd/man/os-release.html
++    if ( wxGetValuesFromOSRelease(wxS("/etc/os-release"), ret) )
++    {
++        return ret;
++    }
++    if ( wxGetValuesFromOSRelease(wxS("/usr/lib/os-release"), ret) )
++    {
++        return ret;
++    }
++
+     if ( !wxGetValueFromLSBRelease(wxS("--id"), wxS("Distributor ID:\t"),
+                                    &ret.Id) )
+     {
