@@ -63,6 +63,7 @@ BuildRequires:	pcre2-32-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-modules
+BuildRequires:	rpm-build >= 4.6
 %{?with_gtk3:BuildRequires:	wayland-egl-devel}
 %if %{with x11}
 BuildRequires:	xorg-lib-libSM-devel
@@ -161,6 +162,7 @@ Summary(pl.UTF-8):	Przykładowe programy wxWidgets
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Obsoletes:	wxWindows-examples
+BuildArch:	noarch
 
 %description examples
 wxWidgets example programs.
