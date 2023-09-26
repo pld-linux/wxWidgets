@@ -433,7 +433,6 @@ Summary:	wxGTK3 library
 Summary(pl.UTF-8):	Biblioteka wxGTK3
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk-webkit3 >= 1.3.1
 Requires:	wxBase = %{version}-%{release}
 Obsoletes:	wxGTK3-univ
 
@@ -490,7 +489,6 @@ Summary:	wxGTK3 library with UNICODE support
 Summary(pl.UTF-8):	Biblioteka wxGTK3 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk-webkit3 >= 1.3.1
 Requires:	wxBase-unicode = %{version}-%{release}
 Obsoletes:	wxGTK3-univ-unicode
 
@@ -602,7 +600,6 @@ Summary:	wxMotif library with UNICODE support
 Summary(pl.UTF-8):	Biblioteka wxMotif z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk-webkit3 >= 1.3.1
 Requires:	wxBase-unicode = %{version}-%{release}
 Obsoletes:	wxMotif-univ-unicode
 
