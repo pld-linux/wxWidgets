@@ -990,8 +990,14 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n wxX11 -p /sbin/ldconfig
 %postun	-n wxX11 -p /sbin/ldconfig
 
+%post	-n wxX11-gl -p /sbin/ldconfig
+%postun	-n wxX11-gl -p /sbin/ldconfig
+
 %post	-n wxX11-unicode -p /sbin/ldconfig
 %postun	-n wxX11-unicode -p /sbin/ldconfig
+
+%post	-n wxX11-unicode-gl -p /sbin/ldconfig
+%postun	-n wxX11-unicode-gl -p /sbin/ldconfig
 
 %define libflag %{?with_debug:d}
 
