@@ -26,32 +26,44 @@ Patch4:		os-release.patch
 Patch5:		webkit2gtk4.1.patch
 URL:		http://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
+%{?with_gtk3:BuildRequires:	EGL-devel >= 1.5}
 BuildRequires:	OpenGL-GLU-devel
-%{?with_sdl:BuildRequires:	SDL-devel >= 1.2.0}
+BuildRequires:	OpenGL-devel
+%{?with_sdl:BuildRequires:	SDL2-devel >= 2.0.0}
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
 # for m4 files
 BuildRequires:	bakefile >= 0.2.12
 BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
+BuildRequires:	curl-devel
 BuildRequires:	expat-devel
 BuildRequires:	gettext-tools
-BuildRequires:	gstreamer-devel >= 1.7.2
-BuildRequires:	gstreamer-plugins-base-devel >= 1.7.2
-BuildRequires:	gtk+2-devel >= 2:2.10
+BuildRequires:	gspell-devel
+BuildRequires:	gstreamer-devel >= 1.7.2.1
+BuildRequires:	gstreamer-plugins-bad-devel >= 1.7.2.1
+BuildRequires:	gstreamer-plugins-base-devel >= 1.7.2.1
+BuildRequires:	gtk+2-devel >= 2:2.20
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
 BuildRequires:	gtk-webkit-devel >= 1.3.1
 %{?with_gtk3:BuildRequires:	gtk-webkit4.1-devel}
+BuildRequires:	jbigkit-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmspack-devel
 BuildRequires:	libnotify-devel >= 0.7
 BuildRequires:	libpng-devel >= 1.0
+BuildRequires:	libsecret-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtiff-devel
+BuildRequires:	libtiff-devel >= 4
 BuildRequires:	libtool
 %{?with_motif:BuildRequires:	motif-devel}
 %{?with_x11:BuildRequires:	pango-devel}
+BuildRequires:	pcre2-32-devel
+%{?with_ansi:BuildRequires:	pcre2-8-devel}
 BuildRequires:	pkgconfig
+BuildRequires:	python3
+BuildRequires:	python3-modules
+%{?with_gtk3:BuildRequires:	wayland-egl-devel}
 %if %{with x11}
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -795,7 +807,9 @@ cd ../..
 CPPFLAGS="%{rpmcppflags} %{rpmcflags} -Wno-narrowing -fPIC -I`pwd`/include"; export CPPFLAGS
 # avoid adding -s to LDFLAGS
 LDFLAGS=" "; export LDFLAGS
-args="%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
+LDFLAGS=" "; export LDFLAGS
+args="PYTHON=%{__python3} \
+	%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
 	--enable-ipv6 \
 	--enable-calendar \
 	--enable-controls \
