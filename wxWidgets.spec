@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_with	ansi		# only unicode packages
 %bcond_with	directfb	# build wxDFB packages
+%bcond_without	gtk2		# don't build wxGTK2 packages
 %bcond_without	gtk3		# don't build wxGTK3 packages
 %bcond_with	motif		# build wxMotif packages
 %bcond_without	x11		# don't build wxX11 packages
@@ -43,9 +44,9 @@ BuildRequires:	gspell-devel
 BuildRequires:	gstreamer-devel >= 1.7.2.1
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.7.2.1
 BuildRequires:	gstreamer-plugins-base-devel >= 1.7.2.1
-BuildRequires:	gtk+2-devel >= 2:2.20
+%{?with_gtk2:BuildRequires:	gtk+2-devel >= 2:2.20}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0}
-BuildRequires:	gtk-webkit-devel >= 1.3.1
+%{?with_gtk2:BuildRequires:	gtk-webkit-devel >= 1.3.1}
 %{?with_gtk3:BuildRequires:	gtk-webkit4.1-devel}
 BuildRequires:	jbigkit-devel
 BuildRequires:	libjpeg-devel
@@ -825,7 +826,7 @@ args="PYTHON=%{__python3} \
 	%{?with_sdl:--with-sdl} \
 	--with-opengl"
 
-for gui in '--with-gtk=2' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in %{?with_gtk2'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
@@ -870,7 +871,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-for gui in '--with-gtk=2' %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
@@ -1151,6 +1152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wx-dfbuniv-unicode-config
 %endif
 
+%if %{with gtk2}
 %if %{with ansi}
 %files -n wxGTK2
 %defattr(644,root,root,755)
@@ -1260,6 +1262,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_gl-%{majver}.so
+%endif
 
 %if %{with gtk3}
 %if %{with ansi}
