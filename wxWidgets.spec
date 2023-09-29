@@ -104,11 +104,11 @@ Obsoletes:	wxMotif-gl-devel < %{version}-%{release}
 %endif
 Obsoletes:	wxWidgets-HelpGen < 3
 Obsoletes:	wxWidgets-afm < 2.6
-Obsoletes:	wxWindows
-Obsoletes:	wxWindows-HelpGen
-Obsoletes:	wxWindows-afm
-Obsoletes:	wxwin-afm
-Obsoletes:	wxwin-common
+Obsoletes:	wxWindows < 2.5
+Obsoletes:	wxWindows-HelpGen < 2.5
+Obsoletes:	wxWindows-afm < 2.5
+Obsoletes:	wxwin-afm < 2.5
+Obsoletes:	wxwin-common < 2.5
 Conflicts:	wxGTK2 < 2.6.0
 Conflicts:	wxGTK2-unicode < 2.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -135,7 +135,7 @@ Summary:	wxWidgets header files and development documentation
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do wxWidgets
 Group:		X11/Development/Libraries
 Requires:	libstdc++-devel
-Obsoletes:	wxWindows-devel
+Obsoletes:	wxWindows-devel < 2.5
 
 %description devel
 Header files and development documentation for the wxWidgets
@@ -162,7 +162,7 @@ Summary:	wxWidgets example programs
 Summary(pl.UTF-8):	Przykładowe programy wxWidgets
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Obsoletes:	wxWindows-examples
+Obsoletes:	wxWindows-examples < 2.5
 BuildArch:	noarch
 
 %description examples
