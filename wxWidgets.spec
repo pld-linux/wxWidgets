@@ -1,13 +1,13 @@
 #
 # Conditional build:
-%bcond_with	ansi		# only unicode packages
-%bcond_with	directfb	# build wxDFB packages
-%bcond_without	gtk2		# don't build wxGTK2 packages
-%bcond_without	gtk3		# don't build wxGTK3 packages
-%bcond_with	motif		# build wxMotif packages
-%bcond_without	x11		# don't build wxX11 packages
+%bcond_with	ansi		# non-unicode packages
+%bcond_with	directfb	# wxDFB packages
+%bcond_without	gtk2		# wxGTK2 packages
+%bcond_without	gtk3		# wxGTK3 packages
+%bcond_with	motif		# wxMotif packages
+%bcond_without	x11		# wxX11 packages
 %bcond_without	sdl		# SDL sound support
-%bcond_with	debug		# build with \--enable-debug (binary incompatible with non-debug)
+%bcond_with	debug		# debug version of libraries (binary incompatible with non-debug)
 #
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
@@ -823,7 +823,7 @@ args="PYTHON=%{__python3} \
 	%{?with_sdl:--with-sdl} \
 	--with-opengl"
 
-for gui in %{?with_gtk2'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
