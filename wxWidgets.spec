@@ -80,30 +80,30 @@ BuildRequires:	zlib-devel >= 1.1.4
 Obsoletes:	LDAPExplorerTool <= 0.6-1
 Obsoletes:	abridge <= 0.4.0-1
 # and these are replaced
-Obsoletes:	wxGTK
-Obsoletes:	wxGTK-devel
-Obsoletes:	wxGTK-gl
-Obsoletes:	wxGTK-gl-devel
-Obsoletes:	wxGTK-univ
-Obsoletes:	wxGTK-univ-devel
-Obsoletes:	wxGTK-univ-gl
-Obsoletes:	wxGTK-univ-gl-devel
-Obsoletes:	wxGTK2-univ
-Obsoletes:	wxGTK2-univ-devel
-Obsoletes:	wxGTK2-univ-gl
-Obsoletes:	wxGTK2-univ-gl-devel
-Obsoletes:	wxGTK2-univ-unicode
-Obsoletes:	wxGTK2-univ-unicode-devel
-Obsoletes:	wxGTK2-univ-unicode-gl
-Obsoletes:	wxGTK2-univ-unicode-gl-devel
+Obsoletes:	wxGTK < 2.5.3
+Obsoletes:	wxGTK-devel < 2.5.3
+Obsoletes:	wxGTK-gl < 2.5.3
+Obsoletes:	wxGTK-gl-devel < 2.5.3
+Obsoletes:	wxGTK-univ < 2.5.3
+Obsoletes:	wxGTK-univ-devel < 2.5.3
+Obsoletes:	wxGTK-univ-gl < 2.5.3
+Obsoletes:	wxGTK-univ-gl-devel < 2.5.3
+Obsoletes:	wxGTK2-univ < 2.5.3
+Obsoletes:	wxGTK2-univ-devel < 2.5.3
+Obsoletes:	wxGTK2-univ-gl < 2.5.3
+Obsoletes:	wxGTK2-univ-gl-devel < 2.5.3
+Obsoletes:	wxGTK2-univ-unicode < 2.5.3
+Obsoletes:	wxGTK2-univ-unicode-devel < 2.5.3
+Obsoletes:	wxGTK2-univ-unicode-gl < 2.5.3
+Obsoletes:	wxGTK2-univ-unicode-gl-devel < 2.5.3
 %if %{without motif}
-Obsoletes:	wxMotif
-Obsoletes:	wxMotif-devel
-Obsoletes:	wxMotif-gl
-Obsoletes:	wxMotif-gl-devel
+Obsoletes:	wxMotif < %{version}-%{release}
+Obsoletes:	wxMotif-devel < %{version}-%{release}
+Obsoletes:	wxMotif-gl < %{version}-%{release}
+Obsoletes:	wxMotif-gl-devel < %{version}-%{release}
 %endif
-Obsoletes:	wxWidgets-HelpGen
-Obsoletes:	wxWidgets-afm
+Obsoletes:	wxWidgets-HelpGen < 3
+Obsoletes:	wxWidgets-afm < 2.6
 Obsoletes:	wxWindows
 Obsoletes:	wxWindows-HelpGen
 Obsoletes:	wxWindows-afm
@@ -317,7 +317,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+2 >= 2:2.10
 Requires:	gtk-webkit >= 1.3.1
 Requires:	wxBase = %{version}-%{release}
-Obsoletes:	wxGTK2-univ
+Obsoletes:	wxGTK2-univ < 2.5.3
 
 %description -n wxGTK2
 wxWidgets library using GTK2 widgets.
@@ -331,7 +331,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK2
 Group:		X11/Development/Libraries
 Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxGTK2 = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-devel
+Obsoletes:	wxGTK2-univ-devel < 2.5.3
 
 %description -n wxGTK2-devel
 Header files for wxWidgets library using GTK2 widgets.
@@ -344,7 +344,7 @@ Summary:	GL canvas library for wxGTK2
 Summary(pl.UTF-8):	Biblioteka GL dla wxGTK2
 Group:		X11/Libraries
 Requires:	wxGTK2 = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-gl
+Obsoletes:	wxGTK2-univ-gl < 2.5.3
 
 %description -n wxGTK2-gl
 wxGTK2 GL canvas library.
@@ -359,7 +359,7 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK2-devel = %{version}-%{release}
 Requires:	wxGTK2-gl = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-gl-devel
+Obsoletes:	wxGTK2-univ-gl-devel < 2.5.3
 
 %description -n wxGTK2-gl-devel
 Development files for wxGTK2 GL canvas library.
@@ -375,7 +375,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase-unicode = %{version}-%{release}
 Requires:	gtk+2 >= 2:2.10
 Requires:	gtk-webkit >= 1.3.1
-Obsoletes:	wxGTK2-univ-unicode
+Obsoletes:	wxGTK2-univ-unicode < 2.5.3
 
 %description -n wxGTK2-unicode
 wxWidgets library using GTK2 widgets with UNICODE support.
@@ -389,7 +389,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK2 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxGTK2-unicode = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-unicode-devel
+Obsoletes:	wxGTK2-univ-unicode-devel < 2.5.3
 
 %description -n wxGTK2-unicode-devel
 Header files for wxWidgets library using GTK2 widgets with UNICODE
@@ -404,7 +404,7 @@ Summary:	GL canvas library for wxGTK2 with UNICODE support
 Summary(pl.UTF-8):	Biblioteka GL dla wxGTK2 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxGTK2-unicode = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-unicode-gl
+Obsoletes:	wxGTK2-univ-unicode-gl < 2.5.3
 
 %description -n wxGTK2-unicode-gl
 GL canvas library for wxGTK2 with UNICODE support.
@@ -419,7 +419,7 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK2-unicode-devel = %{version}-%{release}
 Requires:	wxGTK2-unicode-gl = %{version}-%{release}
-Obsoletes:	wxGTK2-univ-unicode-gl-devel
+Obsoletes:	wxGTK2-univ-unicode-gl-devel < 2.5.3
 
 %description -n wxGTK2-unicode-gl-devel
 Development files for GL canvas library for wxGTK2 with UNICODE
@@ -434,7 +434,6 @@ Summary(pl.UTF-8):	Biblioteka wxGTK3
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase = %{version}-%{release}
-Obsoletes:	wxGTK3-univ
 
 %description -n wxGTK3
 wxWidgets library using GTK3 widgets.
@@ -448,7 +447,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK3
 Group:		X11/Development/Libraries
 Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxGTK3 = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-devel
 
 %description -n wxGTK3-devel
 Header files for wxWidgets library using GTK3 widgets.
@@ -461,7 +459,6 @@ Summary:	GL canvas library for wxGTK3
 Summary(pl.UTF-8):	Biblioteka GL dla wxGTK3
 Group:		X11/Libraries
 Requires:	wxGTK3 = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-gl
 
 %description -n wxGTK3-gl
 wxGTK3 GL canvas library.
@@ -476,7 +473,6 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK3-devel = %{version}-%{release}
 Requires:	wxGTK3-gl = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-gl-devel
 
 %description -n wxGTK3-gl-devel
 Development files for wxGTK3 GL canvas library.
@@ -490,7 +486,6 @@ Summary(pl.UTF-8):	Biblioteka wxGTK3 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase-unicode = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-unicode
 
 %description -n wxGTK3-unicode
 wxWidgets library using GTK3 widgets with UNICODE support.
@@ -504,7 +499,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxGTK3 z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxGTK3-unicode = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-unicode-devel
 
 %description -n wxGTK3-unicode-devel
 Header files for wxWidgets library using GTK3 widgets with UNICODE
@@ -519,7 +513,6 @@ Summary:	GL canvas library for wxGTK3 with UNICODE support
 Summary(pl.UTF-8):	Biblioteka GL dla wxGTK3 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxGTK3-unicode = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-unicode-gl
 
 %description -n wxGTK3-unicode-gl
 GL canvas library for wxGTK3 with UNICODE support.
@@ -534,7 +527,6 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxGTK3-unicode-devel = %{version}-%{release}
 Requires:	wxGTK3-unicode-gl = %{version}-%{release}
-Obsoletes:	wxGTK3-univ-unicode-gl-devel
 
 %description -n wxGTK3-unicode-gl-devel
 Development files for GL canvas library for wxGTK3 with UNICODE
@@ -601,7 +593,7 @@ Summary(pl.UTF-8):	Biblioteka wxMotif z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase-unicode = %{version}-%{release}
-Obsoletes:	wxMotif-univ-unicode
+Obsoletes:	wxMotif-univ-unicode < 2.5.3
 
 %description -n wxMotif-unicode
 wxWidgets library using Motif widgets with UNICODE support.
@@ -615,7 +607,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxMotif z obsługą UNICODE
 Group:		X11/Development/Libraries
 Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxMotif-unicode = %{version}-%{release}
-Obsoletes:	wxMotif-univ-unicode-devel
+Obsoletes:	wxMotif-univ-unicode-devel < 2.5.3
 
 %description -n wxMotif-unicode-devel
 Header files for wxWidgets library using Motif widgets with UNICODE
@@ -630,7 +622,7 @@ Summary:	GL canvas library for wxMotif with UNICODE support
 Summary(pl.UTF-8):	Biblioteka GL dla wxMotif z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxMotif-unicode = %{version}-%{release}
-Obsoletes:	wxMotif-univ-unicode-gl
+Obsoletes:	wxMotif-univ-unicode-gl < 2.5.3
 
 %description -n wxMotif-unicode-gl
 GL canvas library for wxMotif with UNICODE support.
@@ -645,7 +637,7 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxMotif-unicode-devel = %{version}-%{release}
 Requires:	wxMotif-unicode-gl = %{version}-%{release}
-Obsoletes:	wxMotif-univ-unicode-gl-devel
+Obsoletes:	wxMotif-univ-unicode-gl-devel < 2.5.3
 
 %description -n wxMotif-unicode-gl-devel
 Development files for GL canvas library for wxMotif with UNICODE
@@ -673,7 +665,7 @@ Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase = %{version}-%{release}
-Obsoletes:	wxX11-univ
+Obsoletes:	wxX11-univ < 2.5.3
 
 %description -n wxX11
 wxUniversal-based wxX11 library.
@@ -688,7 +680,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxBase-devel = %{version}-%{release}
 Requires:	wxX11 = %{version}-%{release}
-Obsoletes:	wxX11-univ-devel
+Obsoletes:	wxX11-univ-devel < 2.5.3
 
 %description -n wxX11-devel
 Header files for wxUniversal-based wxX11 library.
@@ -701,7 +693,7 @@ Summary:	GL canvas library for wxUniversal-based wxX11
 Summary(pl.UTF-8):	Biblioteka GL dla opartej na wxUniversal wxX11
 Group:		X11/Libraries
 Requires:	wxX11 = %{version}-%{release}
-Obsoletes:	wxX11-univ-gl
+Obsoletes:	wxX11-univ-gl < 2.5.3
 
 %description -n wxX11-gl
 GL canvas library for wxUniversal-based wxX11.
@@ -716,7 +708,7 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxX11-devel = %{version}-%{release}
 Requires:	wxX11-gl = %{version}-%{release}
-Obsoletes:	wxX11-univ-gl-devel
+Obsoletes:	wxX11-univ-gl-devel < 2.5.3
 
 %description -n wxX11-gl-devel
 Development files for GL canvas library for wxUniversal-based wxX11.
@@ -730,7 +722,7 @@ Summary(pl.UTF-8):	Oparta na wxUniversal biblioteka wxX11 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	wxBase-unicode = %{version}-%{release}
-Obsoletes:	wxX11-univ-unicode
+Obsoletes:	wxX11-univ-unicode < 2.5.3
 
 %description -n wxX11-unicode
 wxUniversal-based wxX11 library with UNICODE support.
@@ -745,7 +737,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	wxBase-unicode-devel = %{version}-%{release}
 Requires:	wxX11-unicode = %{version}-%{release}
-Obsoletes:	wxX11-univ-unicode-devel
+Obsoletes:	wxX11-univ-unicode-devel < 2.5.3
 
 %description -n wxX11-unicode-devel
 Header files for wxUniversal-based wxX11 library with UNICODE support.
@@ -759,7 +751,7 @@ Summary:	GL canvas library for wxUniversal-based wxX11 with UNICODE support
 Summary(pl.UTF-8):	Biblioteka GL dla opartej na wxUniversal wxX11 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	wxX11-unicode = %{version}-%{release}
-Obsoletes:	wxX11-univ-unicode-gl
+Obsoletes:	wxX11-univ-unicode-gl < 2.5.3
 
 %description -n wxX11-unicode-gl
 GL canvas library for wxUniversal-based wxX11 with UNICODE support.
@@ -774,7 +766,7 @@ Group:		X11/Development/Libraries
 Requires:	OpenGL-GLU-devel
 Requires:	wxX11-unicode-devel = %{version}-%{release}
 Requires:	wxX11-unicode-gl = %{version}-%{release}
-Obsoletes:	wxX11-univ-unicode-gl-devel
+Obsoletes:	wxX11-univ-unicode-gl-devel < 2.5.3
 
 %description -n wxX11-unicode-gl-devel
 Development files for GL canvas library for wxUniversal-based wxX11
