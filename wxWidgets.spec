@@ -17,6 +17,7 @@ Version:	3.2.2.1
 Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
+#Source0Download: https://github.com/wxWidgets/wxWidgets/releases
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	45bd5f56a06e7c4ca7caf6c0b4d5d506
 Patch0:		%{name}-samples.patch
@@ -25,7 +26,7 @@ Patch2:		%{name}-gifdelay.patch
 Patch3:		relax-abicheck.patch
 Patch4:		os-release.patch
 Patch5:		webkit2gtk4.1.patch
-URL:		http://www.wxWidgets.org/
+URL:		https://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 %{?with_gtk3:BuildRequires:	EGL-devel >= 1.5}
 BuildRequires:	OpenGL-GLU-devel
