@@ -651,7 +651,7 @@ Summary:	Misc utils from wxWidgets project
 Summary(pl.UTF-8):	Różne narzędzia z projektu wxWidgets
 Group:		X11/Development/Tools
 Requires:	wxX11-unicode = %{version}-%{release}
-Obsoletes:	wxWindows-utils
+Obsoletes:	wxWindows-utils < 2.5
 
 %description utils
 Misc utils from wxWidgets project: wxemulator, wxrc, etc.
@@ -864,13 +864,7 @@ for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_mot
 for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
-		prefix=$RPM_BUILD_ROOT%{_prefix} \
-		exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
-		bindir=$RPM_BUILD_ROOT%{_bindir} \
-		datadir=$RPM_BUILD_ROOT%{_datadir} \
-		libdir=$RPM_BUILD_ROOT%{_libdir} \
-		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir} \
+		DESTDIR=$RPM_BUILD_ROOT \
 		LOCALE_MSW_LINGUAS=
 done
 done
@@ -881,13 +875,7 @@ for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	cd $objdir
 	%{__make} install \
-		prefix=$RPM_BUILD_ROOT%{_prefix} \
-		exec_prefix=$RPM_BUILD_ROOT%{_exec_prefix} \
-		bindir=$RPM_BUILD_ROOT%{_bindir} \
-		datadir=$RPM_BUILD_ROOT%{_datadir} \
-		libdir=$RPM_BUILD_ROOT%{_libdir} \
-		mandir=$RPM_BUILD_ROOT%{_mandir} \
-		includedir=$RPM_BUILD_ROOT%{_includedir} \
+		DESTDIR=$RPM_BUILD_ROOT \
 		LOCALE_MSW_LINGUAS=
 	if echo $objdir| grep -q 'with-x11--enable-unicode' ; then
 		# TODO: install default config files and default backgrouds
