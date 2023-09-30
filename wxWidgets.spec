@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_with	ansi		# non-unicode packages
+%bcond_without	unicode		# unicode packages
 %bcond_with	directfb	# wxDFB packages
 %bcond_without	gtk2		# wxGTK2 packages
 %bcond_without	gtk3		# wxGTK3 packages
@@ -651,7 +652,11 @@ Pliki programistyczne biblioteki GL dla wxMotif z obsługą UNICODE.
 Summary:	Misc utils from wxWidgets project
 Summary(pl.UTF-8):	Różne narzędzia z projektu wxWidgets
 Group:		X11/Development/Tools
+%if %{with unicode}
 Requires:	wxX11-unicode = %{version}-%{release}
+%else
+Requires:	wxX11 = %{version}-%{release}
+%endif
 Obsoletes:	wxWindows-utils < 2.5
 
 %description utils
@@ -817,7 +822,7 @@ args="PYTHON=%{__python3} \
 	--with-opengl"
 
 for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
-for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
 	cd $objdir
@@ -835,7 +840,7 @@ done
 
 %if %{with x11} || %{with directfb}
 for gui in %{?with_x11:'--with-x11'} %{?with_directfb:--with-directfb} ; do
-for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
 	cd $objdir
@@ -845,7 +850,7 @@ for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
 		--enable-universal \
 		${unicode}
 	%{__make}
-	if echo $objdir| grep -q 'with-x11--enable-unicode' ; then
+	if echo $objdir| grep -q 'with-x11--%{?with_unicode:enable}%{!?with_unicode:disable}-unicode' ; then
 		%{__make} -C utils
 		%{__make} -C utils/emulator
 		%{__make} -C utils/hhp2cached
@@ -862,7 +867,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
-for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
 		DESTDIR=$RPM_BUILD_ROOT \
@@ -872,13 +877,13 @@ done
 
 %if %{with x11} || %{with directfb}
 for gui in %{?with_x11:'--with-x11'} %{?with_directfb:--with-directfb} ; do
-for unicode in %{?with_ansi:'--disable-unicode'} '--enable-unicode' ; do
+for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	cd $objdir
 	%{__make} install \
 		DESTDIR=$RPM_BUILD_ROOT \
 		LOCALE_MSW_LINGUAS=
-	if echo $objdir| grep -q 'with-x11--enable-unicode' ; then
+	if echo $objdir| grep -q 'with-x11--%{?with_unicode:enable}%{!?with_unicode:disable}-unicode' ; then
 		# TODO: install default config files and default backgrouds
 		install utils/emulator/src/wxemulator $RPM_BUILD_ROOT%{_bindir}
 		install utils/hhp2cached/hhp2cached $RPM_BUILD_ROOT%{_bindir}
@@ -1024,6 +1029,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_base%{libflag}_xml-%{majver}.so
 %endif
 
+%if %{with unicode}
 %files -n wxBase-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}-%{majver}.so.*.*.*
@@ -1041,6 +1047,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}-%{majver}.so
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}_net-%{majver}.so
 %attr(755,root,root) %{_libdir}/libwx_baseu%{libflag}_xml-%{majver}.so
+%endif
 
 %if %{with directfb}
 %if %{with ansi}
@@ -1087,6 +1094,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/wx-dfbuniv-ansi-config
 %endif
 
+%if %{with unicode}
 %files -n wxDFB-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_dfbunivu%{libflag}_adv-%{majver}.so.*.*.*
@@ -1128,6 +1136,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/wx/config/dfbuniv-unicode-%{majver}
 %{_libdir}/wx/include/dfbuniv-unicode-%{majver}
 %attr(755,root,root) %{_bindir}/wx-dfbuniv-unicode-config
+%endif
 %endif
 
 %if %{with gtk2}
@@ -1187,6 +1196,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_gtk2%{libflag}_gl-%{majver}.so
 %endif
 
+%if %{with unicode}
 %files -n wxGTK2-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_adv-%{majver}.so.*.*.*
@@ -1240,6 +1250,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK2-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk2u%{libflag}_gl-%{majver}.so
+%endif
 %endif
 
 %if %{with gtk3}
@@ -1300,6 +1311,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_gl-%{majver}.so
 %endif
 
+%if %{with unicode}
 %files -n wxGTK3-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_adv-%{majver}.so.*.*.*
@@ -1354,6 +1366,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxGTK3-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_gl-%{majver}.so
+%endif
 %endif
 
 %if %{with motif}
@@ -1410,6 +1423,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_motif%{libflag}_gl-%{majver}.so
 %endif
 
+%if %{with unicode}
 %files -n wxMotif-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_adv-%{majver}.so.*.*.*
@@ -1460,6 +1474,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_gl-%{majver}.so
+%endif
 %endif
 
 %if %{with x11}
@@ -1524,6 +1539,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libwx_x11univ%{libflag}_gl-%{majver}.so
 %endif
 
+%if %{with unicode}
 %files -n wxX11-unicode
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_adv-%{majver}.so.*.*.*
@@ -1574,4 +1590,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxX11-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_x11univu%{libflag}_gl-%{majver}.so
+%endif
 %endif
