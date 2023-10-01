@@ -6,6 +6,7 @@
 %bcond_without	gtk2		# wxGTK2 packages
 %bcond_without	gtk3		# wxGTK3 packages
 %bcond_with	motif		# wxMotif packages
+%bcond_without	qt		# qxQT packages
 %bcond_without	x11		# wxX11 packages
 %bcond_without	sdl		# SDL sound support
 %bcond_with	debug		# debug version of libraries (binary incompatible with non-debug)
@@ -32,6 +33,13 @@ URL:		https://www.wxWidgets.org/
 %{?with_gtk3:BuildRequires:	EGL-devel >= 1.5}
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	OpenGL-devel
+%if %{with qt}
+BuildRequires:	Qt5Core-devel >= 5.2.1
+BuildRequires:	Qt5Gui-devel >= 5.2.1
+BuildRequires:	Qt5OpenGL-devel >= 5.2.1
+BuildRequires:	Qt5Test-devel >= 5.2.1
+BuildRequires:	Qt5Widgets-devel >= 5.2.1
+%endif
 %{?with_sdl:BuildRequires:	SDL2-devel >= 2.0.0}
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -374,9 +382,9 @@ Summary:	wxGTK2 library with UNICODE support
 Summary(pl.UTF-8):	Biblioteka wxGTK2 z obsługą UNICODE
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	wxBase-unicode = %{version}-%{release}
 Requires:	gtk+2 >= 2:2.10
 Requires:	gtk-webkit >= 1.3.1
+Requires:	wxBase-unicode = %{version}-%{release}
 Obsoletes:	wxGTK2-univ-unicode < 2.5.3
 
 %description -n wxGTK2-unicode
@@ -648,6 +656,133 @@ support.
 %description -n wxMotif-unicode-gl-devel -l pl.UTF-8
 Pliki programistyczne biblioteki GL dla wxMotif z obsługą UNICODE.
 
+%package -n wxQT
+Summary:	wxQT library
+Summary(pl.UTF-8):	Biblioteka wxQT
+Group:		X11/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	Qt5Core >= 5.2.1
+Requires:	Qt5Gui >= 5.2.1
+Requires:	Qt5OpenGL >= 5.2.1
+Requires:	Qt5Test >= 5.2.1
+Requires:	Qt5Widgets >= 5.2.1
+Requires:	wxBase = %{version}-%{release}
+
+%description -n wxQT
+wxWidgets library using QT widgets.
+
+%description -n wxQT -l pl.UTF-8
+Biblioteka wxWidgets używająca widgetów QT.
+
+%package -n wxQT-devel
+Summary:	Header files for wxQT library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxQT
+Group:		X11/Development/Libraries
+Requires:	Qt5Core-devel >= 5.2.1
+Requires:	Qt5Gui-devel >= 5.2.1
+Requires:	Qt5OpenGL-devel >= 5.2.1
+Requires:	Qt5Test-devel >= 5.2.1
+Requires:	Qt5Widgets-devel >= 5.2.1
+Requires:	wxBase-devel = %{version}-%{release}
+Requires:	wxQT = %{version}-%{release}
+
+%description -n wxQT-devel
+Header files for wxWidgets library using QT widgets.
+
+%description -n wxQT-devel -l pl.UTF-8
+Pliki nagłówkowe dla biblioteki wxWidgets używającej widgetów QT.
+
+%package -n wxQT-gl
+Summary:	GL canvas library for wxQT
+Summary(pl.UTF-8):	Biblioteka GL dla wxQT
+Group:		X11/Libraries
+Requires:	wxQT = %{version}-%{release}
+
+%description -n wxQT-gl
+wxQT GL canvas library.
+
+%description -n wxQT-gl -l pl.UTF-8
+Biblioteka GL dla wxQT.
+
+%package -n wxQT-gl-devel
+Summary:	Development files for GL canvas library for wxQT
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla wxQT
+Group:		X11/Development/Libraries
+Requires:	OpenGL-GLU-devel
+Requires:	wxQT-devel = %{version}-%{release}
+Requires:	wxQT-gl = %{version}-%{release}
+
+%description -n wxQT-gl-devel
+Development files for wxQT GL canvas library.
+
+%description -n wxQT-gl-devel -l pl.UTF-8
+Pliki programistyczne biblioteki GL dla wxQT.
+
+%package -n wxQT-unicode
+Summary:	wxQT library with UNICODE support
+Summary(pl.UTF-8):	Biblioteka wxQT z obsługą UNICODE
+Group:		X11/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	Qt5Core >= 5.2.1
+Requires:	Qt5Gui >= 5.2.1
+Requires:	Qt5OpenGL >= 5.2.1
+Requires:	Qt5Test >= 5.2.1
+Requires:	Qt5Widgets >= 5.2.1
+Requires:	gtk-webkit3 >= 1.3.1
+Requires:	wxBase-unicode = %{version}-%{release}
+
+%description -n wxQT-unicode
+wxWidgets library using QT widgets with UNICODE support.
+
+%description -n wxQT-unicode -l pl.UTF-8
+Biblioteka wxWidgets używająca widgetów QT z obsługą UNICODE.
+
+%package -n wxQT-unicode-devel
+Summary:	Header files for wxQT library with UNICODE support
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki wxQT z obsługą UNICODE
+Group:		X11/Development/Libraries
+Requires:	Qt5Core-devel >= 5.2.1
+Requires:	Qt5Gui-devel >= 5.2.1
+Requires:	Qt5OpenGL-devel >= 5.2.1
+Requires:	Qt5Test-devel >= 5.2.1
+Requires:	Qt5Widgets-devel >= 5.2.1
+Requires:	wxBase-unicode-devel = %{version}-%{release}
+Requires:	wxQT-unicode = %{version}-%{release}
+
+%description -n wxQT-unicode-devel
+Header files for wxWidgets library using QT widgets with UNICODE
+support.
+
+%description -n wxQT-unicode-devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki wxWidgets używającej widgetów QT z obsługą
+UNICODE.
+
+%package -n wxQT-unicode-gl
+Summary:	GL canvas library for wxQT with UNICODE support
+Summary(pl.UTF-8):	Biblioteka GL dla wxQT z obsługą UNICODE
+Group:		X11/Libraries
+Requires:	wxQT-unicode = %{version}-%{release}
+
+%description -n wxQT-unicode-gl
+GL canvas library for wxQT with UNICODE support.
+
+%description -n wxQT-unicode-gl -l pl.UTF-8
+Biblioteka GL dla wxQT z obsługą UNICODE.
+
+%package -n wxQT-unicode-gl-devel
+Summary:	Development files for GL canvas library for wxQT with UNICODE support
+Summary(pl.UTF-8):	Pliki programistyczne biblioteki GL dla wxQT z obsługą UNICODE
+Group:		X11/Development/Libraries
+Requires:	OpenGL-GLU-devel
+Requires:	wxQT-unicode-devel = %{version}-%{release}
+Requires:	wxQT-unicode-gl = %{version}-%{release}
+
+%description -n wxQT-unicode-gl-devel
+Development files for GL canvas library for wxQT with UNICODE support.
+
+%description -n wxQT-unicode-gl-devel -l pl.UTF-8
+Pliki programistyczne biblioteki GL dla wxQT z obsługą UNICODE.
+
 %package utils
 Summary:	Misc utils from wxWidgets project
 Summary(pl.UTF-8):	Różne narzędzia z projektu wxWidgets
@@ -821,7 +956,7 @@ args="PYTHON=%{__python3} \
 	%{?with_sdl:--with-sdl} \
 	--with-opengl"
 
-for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} %{?with_qt:'--with-qt'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
@@ -866,7 +1001,7 @@ done
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} ; do
+for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} %{?with_qt:'--with-qt'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	%{__make} -C $objdir install \
@@ -970,6 +1105,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	-n wxMotif-unicode-gl -p /sbin/ldconfig
 %postun	-n wxMotif-unicode-gl -p /sbin/ldconfig
+
+%post	-n wxQT -p /sbin/ldconfig
+%postun	-n wxQT -p /sbin/ldconfig
+
+%post	-n wxQT-gl -p /sbin/ldconfig
+%postun	-n wxQT-gl -p /sbin/ldconfig
+
+%post	-n wxQT-unicode -p /sbin/ldconfig
+%postun	-n wxQT-unicode -p /sbin/ldconfig
+
+%post	-n wxQT-unicode-gl -p /sbin/ldconfig
+%postun	-n wxQT-unicode-gl -p /sbin/ldconfig
 
 %post	-n wxX11 -p /sbin/ldconfig
 %postun	-n wxX11 -p /sbin/ldconfig
@@ -1474,6 +1621,114 @@ rm -rf $RPM_BUILD_ROOT
 %files -n wxMotif-unicode-gl-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libwx_motifu%{libflag}_gl-%{majver}.so
+%endif
+%endif
+
+%if %{with qt}
+%if %{with ansi}
+%files -n wxQT
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so.0
+
+%files -n wxQT-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_adv-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_aui-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_core-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_html-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_media-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_propgrid-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_qa-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_ribbon-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_richtext-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_stc-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_xrc-%{majver}.so
+%attr(755,root,root) %{_libdir}/wx/config/qt-ansi-%{majver}
+%{_libdir}/wx/include/qt-ansi-%{majver}
+%attr(755,root,root) %{_bindir}/wx-qt-ansi-config
+
+%files -n wxQT-gl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so.0
+
+%files -n wxQT-gl-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qt%{libflag}_gl-%{majver}.so
+%endif
+
+%if %{with unicode}
+%files -n wxQT-unicode
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so.0
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so.0
+
+%files -n wxQT-unicode-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_adv-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_aui-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_core-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_html-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_media-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_propgrid-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_qa-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_ribbon-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_richtext-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_stc-%{majver}.so
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_xrc-%{majver}.so
+%attr(755,root,root) %{_libdir}/wx/config/qt-unicode-%{majver}
+%{_libdir}/wx/include/qt-unicode-%{majver}
+%attr(755,root,root) %{_bindir}/wx-qt-unicode-config
+
+%files -n wxQT-unicode-gl
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so.0
+
+%files -n wxQT-unicode-gl-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libwx_qtu%{libflag}_gl-%{majver}.so
 %endif
 %endif
 
