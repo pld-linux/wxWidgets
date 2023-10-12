@@ -15,19 +15,17 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.2
-Version:	3.2.2.1
-Release:	2
+Version:	3.2.3
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 #Source0Download: https://github.com/wxWidgets/wxWidgets/releases
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	45bd5f56a06e7c4ca7caf6c0b4d5d506
+# Source0-md5:	621a67681e96147194d752db12d7f24d
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-gifdelay.patch
 Patch3:		relax-abicheck.patch
-Patch4:		os-release.patch
-Patch5:		webkit2gtk4.1.patch
 URL:		https://www.wxWidgets.org/
 %{?with_directfb:BuildRequires:	DirectFB-devel >= 0.9.23}
 %{?with_gtk3:BuildRequires:	EGL-devel >= 1.5}
@@ -83,6 +81,9 @@ BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXt-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
+%endif
+%if %{with gtk2} || %{with gtk3}
+BuildRequires:	xorg-lib-libxkbcommon-devel
 %endif
 BuildRequires:	xz-devel
 BuildRequires:	zlib-devel >= 1.1.4
@@ -923,8 +924,6 @@ obsługą UNICODE.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %{__rm} build/aclocal/bakefile*.m4
 
