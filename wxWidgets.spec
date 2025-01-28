@@ -3,7 +3,7 @@
 %bcond_with	ansi		# non-unicode packages
 %bcond_without	unicode		# unicode packages
 %bcond_with	directfb	# wxDFB packages
-%bcond_without	gtk2		# wxGTK2 packages
+%bcond_with	gtk2		# wxGTK2 packages
 %bcond_without	gtk3		# wxGTK3 packages
 %bcond_with	motif		# wxMotif packages
 %bcond_without	qt		# qxQT packages
@@ -16,7 +16,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.2
 Version:	3.2.6
-Release:	2
+Release:	3
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 #Source0Download: https://github.com/wxWidgets/wxWidgets/releases
