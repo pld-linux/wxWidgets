@@ -73,6 +73,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	python3
 BuildRequires:	python3-modules
 BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 2.043
 %{?with_gtk3:BuildRequires:	wayland-egl-devel}
 %if %{with x11}
 BuildRequires:	xorg-lib-libSM-devel
@@ -955,12 +956,13 @@ args="PYTHON=%{__python3} \
 	%{?with_sdl:--with-sdl} \
 	--with-opengl"
 
+%define	configuredir	..
 for gui in %{?with_gtk2:'--with-gtk=2'} %{?with_gtk3:'--with-gtk=3'} %{?with_motif:'--with-motif'} %{?with_qt:'--with-qt'} ; do
 for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unicode'} ; do
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
 	cd $objdir
-	../%configure \
+	%configure \
 		${args} \
 		${gui} \
 		--enable-graphics_ctx \
@@ -978,7 +980,7 @@ for unicode in %{?with_ansi:'--disable-unicode'} %{?with_unicode:'--enable-unico
 	objdir=`echo obj${gui}${unicode}|sed 's/ /_/g'`
 	mkdir -p $objdir
 	cd $objdir
-	../%configure \
+	%configure \
 		${args} \
 		${gui} \
 		--enable-universal \
