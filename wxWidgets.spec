@@ -16,7 +16,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.2
 Version:	3.2.7
-Release:	1
+Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 #Source0Download: https://github.com/wxWidgets/wxWidgets/releases
@@ -1053,6 +1053,11 @@ cp -a demos samples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -f docs/x11/readme.txt docs/wxX11-readme.txt
 
 %{__rm} $RPM_BUILD_ROOT%{_bindir}/wx-config
+
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/ko{_KR,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/fa{_IR,}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/gl{_ES,}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/co
 
 %find_lang wxstd-%{majver}
 
