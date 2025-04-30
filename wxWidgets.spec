@@ -15,13 +15,13 @@ Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.2
-Version:	3.2.7
-Release:	3
+Version:	3.2.8
+Release:	1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 #Source0Download: https://github.com/wxWidgets/wxWidgets/releases
 Source0:	https://github.com/wxWidgets/wxWidgets/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	fca970158930c96144dba1bfef42a0d7
+# Source0-md5:	d809582fa4508eb350ef68a81f2fbd47
 Patch0:		%{name}-samples.patch
 Patch1:		%{name}-ac.patch
 Patch2:		%{name}-gifdelay.patch
