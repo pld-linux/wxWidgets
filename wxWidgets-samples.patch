@@ -1,5 +1,5 @@
---- wxWidgets-2.5.4/configure.in~	2005-02-28 15:03:24.811627176 +0100
-+++ wxWidgets-2.5.4/configure.in	2005-02-28 15:08:28.636438784 +0100
+--- wxWidgets-2.5.4/configure.ac~	2005-02-28 15:03:24.811627176 +0100
++++ wxWidgets-2.5.4/configure.ac	2005-02-28 15:08:28.636438784 +0100
 @@ -5069,7 +5069,7 @@
          AC_DEFINE(HAVE_NL_TIME_FIRST_WEEKDAY)
      fi

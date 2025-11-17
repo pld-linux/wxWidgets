@@ -1,12 +1,12 @@
---- wxWidgets-2.9.4/configure.in~	2013-04-19 17:20:35.000000000 +0200
-+++ wxWidgets-2.9.4/configure.in	2013-04-19 17:24:04.366820089 +0200
+--- wxWidgets-2.9.4/configure.ac~	2013-04-19 17:20:35.000000000 +0200
++++ wxWidgets-2.9.4/configure.ac	2013-04-19 17:24:04.366820089 +0200
 @@ -2583,7 +2583,7 @@
          dnl HAVE_STDLIB_H which are already defined and this provokes
          dnl a compiler warning which configure considers as an error...
          AC_MSG_CHECKING(for jpeglib.h)
 -        AC_CACHE_VAL(ac_cv_header_jpeglib_h,
 +        AC_CACHE_VAL(ac_cv_header_jpeglib_h,[
-             AC_TRY_COMPILE(
+             AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
                  [
                      #undef HAVE_STDLIB_H
 @@ -2595,7 +2595,7 @@
