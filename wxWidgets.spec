@@ -16,7 +16,7 @@ Summary(pl.UTF-8):	Biblioteka wxWidgets
 Name:		wxWidgets
 %define	majver	3.3
 Version:	3.3.1
-Release:	1
+Release:	2
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
 #Source0Download: https://github.com/wxWidgets/wxWidgets/releases
@@ -1034,7 +1034,7 @@ cp -a include/wx/private $RPM_BUILD_ROOT%{_includedir}/wx-%{majver}/wx/
 cp -a include/wx/unix/private $RPM_BUILD_ROOT%{_includedir}/wx-%{majver}/wx/unix/
 
 %if %{without gtk3}
-install -d $RPM_BUILD_ROOT%{_libdir}/wx/%{majver}/web-extensions
+install -d $RPM_BUILD_ROOT%{_libdir}/wx/%{version}/web-extensions
 %endif
 
 for i in $RPM_BUILD_ROOT%{_libdir}/wx/config/*
@@ -1137,6 +1137,13 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-n wxX11-unicode-gl -p /sbin/ldconfig
 
 %define libflag %{?with_debug:d}
+
+%files -f wxstd-%{majver}.lang
+%defattr(644,root,root,755)
+%doc docs/{changes,licence,licendoc,preamble,readme}.txt
+%dir %{_libdir}/wx
+%dir %{_libdir}/wx/%{version}
+%dir %{_libdir}/wx/%{version}/web-extensions
 
 %files devel
 %defattr(644,root,root,755)
@@ -1427,7 +1434,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_webview-%{majver}.so.1
 %attr(755,root,root) %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3%{libflag}_xrc-%{majver}.so.1
-%attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_ext-%{majver}.so
+%attr(755,root,root) %{_libdir}/wx/%{version}/web-extensions/webkit2_ext-%{majver}.so
 
 %files -n wxGTK3-devel
 %defattr(644,root,root,755)
@@ -1484,7 +1491,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_webview-%{majver}.so.1
 %attr(755,root,root) %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libwx_gtk3u%{libflag}_xrc-%{majver}.so.1
-#attr(755,root,root) %{_libdir}/wx/%{majver}/web-extensions/webkit2_extu-%{majver}.so
+%attr(755,root,root) %{_libdir}/wx/%{version}/web-extensions/webkit2_extu-%{version}.so
 
 %files -n wxGTK3-unicode-devel
 %defattr(644,root,root,755)
