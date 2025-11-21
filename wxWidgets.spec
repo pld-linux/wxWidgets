@@ -18,7 +18,7 @@ Name:		wxWidgets
 # 3.3 on wx-3.3 branch
 %define	majver	3.2
 Version:	3.2.8.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	wxWindows Library Licence 3.1 (LGPL v2+ with exception)
 Group:		X11/Libraries
