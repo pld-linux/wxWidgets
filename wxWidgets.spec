@@ -10,6 +10,7 @@
 %bcond_without	x11		# wxX11 packages
 %bcond_without	sdl		# SDL sound support
 %bcond_with	debug		# debug version of libraries (binary incompatible with non-debug)
+%bcond_with	bakefile	# use bakefile to regenerate m4 files
 #
 Summary:	wxWidgets library
 Summary(pl.UTF-8):	Biblioteka wxWidgets
@@ -43,8 +44,12 @@ BuildRequires:	Qt5Widgets-devel >= 5.2.1
 %{?with_sdl:BuildRequires:	SDL2-devel >= 2.0.0}
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
+%if %{with bakefile}
 # for m4 files
+# disabled b/c 0.x depends on dropped python2 libs
+# and 1.x is incompatible
 BuildRequires:	bakefile >= 0.2.12
+%endif
 BuildRequires:	cairo-devel
 BuildRequires:	cppunit-devel >= 1.8.0
 BuildRequires:	curl-devel
@@ -928,13 +933,17 @@ obsługą UNICODE.
 %patch -P2 -p1
 %patch -P3 -p1
 
+%if %{with bakefile}
 %{__rm} build/aclocal/bakefile*.m4
+%endif
 
 %build
+%if %{with bakefile}
 %if "%(rpm -q bakefile --qf '%%{VERSION}')" != "0.2.13"
 cd build/bakefiles
 bakefile_gen -f autoconf
 cd ../..
+%endif
 %endif
 %{__aclocal} -I build/aclocal
 %{__autoconf}
