@@ -943,6 +943,7 @@ LDFLAGS=" "; export LDFLAGS
 LDFLAGS=" "; export LDFLAGS
 args="PYTHON=%{__python3} \
 	%{?with_debug:--enable-debug}%{!?with_debug:--disable-debug} \
+	--enable-compat30 \
 	--enable-ipv6 \
 	--enable-calendar \
 	--enable-controls \
